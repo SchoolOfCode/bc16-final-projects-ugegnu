@@ -3,10 +3,14 @@ import Header from "../../components/headerComponent";
 import { useEffect, useState } from "react";
 import "./savedRoutes.css";
 import RetrievedRoutePage from "../retrievedRoutePage/retrievedRoutePage";
+import loadingsign from "../../assets/tube-spinner.svg";
+import logo from "../../assets/FullLogo.png";
+
 export default function SavedRoutesPage() {
   const [routes, setRoutes] = useState([]);
   const [retrieved, setRetrieved] = useState(false);
   const [selectedRoute, setSelectedRoute] = useState({});
+  const [loading, setLoading] = useState(false);
 
   //To avoid another API call we are using this function to call at the end to show the list.
   const deleteRoute = async (e) => {
@@ -32,9 +36,9 @@ export default function SavedRoutesPage() {
     //changes the data into json so we can display it on the screen
     const data = await response.json();
     //the fetch routes are then store in routes state by using the setRoutes function.
-
-    setRoutes(data.payload);
     console.log(data);
+    setRoutes(data.payload);
+    setLoading(true);
   };
 
   useEffect(() => {
@@ -64,44 +68,57 @@ export default function SavedRoutesPage() {
 
   return (
     <div>
+      {/* <img src={loadingsign}></img> */}
       <Header />
       {/* table with .map - show name and button */}
-      {retrieved ? (
-        <RetrievedRoutePage handleRetrieve={handleRetrieve} />
+
+      {loading ? (
+        retrieved ? (
+          <RetrievedRoutePage handleRetrieve={handleRetrieve} />
+        ) : (
+          <table className="savedRoutesTable">
+            <tbody>
+              <tr>
+                <th>Route Name</th>
+              </tr>
+              {routes.map((route, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{route.route_name}</td>
+                    <td>
+                      <Link to={"retrieved-route"}></Link>
+                      <button
+                        onClick={handleRetrieve}
+                        className="savedRoutesTable__retrieveRouteButton"
+                        value={route.id}
+                      >
+                        Retrieve Route
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        className="savedRoutesTable__deleteRouteButton"
+                        value={route.id}
+                        onClick={deleteRoute}
+                      >
+                        Delete Button
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )
       ) : (
-        <table className="savedRoutesTable">
-          <tbody>
-            <tr>
-              <th>Route Name</th>
-            </tr>
-            {routes.map((route, index) => {
-              return (
-                <tr key={index}>
-                  <td>{route.route_name}</td>
-                  <td>
-                    <Link to={"retrieved-route"}></Link>
-                    <button
-                      onClick={handleRetrieve}
-                      className="savedRoutesTable__retrieveRouteButton"
-                      value={route.id}
-                    >
-                      Retrieve Route
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="savedRoutesTable__deleteRouteButton"
-                      value={route.id}
-                      onClick={deleteRoute}
-                    >
-                      Delete Button
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className="loading-div">
+          <img src={logo} alt="uplot-logo"></img>
+          <img
+            src={loadingsign}
+            alt="loading-gif"
+            className="loading-gif"
+          ></img>
+        </div>
       )}
     </div>
   );

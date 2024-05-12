@@ -6,6 +6,7 @@ import HomePage from "./routes/homePage/homePage";
 import CreateRoutePage from "./routes/createRoutePage/createRoutePage";
 import SavedRoutesPage from "./routes/savedRoutesPage/savedRoutes";
 import RetrievedRoutePage from "./routes/retrievedRoutePage/retrievedRoutePage";
+import { Suspense } from "react";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
   },
   {
     path: "saved-routes",
-    element: <SavedRoutesPage />,
+    element: (
+      <Suspense fallback={<p>Loaading..</p>}>
+        <SavedRoutesPage />,
+      </Suspense>
+    ),
   },
   {
     path: "retrieved-route",
