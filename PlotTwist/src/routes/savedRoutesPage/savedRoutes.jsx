@@ -44,7 +44,9 @@ export default function SavedRoutesPage() {
     console.log(data);
 
     setRoutes(data.payload);
+
     setIsLoading(false);
+
   };
 
   useEffect(() => {
@@ -52,11 +54,12 @@ export default function SavedRoutesPage() {
     getAllRoutes();
   }, []);
 
-  function handleRetrieve(e) {
+  async function handleRetrieve(e) {
     console.log("hi");
     if (retrieved === true) {
       setRetrieved(false);
     } else {
+      setSelectedRoute(await getRouteById(e.target.value));
       setRetrieved(true);
     }
 
@@ -69,7 +72,6 @@ export default function SavedRoutesPage() {
       console.log(data);
       return data;
     }
-    getRouteById(e.target.value);
   }
 
   const handleOpenMenu = () => {
@@ -104,7 +106,8 @@ export default function SavedRoutesPage() {
             <img className="loading-gif" src={loadingsymbol}></img>
           </div>
         ) : retrieved ? (
-          <RetrievedRoutePage handleRetrieve={handleRetrieve} />
+          <RetrievedRoutePage handleRetrieve={handleRetrieve} selectedRoute={selectedRoute} />
+
         ) : (
           <table className="savedRoutesTable">
             <tbody>

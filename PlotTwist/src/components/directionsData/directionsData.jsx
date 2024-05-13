@@ -30,31 +30,28 @@ export default function DirectionsData({
     event.preventDefault();
     const routeData = {
       name: routeName,
-      data: routeName,
+      data: markerCoordinatesArray,
     };
     await saveNewRoute(routeData);
   };
 
-  async function saveNewRoute(routeData) {
-    try {
-      const response = await fetch(
-        "https://final-project-backend-1p20.onrender.com/newRoute",
-        {
-          method: "POST",
-          body: JSON.stringify(routeData),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log(response);
-      const data = await response.json();
-      if (data) {
-        console.log(data);
-      } else {
-        throw new Error("Error saving route");
+  async function saveNewRoute(route) {
+    // const body = {
+    //   name: "friday",
+    //   data: "Test Coordinates",
+    // };
+    console.log(`Adding route ${route.name}...`);
+    const response = await fetch(
+      "https://final-project-backend-lp20.onrender.com/newRoute",
+      // "http://localhost:3000/newRoute",
+      {
+        method: "POST",
+        body: JSON.stringify(route),
+        headers: { "Content-Type": "application/json" },
       }
-    } catch (error) {
-      console.error(error);
-    }
+    );
+    const data = await response.json();
+    console.log(data);
   }
 
   useEffect(() => {
