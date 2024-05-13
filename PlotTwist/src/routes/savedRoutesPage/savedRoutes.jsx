@@ -3,10 +3,14 @@ import Header from "../../components/header/headerComponent";
 import { useEffect, useState } from "react";
 import "./savedRoutes.css";
 import RetrievedRoutePage from "../retrievedRoutePage/retrievedRoutePage";
+import loadingsymbol from "../../assets/tube-spinner.svg";
+import logo from "../../assets/FullLogo.png";
+
 export default function SavedRoutesPage() {
   const [routes, setRoutes] = useState([]);
   const [retrieved, setRetrieved] = useState(false);
   const [selectedRoute, setSelectedRoute] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   // State for handling the header's styling
   const [openMenu, setOpenMenu] = useState(false);
@@ -22,8 +26,9 @@ export default function SavedRoutesPage() {
       `https://final-project-backend-lp20.onrender.com/delete/${id}`,
       { method: "DELETE" }
     );
-    const data = await response.json();
     console.log(data);
+    const data = await response.json();
+
     //This function is called after the deletion to re-render on page load, this will populate the routes
     getAllRoutes();
   };
@@ -36,8 +41,12 @@ export default function SavedRoutesPage() {
     //changes the data into json so we can display it on the screen
     const data = await response.json();
     //the fetch routes are then store in routes state by using the setRoutes function.
+    console.log(data);
 
     setRoutes(data.payload);
+
+    setIsLoading(false);
+
   };
 
   useEffect(() => {
@@ -90,11 +99,15 @@ export default function SavedRoutesPage() {
         }
       >
         {/* table with .map - show name and button */}
-        {retrieved ? (
-          <RetrievedRoutePage
-            handleRetrieve={handleRetrieve}
-            selectedRoute={selectedRoute}
-          />
+
+        {isLoading ? (
+          <div className="savedRoutes__loading-div">
+            <img className="uplot-logo" src={logo}></img>
+            <img className="loading-gif" src={loadingsymbol}></img>
+          </div>
+        ) : retrieved ? (
+          <RetrievedRoutePage handleRetrieve={handleRetrieve} selectedRoute={selectedRoute} />
+
         ) : (
           <table className="savedRoutesTable">
             <tbody>

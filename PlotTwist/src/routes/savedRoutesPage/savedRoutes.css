@@ -10,3 +10,20 @@
 .savedRoutesTable__deleteRouteButton {
   background-color: rgb(247, 136, 136);
 }
+
+.loading-gif {
+  width: 20vw;
+  height: auto;
+}
+
+.savedRoutes__loading-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  place-self: center;
+}
+
+.uplot-logo {
+  width: 25vw;
+  height: auto;
+}
