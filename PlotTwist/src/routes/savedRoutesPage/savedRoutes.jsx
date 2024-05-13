@@ -12,7 +12,6 @@ export default function SavedRoutesPage() {
   const [openMenu, setOpenMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-
   //To avoid another API call we are using this function to call at the end to show the list.
   const deleteRoute = async (e) => {
     // the value of the delete button has been set to route.id
@@ -39,7 +38,6 @@ export default function SavedRoutesPage() {
     //the fetch routes are then store in routes state by using the setRoutes function.
 
     setRoutes(data.payload);
-    console.log(data);
   };
 
   useEffect(() => {
@@ -47,11 +45,12 @@ export default function SavedRoutesPage() {
     getAllRoutes();
   }, []);
 
-  function handleRetrieve(e) {
+  async function handleRetrieve(e) {
     console.log("hi");
     if (retrieved === true) {
       setRetrieved(false);
     } else {
+      setSelectedRoute(await getRouteById(e.target.value));
       setRetrieved(true);
     }
 
@@ -64,7 +63,6 @@ export default function SavedRoutesPage() {
       console.log(data);
       return data;
     }
-    getRouteById(e.target.value);
   }
 
   const handleOpenMenu = () => {
@@ -84,14 +82,19 @@ export default function SavedRoutesPage() {
   return (
     <>
       <Header openMenu={openMenu} handleOpenMenu={handleOpenMenu} />
-      <main style={
+      <main
+        style={
           openMenu && Number(screenWidth) < 1024
-            ? { "paddingTop": "365px" }
-            : { "paddingTop": "120px" }
-        }>
+            ? { paddingTop: "365px" }
+            : { paddingTop: "120px" }
+        }
+      >
         {/* table with .map - show name and button */}
         {retrieved ? (
-          <RetrievedRoutePage handleRetrieve={handleRetrieve} />
+          <RetrievedRoutePage
+            handleRetrieve={handleRetrieve}
+            selectedRoute={selectedRoute}
+          />
         ) : (
           <table className="savedRoutesTable">
             <tbody>

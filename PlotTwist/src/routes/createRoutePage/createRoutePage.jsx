@@ -56,46 +56,75 @@ export default function CreateRoutePage() {
         className="mainCreatePage"
         style={
           openMenu && Number(screenWidth) < 1024
-            ? { "paddingTop": "365px" }
-            : { "paddingTop": "120px" }
+            ? { paddingTop: "365px" }
+            : { paddingTop: "120px" }
         }
       >
         <section className="mainCreatePage__banner">
           {routeIsReset ? (
             <h1 className="mainCreatePage__heading">
-              Welcome to U-PLOT! <br></br> The world&apos;s no.1 route optimisation
-              service!
+              Welcome to U-PLOT! <br></br> The world&apos;s no.1 route
+              optimisation service!
             </h1>
           ) : (
-            <h1 className="mainCreatePage__heading">The map has been cleared</h1>
+            <h1 className="mainCreatePage__heading">
+              The map has been cleared
+            </h1>
           )}
           <div className="mainCreatePage__instructionsContainer">
-            <h2 className="mainCreatePage__instructionsHeading">How do I use the map and create a route?</h2>
+            <h2 className="mainCreatePage__instructionsHeading">
+              How do I use the map and create a route?
+            </h2>
             {!showInstructions ? (
-              <button className="mainCreatePage__instructionsButton" onClick={handleInstructionsClick}><img className="mainCreatePage__arrowDown" src={arrow} alt="Arrow icon"/></button>) :
-              (<button className="mainCreatePage__instructionsButton" onClick={handleInstructionsClick}><img className="mainCreatePage__arrowUp" src={arrow} alt="Arrow icon"/></button>
+              <button
+                className="mainCreatePage__instructionsButton"
+                onClick={handleInstructionsClick}
+              >
+                <img
+                  className="mainCreatePage__arrowDown"
+                  src={arrow}
+                  alt="Arrow icon"
+                />
+              </button>
+            ) : (
+              <button
+                className="mainCreatePage__instructionsButton"
+                onClick={handleInstructionsClick}
+              >
+                <img
+                  className="mainCreatePage__arrowUp"
+                  src={arrow}
+                  alt="Arrow icon"
+                />
+              </button>
             )}
-            
           </div>
-          </section>
-          {showInstructions && (
-            <ol className="mainCreatePage__instructionsList">
-              <li className="mainCreatePage__instructionsItem">Tap the map to select a starting location</li>
-              <li className="mainCreatePage__instructionsItem">Tap the map to select a finishing location</li>
-              <li className="mainCreatePage__instructionsItem">
-                Tap the map to select up to 20 waypoints in between the start and finish
-              </li>
-              <li className="mainCreatePage__instructionsItem">
-                Hit the &apos;Create Route&apos; button to generate an optimised
-                route
-              </li>
-              <li className="mainCreatePage__instructionsItem">Give your route a name and save it for convenient access</li>
-              <li className="mainCreatePage__instructionsItem">
-                Hit the &apos;Reset&apos; button to clear the map and start a
-                new route
-              </li>
-            </ol>
-          )}
+        </section>
+        {showInstructions && (
+          <ol className="mainCreatePage__instructionsList">
+            <li className="mainCreatePage__instructionsItem">
+              Tap the map to select a starting location
+            </li>
+            <li className="mainCreatePage__instructionsItem">
+              Tap the map to select a finishing location
+            </li>
+            <li className="mainCreatePage__instructionsItem">
+              Tap the map to select up to 20 waypoints in between the start and
+              finish
+            </li>
+            <li className="mainCreatePage__instructionsItem">
+              Hit the &apos;Create Route&apos; button to generate an optimised
+              route
+            </li>
+            <li className="mainCreatePage__instructionsItem">
+              Give your route a name and save it for convenient access
+            </li>
+            <li className="mainCreatePage__instructionsItem">
+              Hit the &apos;Reset&apos; button to clear the map and start a new
+              route
+            </li>
+          </ol>
+        )}
         <DynamicMap
           routeIsCreated={routeIsCreated}
           handleMapClick={handleMapClick}
@@ -105,8 +134,19 @@ export default function CreateRoutePage() {
         />
         {!routeIsCreated ? (
           <div className="mainCreatePage__buttons">
-            <button className="mainCreatePage__createButton" onClick={handleRouteCreation}> Create Route </button>
-            <button className="mainCreatePage__resetButton" onClick={handleReset}>Reset</button>
+            <button
+              className="mainCreatePage__createButton"
+              onClick={handleRouteCreation}
+            >
+              {" "}
+              Create Route{" "}
+            </button>
+            <button
+              className="mainCreatePage__resetButton"
+              onClick={handleReset}
+            >
+              Reset
+            </button>
           </div>
         ) : null}
       </main>
