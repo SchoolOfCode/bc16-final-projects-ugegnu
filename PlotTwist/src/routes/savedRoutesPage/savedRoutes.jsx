@@ -17,7 +17,7 @@ export default function SavedRoutesPage() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   //To avoid another API call we are using this function to call at the end to show the list.
-  const deleteRoute = async (e) => {
+  async function deleteRoute(e) {
     // the value of the delete button has been set to route.id
     // hence e.target.value will be route.id
     console.log(e.target.value);
@@ -26,12 +26,12 @@ export default function SavedRoutesPage() {
       `https://final-project-backend-lp20.onrender.com/delete/${id}`,
       { method: "DELETE" }
     );
-    console.log(data);
     const data = await response.json();
+    // console.log(data);
 
     //This function is called after the deletion to re-render on page load, this will populate the routes
     getAllRoutes();
-  };
+  }
   const getAllRoutes = async () => {
     //This function fetches all the routes form the backend.
     console.log("Fetching routes...");
@@ -46,7 +46,6 @@ export default function SavedRoutesPage() {
     setRoutes(data.payload);
 
     setIsLoading(false);
-
   };
 
   useEffect(() => {
@@ -106,8 +105,10 @@ export default function SavedRoutesPage() {
             <img className="loading-gif" src={loadingsymbol}></img>
           </div>
         ) : retrieved ? (
-          <RetrievedRoutePage handleRetrieve={handleRetrieve} selectedRoute={selectedRoute} />
-
+          <RetrievedRoutePage
+            handleRetrieve={handleRetrieve}
+            selectedRoute={selectedRoute}
+          />
         ) : (
           <table className="savedRoutesTable">
             <tbody>
