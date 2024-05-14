@@ -2,33 +2,15 @@ import DynamicMap from "../../components/dynamicMap/dynamicMap";
 import { useState, useEffect } from "react";
 
 export default function RetrievedRoutePage({ handleRetrieve, selectedRoute }) {
-  const [routeIsCreated, setRouteIsCreated] = useState(false);
+  const [routeIsCreated, setRouteIsCreated] = useState(true);
   const [markerCoordinatesArray, setMarkerCoordinatesArray] = useState(
     selectedRoute.payload.route_data
   );
 
+  const [loadedRoute, setLoadedRoute] = useState(true);
+
   // when selectedRoute.payload changes useState to true
   // if selectedRoute is true, then routeIsCreated = true
-  //
-
-  // if (selectedRoute.payload.route_data) {
-  //   return setRouteIsCreated(true);
-  // }
-
-  useEffect(() => {
-    if (selectedRoute.payload.route_data) {
-      setRouteIsCreated(true);
-    }
-  }, []);
-
-  const handleMapClick = (event) => {
-    setMarkerCoordinatesArray((prev) => {
-      return [
-        ...prev,
-        { lat: event.detail.latLng.lat, lng: event.detail.latLng.lng },
-      ];
-    });
-  };
 
   console.log(selectedRoute);
   return (
@@ -37,10 +19,10 @@ export default function RetrievedRoutePage({ handleRetrieve, selectedRoute }) {
 
       <DynamicMap
         routeIsCreated={routeIsCreated}
-        handleMapClick={handleMapClick}
         markerCoordinatesArray={markerCoordinatesArray}
         setRouteIsCreated={setRouteIsCreated}
         setMarkerCoordinatesArray={setMarkerCoordinatesArray}
+        loadedRoute={loadedRoute}
       />
 
       <h1>route name</h1>

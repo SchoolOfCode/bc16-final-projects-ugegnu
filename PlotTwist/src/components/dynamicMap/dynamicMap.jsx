@@ -9,8 +9,8 @@ export default function DynamicMap({
   handleMapClick,
   setRouteIsCreated,
   setMarkerCoordinatesArray,
+  loadedRoute,
 }) {
-
   // create a new piece of state
   // this state loads the map
   // without the buttons 👀
@@ -21,8 +21,7 @@ export default function DynamicMap({
 
   return (
     <>
-      
-        <APIProvider apiKey={import.meta.env.VITE_PUBLIC_GOOGLE_MAPS_API_KEY}>
+      <APIProvider apiKey={import.meta.env.VITE_PUBLIC_GOOGLE_MAPS_API_KEY}>
         <div className="dynamicMap">
           <Map
             defaultCenter={position}
@@ -39,15 +38,15 @@ export default function DynamicMap({
                 );
               })}
           </Map>
-          </div>
-          <DirectionsData
+        </div>
+        <DirectionsData
           markerCoordinatesArray={markerCoordinatesArray}
           routeIsCreated={routeIsCreated}
           setRouteIsCreated={setRouteIsCreated}
           setMarkerCoordinatesArray={setMarkerCoordinatesArray}
+          loadedRoute={loadedRoute}
         />
-        </APIProvider>
-      
+      </APIProvider>
     </>
   );
 }
