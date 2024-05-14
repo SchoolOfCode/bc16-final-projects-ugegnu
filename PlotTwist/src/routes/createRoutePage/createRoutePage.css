@@ -8,7 +8,7 @@
   background: rgb(182, 225, 201);
   background: linear-gradient(
     180deg,
-    rgba(182, 225, 201, 1) 0%,
+    var(--bgPastelGreen, 1) 0%,
     rgba(255, 255, 255, 1) 100%
   );
 }
@@ -24,7 +24,7 @@
   height: 240px;
   padding: 30px;
   color: white;
-  background-color: #04b66c;
+  background-color: var(--mainGreen);
   -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.359);
   -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.359);
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.359);
@@ -115,7 +115,7 @@
 }
 
 .mainCreatePage__createButton {
-  background-color: #04b66c;
+  background-color: var(--mainGreen);
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 20px;
@@ -146,7 +146,7 @@
 
 .mainCreatePage__createButton:hover {
   background-color: #ffffff;
-  color: #04b66c;
+  color: var(--mainGreen);
   cursor: pointer;
   margin-left: 10px;
 }

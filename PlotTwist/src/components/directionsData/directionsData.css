@@ -40,7 +40,7 @@
 }
 
 .routeData__saveRouteButton {
-  background-color: #04b66c;
+  background-color: var(--mainGreen);
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 10px;
@@ -55,7 +55,7 @@
 
 .routeData__saveRouteButton:hover {
   background-color: #ffffff;
-  color: #04b66c;
+  color: var(--mainGreen);
   cursor: pointer;
 }
 
@@ -108,7 +108,7 @@
 
 .routeData__resetRouteButton:hover {
   background-color: #ffffff;
-  color: #04b66c;
+  color: var(--mainGreen);
   cursor: pointer;
 }
 
