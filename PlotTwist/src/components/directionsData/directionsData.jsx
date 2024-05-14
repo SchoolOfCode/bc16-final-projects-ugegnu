@@ -152,9 +152,7 @@ export default function DirectionsData({
                     placeholder="Enter route name..."
                     required
                   />
-                  <button className="routeData__saveRouteButton">
-                    Save Route
-                  </button>
+                  <button className="routeData__saveRouteButton">Save</button>
                 </form>
                 {isSuccess && (
                   <div>
@@ -184,8 +182,6 @@ export default function DirectionsData({
             </div>
           )}
           <section className="routeData">
-            <button onClick={handlePopUp}>Save Route</button>
-
             <div className="routeData__information">
               <ol className="routeData__list">
                 {directionsResult.routes[0].legs.map((element, index) => {
@@ -200,18 +196,26 @@ export default function DirectionsData({
                   );
                 })}
               </ol>
-              <button
-                className="routeData__resetRouteButton"
-                onClick={() => {
-                  setRouteIsCreated(!routeIsCreated);
-                  setMarkerCoordinatesArray([]);
-                  setResetMadeMapClicked(!resetMadeMapClicked);
-                  directionsRenderer.setMap(null);
-                  //setDirectionsResult(null);
-                }}
-              >
-                Reset
-              </button>
+              <div className="routeData__buttons">
+                <button
+                  onClick={handlePopUp}
+                  className="routeData__saveRouteButton"
+                >
+                  Save Route
+                </button>
+                <button
+                  className="routeData__resetRouteButton"
+                  onClick={() => {
+                    setRouteIsCreated(!routeIsCreated);
+                    setMarkerCoordinatesArray([]);
+                    setResetMadeMapClicked(!resetMadeMapClicked);
+                    directionsRenderer.setMap(null);
+                    //setDirectionsResult(null);
+                  }}
+                >
+                  Reset
+                </button>
+              </div>
             </div>
           </section>
         </>

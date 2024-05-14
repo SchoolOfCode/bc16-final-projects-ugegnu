@@ -51,13 +51,20 @@
   font-size: 1rem;
   font-weight: 700;
   height: 50px;
-  width: 20%;
+  width: 100%;
 }
 
 .routeData__saveRouteButton:hover {
   background-color: #ffffff;
   color: var(--mainGreen);
   cursor: pointer;
+}
+
+.routeData__buttons {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 20px;
 }
 
 /* Route information and reset button styles */
@@ -67,16 +74,18 @@
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  gap: 20px;
   margin-top: 20px;
 }
 
 .routeData__list {
   display: flex;
+  flex: 3;
   flex-direction: column;
   justify-content: space-evenly;
   list-style-type: none;
   font-size: 1.5rem;
-  width: 75%;
+  /* width: 75%; */
   -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
@@ -104,7 +113,7 @@
   font-size: 1rem;
   font-weight: 700;
   height: 50px;
-  width: 20%;
+  width: 100%;
 }
 
 .routeData__resetRouteButton:hover {
