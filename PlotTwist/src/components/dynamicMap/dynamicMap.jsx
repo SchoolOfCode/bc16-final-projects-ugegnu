@@ -10,6 +10,13 @@ export default function DynamicMap({
   setRouteIsCreated,
   setMarkerCoordinatesArray,
 }) {
+
+  // create a new piece of state
+  // this state loads the map
+  // without the buttons 👀
+  // that state is located in directionsData
+  // once it's created there, export to dynamic maps
+
   const position = { lat: 52.4823, lng: -1.89 };
 
   return (

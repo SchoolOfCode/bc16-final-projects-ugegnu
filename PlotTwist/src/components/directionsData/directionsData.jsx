@@ -8,6 +8,12 @@ export default function DirectionsData({
   routeIsCreated,
   setRouteIsCreated,
 }) {
+  // create a new piece of state
+  // this state loads the map
+  // without the buttons 👀
+  // that state is located in directionsData
+  // once it's created there, export to dynamic maps
+
   const map = useMap();
 
   const routesLibrary = useMapsLibrary("routes");
