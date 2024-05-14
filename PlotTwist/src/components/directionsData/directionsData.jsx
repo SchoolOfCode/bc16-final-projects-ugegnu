@@ -167,12 +167,14 @@ export default function DirectionsData({
                 </button>
               )}
               {loadedRoute && (
-                <button
-                  className="routeData__resetRouteButton"
-                  onClick={() => {}}
-                >
-                  Edit 🚧 WIP 🚧
-                </button>
+                <>
+                  <button className="routeData__resetRouteButton">
+                    Edit 🚧 WIP 🚧
+                  </button>
+                  <button className="routeData__resetRouteButton">
+                    Delete 🚧 WIP 🚧
+                  </button>
+                </>
               )}
             </div>
           </section>
