@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
-import "./directionsData.css";
 
 export default function DirectionsData({
   markerCoordinatesArray,
@@ -15,12 +14,10 @@ export default function DirectionsData({
   // but with the markers and route name
   // that state is located in retrieved route page
   // once it's created there, export to dynamic maps/ directions data as a prop
-
   // if state is true,
   // retrive route
   // then render map + markers, edit, de;ete buttons, and the table,
   // Don't render form.
-
   const map = useMap();
 
   const routesLibrary = useMapsLibrary("routes");
@@ -115,7 +112,6 @@ export default function DirectionsData({
   ]);
 
   // console.log(directionsResult);
-
   return (
     <>
       {routeIsCreated && directionsResult ? (
@@ -167,11 +163,8 @@ export default function DirectionsData({
                 </button>
               )}
               {loadedRoute && (
-                <button
-                  className="routeData__resetRouteButton"
-                  onClick={() => {}}
-                >
-                  Edit 🚧 WIP 🚧
+                <button className="routeData__editButton" onClick={() => {}}>
+                  Edit WIP
                 </button>
               )}
             </div>

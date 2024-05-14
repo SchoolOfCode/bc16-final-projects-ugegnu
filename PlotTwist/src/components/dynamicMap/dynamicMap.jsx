@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DirectionsData from "../directionsData/directionsData";
+import DirectionsData from "../directionsData/DirectionsData.1";
 import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 import "./dynamicMap.css";
 
