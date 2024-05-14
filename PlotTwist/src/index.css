@@ -1,8 +1,16 @@
-*{
-    box-sizing: border-box;
-    font-family: "Inter", sans-serif;
+* {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
 body {
-    margin: 0;
+  margin: 0;
+}
+
+:root {
+  --mainGreen: #04b66c;
+  --limeyGreen: #b6e1c9;
+  --white: #ffffff;
+  --pastelGreen: #e5f5ec;
+  --bgPastelGreen: rgb(160, 212, 182);
 }
