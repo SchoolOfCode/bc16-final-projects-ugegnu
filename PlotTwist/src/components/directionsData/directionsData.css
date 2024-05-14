@@ -112,6 +112,7 @@
   cursor: pointer;
 }
 
+
 @media (width > 1440px) {
   .routeData {
     grid-column: 2 /4;

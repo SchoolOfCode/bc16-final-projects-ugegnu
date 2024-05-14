@@ -7,7 +7,20 @@ export default function DirectionsData({
   setMarkerCoordinatesArray,
   routeIsCreated,
   setRouteIsCreated,
+  loadedRoute,
 }) {
+  // create a new piece of state
+  // this state loads the map
+  // without the buttons? 👀 Add an edit and delete button?
+  // but with the markers and route name
+  // that state is located in retrieved route page
+  // once it's created there, export to dynamic maps/ directions data as a prop
+
+  // if state is true,
+  // retrive route
+  // then render map + markers, edit, de;ete buttons, and the table,
+  // Don't render form.
+
   const map = useMap();
 
   const routesLibrary = useMapsLibrary("routes");
@@ -108,19 +121,23 @@ export default function DirectionsData({
       {routeIsCreated && directionsResult ? (
         <>
           <section className="routeData">
-            <form className="routeData__form" onSubmit={handleSubmit}>
-              <label className="routeData__label" htmlFor="routeName"></label>
-              <input
-                className="routeData__nameInput"
-                type="text"
-                id="routeName"
-                name="routeName"
-                onChange={handleInputChange}
-                value={routeName}
-                placeholder="Enter route name..."
-              />
-              <button className="routeData__saveRouteButton">Save Route</button>
-            </form>
+            {!loadedRoute && (
+              <form className="routeData__form" onSubmit={handleSubmit}>
+                <label className="routeData__label" htmlFor="routeName"></label>
+                <input
+                  className="routeData__nameInput"
+                  type="text"
+                  id="routeName"
+                  name="routeName"
+                  onChange={handleInputChange}
+                  value={routeName}
+                  placeholder="Enter route name..."
+                />
+                <button className="routeData__saveRouteButton">
+                  Save Route
+                </button>
+              </form>
+            )}
             <div className="routeData__information">
               <ol className="routeData__list">
                 {directionsResult.routes[0].legs.map((element, index) => {
@@ -135,22 +152,36 @@ export default function DirectionsData({
                   );
                 })}
               </ol>
-              <button
-                className="routeData__resetRouteButton"
-                onClick={() => {
-                  setRouteIsCreated(!routeIsCreated);
-                  setMarkerCoordinatesArray([]);
-                  setResetMadeMapClicked(!resetMadeMapClicked);
-                  directionsRenderer.setMap(null);
-                  //setDirectionsResult(null);
-                }}
-              >
-                Reset
-              </button>
+              {!loadedRoute && (
+                <button
+                  className="routeData__resetRouteButton"
+                  onClick={() => {
+                    setRouteIsCreated(!routeIsCreated);
+                    setMarkerCoordinatesArray([]);
+                    setResetMadeMapClicked(!resetMadeMapClicked);
+                    directionsRenderer.setMap(null);
+                    //setDirectionsResult(null);
+                  }}
+                >
+                  Reset
+                </button>
+              )}
+              {loadedRoute && (
+                <>
+                  <button className="routeData__resetRouteButton">
+                    Edit 🚧 WIP 🚧
+                  </button>
+                  <button className="routeData__resetRouteButton">
+                    Delete 🚧 WIP 🚧
+                  </button>
+                </>
+              )}
             </div>
           </section>
         </>
       ) : null}
+
+      {/* or render the thing we want to render */}
     </>
     //   <div className="directions">
     //     <h1>Directions</h1>

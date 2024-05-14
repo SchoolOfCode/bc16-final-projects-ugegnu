@@ -26,7 +26,13 @@ export default function Header({ openMenu, handleOpenMenu }) {
       )}
 
       {openMenu && (
-        <nav className="header__navigationMenu">
+        <nav
+          className={
+            openMenu
+              ? "header__navigationMenu slide-in-top"
+              : "header__navigationMenu slide-out-top"
+          }
+        >
           <ul className="header__linksList">
             <Link className="header__link fixBorder" to={"/"}>
               <img
