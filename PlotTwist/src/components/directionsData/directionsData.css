@@ -122,6 +122,40 @@
   cursor: pointer;
 }
 
+
+.routeData__buttonContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.routeData__editRouteButton {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  font-weight: 700;
+  height: 50px;
+  cursor: pointer;
+}
+
+.routeData__deleteRouteButton {
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  font-weight: 700;
+  height: 50px;
+  cursor: pointer;
+}
+
 .routeData__popup {
   width: 75%;
   min-height: 10%;

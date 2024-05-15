@@ -23,7 +23,8 @@ export default function SavedRoutesPage() {
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   //To avoid another API call we are using this function to call at the end to show the list.
-  async function deleteRoute(e) {
+
+  const handleDelete = async (e) => {
     // the value of the delete button has been set to route.id
     // hence e.target.value will be route.id
     setDeleteLoading(true);
@@ -34,12 +35,14 @@ export default function SavedRoutesPage() {
       { method: "DELETE" }
     );
     const data = await response.json();
+
     console.log(data);
     setDeleteSuccess(true);
     setDeleteLoading(false);
     //This function is called after the deletion to re-render on page load, this will populate the routes
     getAllRoutes();
-  }
+  };
+
   const getAllRoutes = async () => {
     //This function fetches all the routes form the backend.
     console.log("Fetching routes...");
@@ -50,9 +53,7 @@ export default function SavedRoutesPage() {
     const data = await response.json();
     //the fetch routes are then store in routes state by using the setRoutes function.
     console.log(data);
-
     setRoutes(data.payload);
-
     setIsLoading(false);
   };
 
@@ -65,6 +66,9 @@ export default function SavedRoutesPage() {
     console.log("hi");
     if (retrieved === true) {
       setRetrieved(false);
+      // setIsLoading(true)
+      // setInterval(() => setIsLoading(false), 1000)
+      getAllRoutes();
     } else {
       setSelectedRoute(await getRouteById(e.target.value));
       setRetrieved(true);
@@ -129,6 +133,10 @@ export default function SavedRoutesPage() {
           <RetrievedRoutePage
             handleRetrieve={handleRetrieve}
             selectedRoute={selectedRoute}
+
+            setRetrieved={setRetrieved}
+            getAllRoutes={getAllRoutes}
+
           />
         ) : (
           <table className="savedRoutesTable">

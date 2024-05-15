@@ -34,7 +34,11 @@ export default function DynamicMap({
               !routeIsCreated &&
               markerCoordinatesArray.map((marker, index) => {
                 return (
-                  <Marker key={index} position={marker} draggable={true} />
+                  <Marker key={index} position={marker} draggable={true} onDragEnd={(e)=>{
+                    const duplicateArray = [...markerCoordinatesArray];
+                    duplicateArray[index] = {lat: e.latLng.lat(), lng: e.latLng.lng()};
+                    setMarkerCoordinatesArray(duplicateArray);
+                  }} />
                 );
               })}
           </Map>
