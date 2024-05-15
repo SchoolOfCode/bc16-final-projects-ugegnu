@@ -46,6 +46,10 @@ export default function DirectionsData({
 
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const [startTime, setStartTime] = useState("10:00:00 AM");
+
+  const [testArray, setTestArray] = useState([]);
+
   const handlePopUp = () => {
     if (isPopUpOpen) {
       setIsPopUpOpen(false);
@@ -143,6 +147,51 @@ export default function DirectionsData({
     routeIsCreated,
   ]);
 
+  function addSeconds(date, seconds) {
+    date.setSeconds(date.getSeconds() + seconds);
+    // setStartTime(new Date(date).toLocaleTimeString());
+    return new Date(date).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
+  function calcTime(time, interval) {
+    // const selectedTime = timeInput.value;
+    const today = new Date();
+    const year = today.getFullYear();
+    const date = today.getDate();
+    const month = today.getMonth() + 1;
+    const start = new Date(`${year} ${month} ${date} ${time}`);
+    const result = addSeconds(start, interval);
+    return result;
+  }
+
+  function handleTimeState(e) {
+    let userStartTime = e.target.value;
+    setTestArray([]);
+    //aim in here to set start time and for loop to create new array that is rendered instead of directionsResult below
+    let arrayToLoop = directionsResult.routes[0].legs;
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // const arrivalTime =
+    for (let i = 0; i < arrayToLoop.length; i++) {
+      let arrivalTime = calcTime(userStartTime, arrayToLoop[i].duration.value);
+      setTestArray((prev) => {
+        return [
+          ...prev,
+          {
+            duration: arrayToLoop[i].duration.text,
+            arrivalTime: arrivalTime,
+            markerOrigin: alphabet[i],
+            markerDestination: alphabet[i + 1],
+          },
+        ];
+      });
+      // add interval in here
+      userStartTime = calcTime(arrivalTime, 300); // 120 is 2 min default
+    }
+  }
+
   // console.log(directionsResult);
 
   return (
@@ -208,8 +257,9 @@ export default function DirectionsData({
           )}
           <section className="routeData">
             <div className="routeData__information">
+              <input id="timeInput" type="time" onChange={handleTimeState} />
               <ol className="routeData__list">
-                {directionsResult.routes[0].legs.map((element, index) => {
+                {/* {directionsResult.routes[0].legs.map((element, index) => {
                   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                   return (
                     <li className="routeData__listItem" key={index}>
@@ -217,6 +267,19 @@ export default function DirectionsData({
                         alphabet[index + 1]
                       }: `}
                       {element.duration?.text}
+                      {` Arrival Time: ${calcTime(
+                        startTime,
+                        element.duration.value
+                      )}`}
+                    </li>
+                  );
+                })} */}
+                {testArray.map((element, index) => {
+                  return (
+                    <li className="routeData__listItem" key={index}>
+                      {`Marker ${element.markerOrigin} => Marker ${element.markerDestination} 
+                      ${element.duration}  
+                      Arrival: ${element.arrivalTime}`}
                     </li>
                   );
                 })}
@@ -242,9 +305,7 @@ export default function DirectionsData({
                 >
                   Reset
                 </button>
-
               </div>
-
             </div>
           </section>
         </>
