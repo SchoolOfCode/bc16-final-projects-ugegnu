@@ -141,7 +141,10 @@ export default function DirectionsData({
   function addSeconds(date, seconds) {
     date.setSeconds(date.getSeconds() + seconds);
     // setStartTime(new Date(date).toLocaleTimeString());
-    return new Date(date).toLocaleTimeString();
+    return new Date(date).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
   }
 
   function calcTime(time, interval) {
@@ -156,29 +159,28 @@ export default function DirectionsData({
   }
 
   function handleTimeState(e) {
+    let userStartTime = e.target.value;
     setTestArray([]);
-    setStartTime(e.target.value);
-    console.log(e.target.value);
     //aim in here to set start time and for loop to create new array that is rendered instead of directionsResult below
     let arrayToLoop = directionsResult.routes[0].legs;
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     // const arrivalTime =
     for (let i = 0; i < arrayToLoop.length; i++) {
+      let arrivalTime = calcTime(userStartTime, arrayToLoop[i].duration.value);
       setTestArray((prev) => {
         return [
           ...prev,
           {
             duration: arrayToLoop[i].duration.text,
-            //this is to be calculated
-            arrivalTime: calcTime(startTime, arrayToLoop[i].duration.value),
+            arrivalTime: arrivalTime,
             markerOrigin: alphabet[i],
             markerDestination: alphabet[i + 1],
           },
         ];
       });
-      setStartTime(calcTime(startTime, arrayToLoop[i].duration.value));
+      // add interval in here
+      userStartTime = calcTime(arrivalTime, 300); // 120 is 2 min default
     }
-    // console.log(testArray);
   }
 
   // console.log(directionsResult);
@@ -263,9 +265,9 @@ export default function DirectionsData({
                 {testArray.map((element, index) => {
                   return (
                     <li className="routeData__listItem" key={index}>
-                      {`Marker ${element.markerOrigin} => Marker ${element.markerDestination}`}
-                      {element.duration}
-                      {element.arrivalTime}
+                      {`Marker ${element.markerOrigin} => Marker ${element.markerDestination} 
+                      ${element.duration}  
+                      Arrival: ${element.arrivalTime}`}
                     </li>
                   );
                 })}
