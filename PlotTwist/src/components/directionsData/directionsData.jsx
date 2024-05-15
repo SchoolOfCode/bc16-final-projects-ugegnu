@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
 import "./directionsData.css";
+import { render } from "react-dom";
 
 export default function DirectionsData({
   markerCoordinatesArray,
@@ -26,14 +27,11 @@ export default function DirectionsData({
   const routesLibrary = useMapsLibrary("routes");
 
   const [directionsService, setDirectionsService] = useState();
-
   const [directionsRenderer, setDirectionsRenderer] = useState();
-
   const [directionsResult, setDirectionsResult] = useState();
-
   const [resetMadeMapClicked, setResetMadeMapClicked] = useState(false);
-
   const [routeName, setRouteName] = useState("");
+  console.log(routeName);
 
   const handleInputChange = (event) => {
     setRouteName(event.target.value);
@@ -46,6 +44,13 @@ export default function DirectionsData({
       data: markerCoordinatesArray,
     };
     await saveNewRoute(routeData);
+
+    
+    console.log(directionsService);
+    console.log(directionsRenderer);
+    console.log(directionsResult);
+    console.log(resetMadeMapClicked);
+    console.log(routeName);
   };
 
   async function saveNewRoute(route) {
@@ -165,16 +170,6 @@ export default function DirectionsData({
                 >
                   Reset
                 </button>
-              )}
-              {loadedRoute && (
-                <>
-                  <button className="routeData__resetRouteButton">
-                    Edit 🚧 WIP 🚧
-                  </button>
-                  <button className="routeData__resetRouteButton">
-                    Delete 🚧 WIP 🚧
-                  </button>
-                </>
               )}
             </div>
           </section>

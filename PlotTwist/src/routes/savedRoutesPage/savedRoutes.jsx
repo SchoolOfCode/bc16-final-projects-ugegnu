@@ -26,8 +26,8 @@ export default function SavedRoutesPage() {
       `https://final-project-backend-lp20.onrender.com/delete/${id}`,
       { method: "DELETE" }
     );
-    console.log(data);
     const data = await response.json();
+    console.log(data);
 
     //This function is called after the deletion to re-render on page load, this will populate the routes
     getAllRoutes();
@@ -46,7 +46,6 @@ export default function SavedRoutesPage() {
     setRoutes(data.payload);
 
     setIsLoading(false);
-
   };
 
   useEffect(() => {
@@ -58,6 +57,8 @@ export default function SavedRoutesPage() {
     console.log("hi");
     if (retrieved === true) {
       setRetrieved(false);
+      // this will update the routes again
+      getAllRoutes();
     } else {
       setSelectedRoute(await getRouteById(e.target.value));
       setRetrieved(true);
@@ -106,8 +107,12 @@ export default function SavedRoutesPage() {
             <img className="loading-gif" src={loadingsymbol}></img>
           </div>
         ) : retrieved ? (
-          <RetrievedRoutePage handleRetrieve={handleRetrieve} selectedRoute={selectedRoute} />
-
+          <RetrievedRoutePage
+            handleRetrieve={handleRetrieve}
+            selectedRoute={selectedRoute}
+            setRetrieved={setRetrieved}
+            getAllRoutes={getAllRoutes}
+          />
         ) : (
           <table className="savedRoutesTable">
             <tbody>
