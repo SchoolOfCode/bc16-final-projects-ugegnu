@@ -7,6 +7,7 @@ import { render } from "react-dom";
 import loadingsymbol from "../../assets/tube-spinner.svg";
 import logo from "../../assets/FullLogo.png";
 import { Link } from "react-router-dom";
+import savedRouteConfirmed from "../../assets/savedRouteConfirm.png";
 
 
 export default function DirectionsData({
@@ -177,7 +178,10 @@ export default function DirectionsData({
                 </form>
                 {isSuccess && (
                   <div>
-                    <h2>Saved Tick</h2>
+                    <img
+                      src={savedRouteConfirmed}
+                      className="routeData__routeHasSaved"
+                    />
                     <Link to={"/create-route"}>
                       <button className="routeData__navButtons">
                         Plot New Route
@@ -203,7 +207,6 @@ export default function DirectionsData({
             </div>
           )}
           <section className="routeData">
-
             <div className="routeData__information">
               <ol className="routeData__list">
                 {directionsResult.routes[0].legs.map((element, index) => {
@@ -240,11 +243,7 @@ export default function DirectionsData({
                   Reset
                 </button>
 
-              )}
-
-??????? merge here
               </div>
-
 
             </div>
           </section>
