@@ -16,19 +16,27 @@ export default function SavedRoutesPage() {
   const [openMenu, setOpenMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+  //state for the delete button popup
+  const [isDeletePopup, setDeletePopup] = useState(false);
+  const [routeValueToBeDeleted, setRouteValueToBeDeleted] = useState(0);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
   //To avoid another API call we are using this function to call at the end to show the list.
   async function deleteRoute(e) {
     // the value of the delete button has been set to route.id
     // hence e.target.value will be route.id
-    console.log(e.target.value);
+    setDeleteLoading(true);
+    // console.log(e.target.value);
     const id = e.target.value;
     const response = await fetch(
       `https://final-project-backend-lp20.onrender.com/delete/${id}`,
       { method: "DELETE" }
     );
     const data = await response.json();
-    // console.log(data);
-
+    console.log(data);
+    setDeleteSuccess(true);
+    setDeleteLoading(false);
     //This function is called after the deletion to re-render on page load, this will populate the routes
     getAllRoutes();
   }
@@ -72,6 +80,19 @@ export default function SavedRoutesPage() {
       return data;
     }
   }
+
+  const deletePopup = (e) => {
+    setDeleteSuccess(false);
+    setDeleteLoading(false);
+    setDeletePopup(!isDeletePopup);
+    setRouteValueToBeDeleted(e.target.value);
+  };
+
+  const hideDeletePopup = () => {
+    setDeletePopup(!isDeletePopup);
+    setDeleteSuccess(false);
+    setDeleteLoading(false);
+  };
 
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
@@ -130,13 +151,40 @@ export default function SavedRoutesPage() {
                       </button>
                     </td>
                     <td>
-                      <button
-                        className="savedRoutesTable__deleteRouteButton"
-                        value={route.id}
-                        onClick={deleteRoute}
-                      >
-                        Delete Button
-                      </button>
+                      {/* this button below is the target... delete route button... */}
+                      {!isDeletePopup ? (
+                        <button onClick={deletePopup} value={route.id}>
+                          Delete Button
+                        </button>
+                      ) : (
+                        //aim to get the value of the above button and so only make a div where the value matches that
+                        //if(value===value) {
+                        <div className="savedRoutesTable__deletePopUp">
+                          <button onClick={deletePopup}>X</button>
+                          {!deleteSuccess ? (
+                            <>
+                              <h1>Are you sure you want to delete?</h1>
+                              <button
+                                className="savedRoutesTable__deleteRouteButton"
+                                value={routeValueToBeDeleted}
+                                onClick={deleteRoute}
+                              >
+                                Yes delete
+                              </button>
+                              <button onClick={hideDeletePopup}>No</button>
+                            </>
+                          ) : (
+                            <>
+                              {" "}
+                              {deleteLoading ? (
+                                <h1>Deleting</h1>
+                              ) : (
+                                <h1>Deleted!</h1>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      )}
                     </td>
                   </tr>
                 );
