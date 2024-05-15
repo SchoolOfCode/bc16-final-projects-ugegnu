@@ -46,6 +46,8 @@ export default function DirectionsData({
 
   const [startTime, setStartTime] = useState("10:00:00 AM");
 
+  const [testArray, setTestArray] = useState([]);
+
   const handlePopUp = () => {
     if (isPopUpOpen) {
       setIsPopUpOpen(false);
@@ -154,7 +156,29 @@ export default function DirectionsData({
   }
 
   function handleTimeState(e) {
+    setTestArray([]);
     setStartTime(e.target.value);
+    console.log(e.target.value);
+    //aim in here to set start time and for loop to create new array that is rendered instead of directionsResult below
+    let arrayToLoop = directionsResult.routes[0].legs;
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // const arrivalTime =
+    for (let i = 0; i < arrayToLoop.length; i++) {
+      setTestArray((prev) => {
+        return [
+          ...prev,
+          {
+            duration: arrayToLoop[i].duration.text,
+            //this is to be calculated
+            arrivalTime: calcTime(startTime, arrayToLoop[i].duration.value),
+            markerOrigin: alphabet[i],
+            markerDestination: alphabet[i + 1],
+          },
+        ];
+      });
+      setStartTime(calcTime(startTime, arrayToLoop[i].duration.value));
+    }
+    // console.log(testArray);
   }
 
   // console.log(directionsResult);
@@ -221,7 +245,7 @@ export default function DirectionsData({
             <div className="routeData__information">
               <input id="timeInput" type="time" onChange={handleTimeState} />
               <ol className="routeData__list">
-                {directionsResult.routes[0].legs.map((element, index) => {
+                {/* {directionsResult.routes[0].legs.map((element, index) => {
                   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                   return (
                     <li className="routeData__listItem" key={index}>
@@ -233,6 +257,15 @@ export default function DirectionsData({
                         startTime,
                         element.duration.value
                       )}`}
+                    </li>
+                  );
+                })} */}
+                {testArray.map((element, index) => {
+                  return (
+                    <li className="routeData__listItem" key={index}>
+                      {`Marker ${element.markerOrigin} => Marker ${element.markerDestination}`}
+                      {element.duration}
+                      {element.arrivalTime}
                     </li>
                   );
                 })}
