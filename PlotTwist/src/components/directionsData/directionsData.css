@@ -70,8 +70,11 @@
 .routeData__routeHasSaved {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
+  place-self: center;
+  width: 10vw;
+  height: auto;
+  padding-top: 2rem;
 }
 
 /* Route information and reset button styles */

@@ -4,7 +4,7 @@ import "./directionsData.css";
 import loadingsymbol from "../../assets/tube-spinner.svg";
 import logo from "../../assets/FullLogo.png";
 import { Link } from "react-router-dom";
-import savedRouteConfirmed from "../../assets/savedRouteConfirmed .png";
+import savedRouteConfirmed from "../../assets/savedRouteConfirm.png";
 
 export default function DirectionsData({
   markerCoordinatesArray,
