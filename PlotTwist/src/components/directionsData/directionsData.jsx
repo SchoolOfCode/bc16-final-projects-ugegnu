@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
 import "./directionsData.css";
+
+import { render } from "react-dom";
+
 import loadingsymbol from "../../assets/tube-spinner.svg";
 import logo from "../../assets/FullLogo.png";
 import { Link } from "react-router-dom";
 import savedRouteConfirmed from "../../assets/savedRouteConfirm.png";
+
 
 export default function DirectionsData({
   markerCoordinatesArray,
@@ -30,14 +34,11 @@ export default function DirectionsData({
   const routesLibrary = useMapsLibrary("routes");
 
   const [directionsService, setDirectionsService] = useState();
-
   const [directionsRenderer, setDirectionsRenderer] = useState();
-
   const [directionsResult, setDirectionsResult] = useState();
-
   const [resetMadeMapClicked, setResetMadeMapClicked] = useState(false);
-
   const [routeName, setRouteName] = useState("");
+  console.log(routeName);
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
@@ -64,6 +65,13 @@ export default function DirectionsData({
       data: markerCoordinatesArray,
     };
     await saveNewRoute(routeData);
+
+    
+    console.log(directionsService);
+    console.log(directionsRenderer);
+    console.log(directionsResult);
+    console.log(resetMadeMapClicked);
+    console.log(routeName);
   };
 
   async function saveNewRoute(route) {
@@ -234,7 +242,9 @@ export default function DirectionsData({
                 >
                   Reset
                 </button>
+
               </div>
+
             </div>
           </section>
         </>

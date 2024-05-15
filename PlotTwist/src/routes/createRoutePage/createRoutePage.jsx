@@ -24,16 +24,22 @@ export default function CreateRoutePage() {
   };
 
   const handleRouteCreation = () => {
+    if (markerCoordinatesArray.length >= 2) {
     setRouteIsCreated(true);
+    }
   };
 
   const handleMapClick = (event) => {
-    setMarkerCoordinatesArray((prev) => {
-      return [
-        ...prev,
-        { lat: event.detail.latLng.lat, lng: event.detail.latLng.lng },
-      ];
-    });
+    if (routeIsCreated) {
+      return;
+    } else {
+      setMarkerCoordinatesArray((prev) => {
+        return [
+          ...prev,
+          { lat: event.detail.latLng.lat, lng: event.detail.latLng.lng },
+        ];
+      });
+    }
   };
 
   // Function to handle the opening and closing of the menu - passed to header as props
@@ -140,8 +146,7 @@ export default function CreateRoutePage() {
               className="mainCreatePage__createButton"
               onClick={handleRouteCreation}
             >
-              {" "}
-              Create Route{" "}
+              Create Route
             </button>
             <button
               className="mainCreatePage__resetButton"
