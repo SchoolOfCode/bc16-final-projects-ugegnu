@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
 import "./directionsData.css";
+
 import { render } from "react-dom";
+
+import loadingsymbol from "../../assets/tube-spinner.svg";
+import logo from "../../assets/FullLogo.png";
+import { Link } from "react-router-dom";
+
 
 export default function DirectionsData({
   markerCoordinatesArray,
@@ -33,6 +39,20 @@ export default function DirectionsData({
   const [routeName, setRouteName] = useState("");
   console.log(routeName);
 
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handlePopUp = () => {
+    if (isPopUpOpen) {
+      setIsPopUpOpen(false);
+    } else {
+      setIsPopUpOpen(true);
+      setIsSuccess(false);
+    }
+  };
   const handleInputChange = (event) => {
     setRouteName(event.target.value);
   };
@@ -58,6 +78,7 @@ export default function DirectionsData({
     //   name: "friday",
     //   data: "Test Coordinates",
     // };
+    setIsLoading(true);
     console.log(`Adding route ${route.name}...`);
     const response = await fetch(
       "https://final-project-backend-lp20.onrender.com/newRoute",
@@ -70,6 +91,8 @@ export default function DirectionsData({
     );
     const data = await response.json();
     console.log(data);
+    setIsLoading(false);
+    setIsSuccess(true);
   }
 
   useEffect(() => {
@@ -125,24 +148,62 @@ export default function DirectionsData({
     <>
       {routeIsCreated && directionsResult ? (
         <>
-          <section className="routeData">
-            {!loadedRoute && (
-              <form className="routeData__form" onSubmit={handleSubmit}>
-                <label className="routeData__label" htmlFor="routeName"></label>
-                <input
-                  className="routeData__nameInput"
-                  type="text"
-                  id="routeName"
-                  name="routeName"
-                  onChange={handleInputChange}
-                  value={routeName}
-                  placeholder="Enter route name..."
-                />
-                <button className="routeData__saveRouteButton">
-                  Save Route
+          {/* this && will make sure that when isPopUPOPen is true, it will render the div and all the things in it... we can change whether or not is popup is true/false by clicking on the save route or the X button as these both have the function handlePopUp (this is waaay above and basically will change the isPopUp to be true/false (the opposite of what it currently is)...*/}
+          {isPopUpOpen && (
+            <div className="routeDate__popupContainer">
+              <div className="routeData__popup">
+                <button
+                  className="routeData__popup__closingButton"
+                  onClick={handlePopUp}
+                >
+                  X
                 </button>
-              </form>
-            )}
+                <form className="routeData__form" onSubmit={handleSubmit}>
+                  <label
+                    className="routeData__label"
+                    htmlFor="routeName"
+                  ></label>
+                  <input
+                    className="routeData__nameInput"
+                    type="text"
+                    id="routeName"
+                    name="routeName"
+                    onChange={handleInputChange}
+                    value={routeName}
+                    placeholder="Enter route name..."
+                    required
+                  />
+                  <button className="routeData__saveRouteButton">Save</button>
+                </form>
+                {isSuccess && (
+                  <div>
+                    <h2>Saved Tick</h2>
+                    <Link to={"/create-route"}>
+                      <button className="routeData__navButtons">
+                        Plot New Route
+                      </button>
+                    </Link>
+                    <Link to={"/saved-routes"}>
+                      <button className="routeData__navButtons">
+                        My Saved Routes
+                      </button>
+                    </Link>
+                  </div>
+                )}
+                {isLoading && (
+                  <div className="routeDate__loadingDiv">
+                    <img src={logo} className="routeData__logo" />
+                    <img
+                      src={loadingsymbol}
+                      className="routeData__loadingSymbol"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+          <section className="routeData">
+
             <div className="routeData__information">
               <ol className="routeData__list">
                 {directionsResult.routes[0].legs.map((element, index) => {
@@ -157,7 +218,15 @@ export default function DirectionsData({
                   );
                 })}
               </ol>
-              {!loadedRoute && (
+
+              <div className="routeData__buttons">
+                <button
+                  onClick={handlePopUp}
+                  className="routeData__saveRouteButton"
+                >
+                  Save Route
+                </button>
+
                 <button
                   className="routeData__resetRouteButton"
                   onClick={() => {
@@ -170,7 +239,13 @@ export default function DirectionsData({
                 >
                   Reset
                 </button>
+
               )}
+
+??????? merge here
+              </div>
+
+
             </div>
           </section>
         </>

@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #b6e1c9;
+  background-color: var(--limeyGreen);
   width: 100%;
   height: 120px;
   position: fixed;
@@ -48,7 +48,7 @@
   height: 360px;
   background-color: #ffffff;
   font-weight: 600;
-  background-color: #ffffff00;
+  /*background-color: #ffffff00;*/
 }
 
 .header__linksList {

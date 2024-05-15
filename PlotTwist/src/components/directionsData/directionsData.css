@@ -16,6 +16,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 15px;
 }
 
 .routeData__label {
@@ -40,7 +41,7 @@
 }
 
 .routeData__saveRouteButton {
-  background-color: #04b66c;
+  background-color: var(--mainGreen);
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 10px;
@@ -50,13 +51,20 @@
   font-size: 1rem;
   font-weight: 700;
   height: 50px;
-  width: 20%;
+  width: 100%;
 }
 
 .routeData__saveRouteButton:hover {
   background-color: #ffffff;
-  color: #04b66c;
+  color: var(--mainGreen);
   cursor: pointer;
+}
+
+.routeData__buttons {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 20px;
 }
 
 /* Route information and reset button styles */
@@ -66,16 +74,18 @@
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  gap: 20px;
   margin-top: 20px;
 }
 
 .routeData__list {
   display: flex;
+  flex: 3;
   flex-direction: column;
   justify-content: space-evenly;
   list-style-type: none;
   font-size: 1.5rem;
-  width: 75%;
+  /* width: 75%; */
   -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
@@ -103,14 +113,15 @@
   font-size: 1rem;
   font-weight: 700;
   height: 50px;
-  width: 20%;
+  width: 100%;
 }
 
 .routeData__resetRouteButton:hover {
   background-color: #ffffff;
-  color: #04b66c;
+  color: var(--mainGreen);
   cursor: pointer;
 }
+
 
 .routeData__buttonContainer {
   display: flex;
@@ -145,6 +156,44 @@
   cursor: pointer;
 }
 
+.routeData__popup {
+  width: 75%;
+  min-height: 10%;
+  background: white;
+  color: black;
+  z-index: 10;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.routeDate__popupContainer {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.routeData__logo {
+  max-width: 50%;
+  height: auto;
+}
+.routeData__loadingSymbol {
+  max-width: 20%;
+}
+
+
 @media (width > 1440px) {
   .routeData {
     grid-column: 2 /4;
@@ -158,5 +207,11 @@
 
   .routeData__information {
     margin: 0px 0px 0px 0px;
+  }
+
+  .routeData__popup {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
