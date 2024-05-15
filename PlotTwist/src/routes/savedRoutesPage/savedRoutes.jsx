@@ -24,7 +24,7 @@ export default function SavedRoutesPage() {
 
   //To avoid another API call we are using this function to call at the end to show the list.
 
-  const handleDelete = async (e) => {
+  const deleteRoute = async (e) => {
     // the value of the delete button has been set to route.id
     // hence e.target.value will be route.id
     setDeleteLoading(true);
@@ -133,10 +133,8 @@ export default function SavedRoutesPage() {
           <RetrievedRoutePage
             handleRetrieve={handleRetrieve}
             selectedRoute={selectedRoute}
-
             setRetrieved={setRetrieved}
             getAllRoutes={getAllRoutes}
-
           />
         ) : (
           <table className="savedRoutesTable">
