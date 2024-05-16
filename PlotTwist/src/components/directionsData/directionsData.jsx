@@ -9,7 +9,6 @@ import logo from "../../assets/FullLogo.png";
 import { Link } from "react-router-dom";
 import savedRouteConfirmed from "../../assets/savedRouteConfirm.png";
 
-
 export default function DirectionsData({
   markerCoordinatesArray,
   setMarkerCoordinatesArray,
@@ -38,7 +37,6 @@ export default function DirectionsData({
   const [directionsResult, setDirectionsResult] = useState();
   const [resetMadeMapClicked, setResetMadeMapClicked] = useState(false);
   const [routeName, setRouteName] = useState("");
-  console.log(routeName);
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
@@ -66,12 +64,11 @@ export default function DirectionsData({
     };
     await saveNewRoute(routeData);
 
-    
-    console.log(directionsService);
-    console.log(directionsRenderer);
-    console.log(directionsResult);
-    console.log(resetMadeMapClicked);
-    console.log(routeName);
+    // console.log(directionsService);
+    // console.log(directionsRenderer);
+    // console.log(directionsResult);
+    // console.log(resetMadeMapClicked);
+    // console.log(routeName);
   };
 
   async function saveNewRoute(route) {
@@ -79,21 +76,33 @@ export default function DirectionsData({
     //   name: "friday",
     //   data: "Test Coordinates",
     // };
-    setIsLoading(true);
-    console.log(`Adding route ${route.name}...`);
-    const response = await fetch(
-      "https://final-project-backend-lp20.onrender.com/newRoute",
-      // "http://localhost:3000/newRoute",
-      {
-        method: "POST",
-        body: JSON.stringify(route),
-        headers: { "Content-Type": "application/json" },
+    try {
+      setIsLoading(true);
+      console.log(`Adding route ${route.name}...`);
+      const response = await fetch(
+        "https://final-project-backend-lp20.onrender.com/newRoute",
+        // "http://localhost:3000/newRoute",
+        {
+          method: "POST",
+          body: JSON.stringify(route),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error. Status: ${response.status}`);
       }
-    );
-    const data = await response.json();
-    console.log(data);
-    setIsLoading(false);
-    setIsSuccess(true);
+
+      const data = await response.json();
+      // console.log(data);
+      setIsSuccess(true);
+      setIsLoading(false);
+    } catch (error) {
+      console.log("Failed to create the new route");
+      alert("failed to create route");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -242,9 +251,7 @@ export default function DirectionsData({
                 >
                   Reset
                 </button>
-
               </div>
-
             </div>
           </section>
         </>

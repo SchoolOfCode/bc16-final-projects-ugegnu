@@ -25,36 +25,59 @@ export default function SavedRoutesPage() {
   //To avoid another API call we are using this function to call at the end to show the list.
 
   const deleteRoute = async (e) => {
-    // the value of the delete button has been set to route.id
-    // hence e.target.value will be route.id
-    setDeleteLoading(true);
-    // console.log(e.target.value);
-    const id = e.target.value;
-    const response = await fetch(
-      `https://final-project-backend-lp20.onrender.com/delete/${id}`,
-      { method: "DELETE" }
-    );
-    const data = await response.json();
+    try {
+      // the value of the delete button has been set to route.id
+      // hence e.target.value will be route.id
+      setDeleteLoading(true);
 
-    console.log(data);
-    setDeleteSuccess(true);
-    setDeleteLoading(false);
-    //This function is called after the deletion to re-render on page load, this will populate the routes
-    getAllRoutes();
+      // console.log(e.target.value);
+      const id = e.target.value.id;
+      const routeName = e.taget.value.route_name;
+
+      const response = await fetch(
+        `https://fil-project-backend-lp20.onrender.com/delete/${id}`,
+        { method: "DELETE" }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error. Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setDeleteSuccess(true);
+      setDeleteLoading(false);
+      //This function is called after the deletion to re-render on page load, this will populate the routes
+      getAllRoutes();
+    } catch (error) {
+      alert(`Failed to delete the route: "${routeName}"`);
+      console.error("Failed to delete the route, Carol");
+    }
   };
 
   const getAllRoutes = async () => {
-    //This function fetches all the routes form the backend.
-    console.log("Fetching routes...");
-    const response = await fetch(
-      "https://final-project-backend-lp20.onrender.com/routes"
-    );
-    //changes the data into json so we can display it on the screen
-    const data = await response.json();
-    //the fetch routes are then store in routes state by using the setRoutes function.
-    console.log(data);
-    setRoutes(data.payload);
-    setIsLoading(false);
+    try {
+      //This function fetches all the routes form the backend.
+      console.log("Fetching routes...");
+      const response = await fetch(
+        "https://final-project-backend-lp20.onrender.com/routes"
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error. Status: ${response.status}`);
+      }
+
+      //changes the data into json so we can display it on the screen
+      const data = await response.json();
+      //the fetch routes are then store in routes state by using the setRoutes function.
+      console.log(data);
+      setRoutes(data.payload);
+    } catch (error) {
+      console.error("Failed to get the route:");
+      alert("Couldn't get the route, Carol");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -75,13 +98,23 @@ export default function SavedRoutesPage() {
     }
 
     async function getRouteById(id) {
-      console.log(`getting route... ${id}`);
-      const response = await fetch(
-        `https://final-project-backend-lp20.onrender.com/route/${id}`
-      );
-      const data = await response.json();
-      console.log(data);
-      return data;
+      try {
+        console.log(`getting route... ${id}`);
+        const response = await fetch(
+          `https://final-project-backend-lp20.onrender.com/route/${id}`
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error. Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        return data;
+      } catch (error) {
+        console.error("Failed to get the route:");
+        alert("Failed to get the route, Carol.");
+      }
     }
   }
 
@@ -89,7 +122,7 @@ export default function SavedRoutesPage() {
     setDeleteSuccess(false);
     setDeleteLoading(false);
     setDeletePopup(!isDeletePopup);
-    setRouteValueToBeDeleted(e.target.value);
+    setRouteValueToBeDeleted(route);
   };
 
   const hideDeletePopup = () => {
@@ -101,6 +134,7 @@ export default function SavedRoutesPage() {
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
   };
+
   // Function to handle the resizing of the window in order to change the header's styling
   useEffect(() => {
     const handleResize = () => {
@@ -158,11 +192,11 @@ export default function SavedRoutesPage() {
                     </td>
                     <td>
                       {/* this button below is the target... delete route button... */}
-                      {!isDeletePopup ? (
-                        <button onClick={deletePopup} value={route.id}>
-                          Delete Button
-                        </button>
-                      ) : (
+
+                      <button onClick={deletePopup} value={route}>
+                        Delete Button
+                      </button>
+                      {isDeletePopup && (
                         //aim to get the value of the above button and so only make a div where the value matches that
                         //if(value===value) {
                         <div className="savedRoutesTable__deletePopUp">
@@ -202,5 +236,3 @@ export default function SavedRoutesPage() {
     </>
   );
 }
-
-// opening para graph

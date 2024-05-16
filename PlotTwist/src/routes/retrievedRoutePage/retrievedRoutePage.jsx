@@ -6,15 +6,12 @@ export default function RetrievedRoutePage({
   handleRetrieve,
   selectedRoute,
   setRetrieved,
-  retrieved,
   getAllRoutes,
 }) {
   const [routeIsCreated, setRouteIsCreated] = useState(true);
   const [markerCoordinatesArray, setMarkerCoordinatesArray] = useState(
     selectedRoute.payload.route_data
   );
-
-  const routesLibrary = useMapsLibrary("routes");
 
   const [loadedRoute, setLoadedRoute] = useState(true);
 
@@ -25,28 +22,29 @@ export default function RetrievedRoutePage({
   console.log(selectedRoute.payload.id);
 
   const handleDelete = async () => {
-    const id = selectedRoute.payload.id;
-    const response = await fetch(
-      `https://final-project-backend-lp20.onrender.com/delete/${id}`,
-      { method: "DELETE" }
-    );
-    const data = await response.json();
-    console.log(data);
-    // here, we can change retrieved to false
-    setRetrieved(false);
-    getAllRoutes();
-  };
+    try {
+      const id = selectedRoute.payload.id;
+      const response = await fetch(
+        `https://final-project-backend-lp20.onrender.com/delete/${id}`,
+        { method: "DELETE" }
+      );
 
-  const handleMapClick = (event) => {
-    setMarkerCoordinatesArray((prev) => {
-      return [
-        ...prev,
-        {
-          lat: selectedRoute.payload.route_data[0].lat,
-          lng: selectedRoute.payload.route_data[0].lng,
-        },
-      ];
-    });
+      if (!response.ok) {
+        throw new Error(`HTTP error. Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      // here, we can change retrieved to false
+      setRetrieved(false);
+      getAllRoutes();
+    } catch (error) {
+      console.error("Failed to delete the route");
+      alert(
+        `Failed to delete route: "${selectedRoute.payload.route_name}" ...Please try again `
+      );
+      // potential error state could go here
+    }
   };
 
   return (
@@ -62,9 +60,9 @@ export default function RetrievedRoutePage({
       />
 
       <div className="routeData__buttonContainer">
-        <button onClick={handleMapClick} className="routeData__editRouteButton">
+        {/* <button onClick={handleMapClick} className="routeData__editRouteButton">
           Edit 🚧 WIP 🚧
-        </button>
+        </button> */}
         <br></br>
         <button onClick={handleDelete} className="routeData__deleteRouteButton">
           Delete 🚧 WIP 🚧
