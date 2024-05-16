@@ -99,7 +99,7 @@ export default function DirectionsData({
       setIsLoading(false);
     } catch (error) {
       console.log("Failed to create the new route");
-      alert("failed to create route");
+      alert(`Failed to create route: "${route.name}"`);
     } finally {
       setIsLoading(false);
     }
