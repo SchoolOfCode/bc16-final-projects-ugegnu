@@ -34,14 +34,42 @@
   align-items: center;
   width: 100%;
   border-bottom: 1px solid var(--mainGreen);
-
+  padding: 10px 0px;
 }
 
-
-.savedRoutesTable__routeName {
+.savedRoutes__routeName {
   color: var(--mainGreen);
+  font-size: 1.5rem;
+  font-weight: 600;
+  width: 300px;
 }
-.savedRoutesTable__retrieveRouteButton {
+.savedRoutes__retrieveRouteButton {
+  color: var(--mainGreen);
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: var(white);
+  border: none;
+  border-radius: 20px;
+  height: 60px;
+  width: 200px;
+  margin: 10px 0px;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.savedRoutes__delete {
+  width: 10%;
+}
+
+.savedRoutes__deleteButton {
+  width: 100%;
+  background: none;
+  border: none;
+}
+
+.savedRoutes__deleteIcon {
+  width: 50px;
 }
 
 .savedRoutesTable__deleteRouteButton {
