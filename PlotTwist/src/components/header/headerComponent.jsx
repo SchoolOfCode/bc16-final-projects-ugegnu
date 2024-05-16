@@ -1,5 +1,5 @@
 import "./headerComponent.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logoUPLOT.png";
 import menuIcon from "../../assets/icons8-menu (1).svg";
 import homeIcon from "../../assets/home-icon.svg";
 import help from "../../assets/help.png";
