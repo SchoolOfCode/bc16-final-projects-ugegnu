@@ -86,7 +86,6 @@ export default function SavedRoutesPage() {
   }, []);
 
   async function handleRetrieve(e) {
-    console.log("hi");
     if (retrieved === true) {
       setRetrieved(false);
       // setIsLoading(true)
@@ -94,7 +93,6 @@ export default function SavedRoutesPage() {
       getAllRoutes();
     } else {
       setSelectedRoute(await getRouteById(e.target.value));
-      setRetrieved(true);
     }
   }
 
@@ -110,11 +108,11 @@ export default function SavedRoutesPage() {
       }
 
       const data = await response.json();
-      // console.log(data);
+      setRetrieved(true);
       return data;
     } catch (error) {
-      console.error("Failed to get the route:");
-      alert("Failed to get the route, get by id.");
+      console.error("Failed to get the route (by ID).");
+      alert("Failed to get the route (by ID).");
     }
   }
 
