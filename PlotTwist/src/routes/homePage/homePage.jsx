@@ -17,10 +17,14 @@ export default function HomePage() {
         <img className="mainHomePage__logo" src={FullLogo}></img>
         <div className="mainHomePage__routes">
           <Link to={"create-route"}>
-            <button className="mainHomePage__buttons">Create Routes</button>
+            <button className="mainHomePage__createRouteButtons">
+              Create Routes
+            </button>
           </Link>
           <Link to={"saved-routes"}>
-            <button className="mainHomePage__buttons">Saved Routes</button>
+            <button className="mainHomePage__savedRoutesButtons">
+              Saved Routes
+            </button>
           </Link>
         </div>
       </main>

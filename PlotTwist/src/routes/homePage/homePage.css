@@ -23,8 +23,24 @@
   align-items: center;
 }
 
-.mainHomePage__buttons {
+.mainHomePage__savedRoutesButtons {
   background-color: var(--white);
+  color: var(--mainGreen);
+  border: none;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  font-size: 1.7rem;
+  font-weight: 700;
+  height: 100px;
+  width: 380px;
+}
+
+.mainHomePage__createRouteButtons {
+  background-color: var(--mainGreen);
+  color: var(--white);
   border: none;
   border-radius: 20px;
   margin-bottom: 20px;
