@@ -116,12 +116,18 @@ export default function SavedRoutesPage() {
     <>
       <Header openMenu={openMenu} handleOpenMenu={handleOpenMenu} />
       <main
+        className="savedRoutes"
         style={
           openMenu && Number(screenWidth) < 1024
             ? { paddingTop: "365px" }
             : { paddingTop: "120px" }
         }
       >
+        <div className="savedRoutes__banner">
+          <h1 className="savedRoutes__Bannerheader">
+            See below your saved routes.{" "}
+          </h1>
+        </div>
         {/* table with .map - show name and button */}
 
         {isLoading ? (
@@ -139,13 +145,12 @@ export default function SavedRoutesPage() {
         ) : (
           <table className="savedRoutesTable">
             <tbody>
-              <tr>
-                <th>Route Name</th>
-              </tr>
               {routes.map((route, index) => {
                 return (
                   <tr key={index}>
-                    <td>{route.route_name}</td>
+                    <td className="savedRoutesTable__routeName">
+                      {route.route_name}
+                    </td>
                     <td>
                       <Link to={"retrieved-route"}></Link>
                       <button
