@@ -1,10 +1,40 @@
 .mainHomePage {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
   height: 100dvh;
   background-color: var(--bgPastelGreen);
+  position: relative;
+}
+
+.layers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10%; /* Adjust the top position to move the layers down */
+  left: 0;
+  width: 100%;
+}
+
+.mainHomePage__HomePageCoachlayer {
+  width: 100px;
+  height: 70px;
+  display: inline-block;
+  animation: wiggle 2s infinite;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(5deg);
+  }
+  60% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .mainHomePage__HomepageWorldLayer {
@@ -12,11 +42,6 @@
   z-index: 0;
   position: relative;
   animation: spin 50s linear infinite;
-}
-
-.mainHomePage__HomePagecoachlayer {
-  width: 200px;
-  height: 150px;
 }
 
 @keyframes spin {
@@ -28,11 +53,25 @@
   }
 }
 
+.overLayers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 5;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
 .mainHomePage__logo {
   height: 200px;
   width: 400px;
   border-radius: 20px;
   padding: 0px 10px;
+  position: relative;
 }
 
 .mainHomePage__routes {
@@ -55,6 +94,7 @@
   font-weight: 700;
   height: 100px;
   width: 380px;
+  position: relative;
 }
 
 .mainHomePage__createRouteButtons {
@@ -70,6 +110,7 @@
   font-weight: 700;
   height: 100px;
   width: 380px;
+  position: relative;
 }
 
 .mainHomePage__buttons:hover {
