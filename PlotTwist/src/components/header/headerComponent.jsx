@@ -30,8 +30,11 @@ export default function Header({ openMenu, handleOpenMenu }) {
           className={
             openMenu
               ? "header__navigationMenu slide-in-top"
-              : "header__navigationMenu slide-out-top"
+              : // else if openMenu closed ?
+                "header__navigationMenu slide-out-top"
           }
+          // Either hover quick fix
+          // or OnClick on budy slide out
         >
           <ul className="header__linksList">
             <Link className="header__link fixBorder" to={"/"}>
