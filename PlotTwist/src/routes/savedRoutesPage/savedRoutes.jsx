@@ -25,12 +25,18 @@ export default function SavedRoutesPage() {
   //To avoid another API call we are using this function to call at the end to show the list.
 
   const deleteRoute = async (e) => {
+    // console.log("before try catch");
     const id = routeValueToBeDeleted.payload.id;
     const routeName = routeValueToBeDeleted.payload.route_name;
-    console.log(id);
-    console.log(routeName);
+    // console.log(id);
+    // console.log(routeName);
+
+    if (!routeValueToBeDeleted || !routeValueToBeDeleted.payload) {
+      alert("No route selected or route data is incomplete.");
+      return; // Prevent execution if data is incomplete
+    }
     try {
-      console.log("nuuuh");
+      console.log("in try block");
       // the value of the delete button has been set to route.id
       // hence e.target.value will be route.id
       setDeleteLoading(true);
@@ -38,7 +44,7 @@ export default function SavedRoutesPage() {
       // console.log(e.target.value);
 
       const response = await fetch(
-        `https://fial-project-backend-lp20.onrender.com/delete/${id}`,
+        `https://final-project-backend-lp20.onrender.com/delete/${id}`,
         { method: "DELETE" }
       );
 
@@ -119,6 +125,7 @@ export default function SavedRoutesPage() {
     } catch (error) {
       console.error("Failed to get the route (by ID).");
       alert("Failed to get the route (by ID).");
+      return null;
     }
   }
 
@@ -130,6 +137,10 @@ export default function SavedRoutesPage() {
     let routeToBeDeleted;
     if (e.target.value) {
       routeToBeDeleted = await getRouteById(e.target.value);
+      if (routeToBeDeleted === null) {
+        alert("Cannot delete the route because it could not be retrieved");
+        return;
+      }
     }
     setRouteValueToBeDeleted(routeToBeDeleted);
   };
