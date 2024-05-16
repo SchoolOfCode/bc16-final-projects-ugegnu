@@ -2,17 +2,17 @@ import { Link, createRoutesFromChildren } from "react-router-dom";
 import HomePageBG from "../../assets/HomePageBG.png";
 import FullLogo from "../../assets/FullLogo.png";
 import "./homePage.css";
+import HomePageworldlayer from "../../assets/HomePage-world-layer.png";
 export default function HomePage() {
   return (
     <>
       <main
-        className="mainHomePage"
-        style={{
-          backgroundImage: `url(${HomePageBG})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-        }}
+        className="mainHomePage">
+        <img src={FullLogo} alt="Logo" className="mainHomePage__logo" />
+        <img
+          src={HomePageworldlayer}
+          alt="Background"
+          className="mainHomePage__HomepageWorldLayer"
       >
         <img className="mainHomePage__logo" src={FullLogo}></img>
         <div className="mainHomePage__routes">
