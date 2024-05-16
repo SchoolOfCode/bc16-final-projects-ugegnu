@@ -2,10 +2,17 @@ import { Link, createRoutesFromChildren } from "react-router-dom";
 import FullLogo from "../../assets/FullLogo.png";
 import "./homePage.css";
 import HomePageworldlayer from "../../assets/HomePage-world-layer.png";
+import coachLayer from "../../assets/coachLayer.png";
+
 export default function HomePage() {
   return (
     <>
       <main className="mainHomePage">
+        <img
+          src={HomePagecoachlayer}
+          alt="spinningWorld"
+          className="mainHomePage__HomePagecoachlayer"
+        />
         <img
           src={HomePageworldlayer}
           alt="spinningWorld"
