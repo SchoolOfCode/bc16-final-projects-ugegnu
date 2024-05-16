@@ -27,7 +27,10 @@ export default function SavedRoutesPage() {
   const deleteRoute = async (e) => {
     const id = routeValueToBeDeleted.payload.id;
     const routeName = routeValueToBeDeleted.payload.route_name;
+    console.log(id);
+    console.log(routeName);
     try {
+      console.log("nuuuh");
       // the value of the delete button has been set to route.id
       // hence e.target.value will be route.id
       setDeleteLoading(true);
@@ -35,7 +38,7 @@ export default function SavedRoutesPage() {
       // console.log(e.target.value);
 
       const response = await fetch(
-        `https://final-project-backend-lp20.onrender.com/delete/${id}`,
+        `https://fial-project-backend-lp20.onrender.com/delete/${id}`,
         { method: "DELETE" }
       );
 
@@ -92,7 +95,11 @@ export default function SavedRoutesPage() {
       // setInterval(() => setIsLoading(false), 1000)
       getAllRoutes();
     } else {
-      setSelectedRoute(await getRouteById(e.target.value));
+      const route = await getRouteById(e.target.value);
+      if (route) {
+        setSelectedRoute(route);
+        setRetrieved(true);
+      }
     }
   }
 
@@ -108,7 +115,6 @@ export default function SavedRoutesPage() {
       }
 
       const data = await response.json();
-      setRetrieved(true);
       return data;
     } catch (error) {
       console.error("Failed to get the route (by ID).");
