@@ -74,7 +74,7 @@ export default function SavedRoutesPage() {
       setRoutes(data.payload);
     } catch (error) {
       console.error("Failed to get the route:");
-      alert("Couldn't get the route, all routes");
+      alert("Couldn't get all routes, please try again.");
     } finally {
       setIsLoading(false);
     }
