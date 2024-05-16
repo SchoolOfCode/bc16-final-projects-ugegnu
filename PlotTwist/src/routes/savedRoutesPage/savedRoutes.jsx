@@ -5,6 +5,7 @@ import "./savedRoutes.css";
 import RetrievedRoutePage from "../retrievedRoutePage/retrievedRoutePage";
 import loadingsymbol from "../../assets/tube-spinner.svg";
 import logo from "../../assets/FullLogo.png";
+import deleteIcon from "../../assets/deleteIcon.png";
 
 export default function SavedRoutesPage() {
   const [routes, setRoutes] = useState([]);
@@ -143,58 +144,33 @@ export default function SavedRoutesPage() {
             getAllRoutes={getAllRoutes}
           />
         ) : (
-          <table className="savedRoutesTable">
-            <tbody>
+          <table>
+            <tbody className="savedRoutes__table">
               {routes.map((route, index) => {
                 return (
-                  <tr key={index}>
-                    <td className="savedRoutesTable__routeName">
+                  <tr className="savedRoutes__row" key={index}>
+                    <td className="savedRoutes__routeName">
                       {route.route_name}
                     </td>
-                    <td>
+                    <td className="savedRoutes__retrieve">
                       <Link to={"retrieved-route"}></Link>
                       <button
                         onClick={handleRetrieve}
-                        className="savedRoutesTable__retrieveRouteButton"
+                        className="savedRoutes__retrieveRouteButton"
                         value={route.id}
                       >
                         Retrieve Route
                       </button>
+                      
                     </td>
-                    <td>
+                    <td className="savedRoutes__delete">
                       {/* this button below is the target... delete route button... */}
-                      {!isDeletePopup ? (
-                        <button onClick={deletePopup} value={route.id}>
-                          Delete Button
+                      {!isDeletePopup && (
+                        <button className="savedRoutes__deleteButton" onClick={deletePopup} value={route.id}>
+                          <img src={deleteIcon}className="savedRoutes__deleteIcon"/>
                         </button>
-                      ) : (
                         //aim to get the value of the above button and so only make a div where the value matches that
                         //if(value===value) {
-                        <div className="savedRoutesTable__deletePopUp">
-                          <button onClick={deletePopup}>X</button>
-                          {!deleteSuccess ? (
-                            <>
-                              <h1>Are you sure you want to delete?</h1>
-                              <button
-                                className="savedRoutesTable__deleteRouteButton"
-                                value={routeValueToBeDeleted}
-                                onClick={deleteRoute}
-                              >
-                                Yes delete
-                              </button>
-                              <button onClick={hideDeletePopup}>No</button>
-                            </>
-                          ) : (
-                            <>
-                              {" "}
-                              {deleteLoading ? (
-                                <h1>Deleting</h1>
-                              ) : (
-                                <h1>Deleted!</h1>
-                              )}
-                            </>
-                          )}
-                        </div>
                       )}
                     </td>
                   </tr>
@@ -202,6 +178,33 @@ export default function SavedRoutesPage() {
               })}
             </tbody>
           </table>
+        )}
+        { isDeletePopup && (
+          <div className="savedRoutesTable__deletePopUp">
+          <button onClick={deletePopup}>X</button>
+          {!deleteSuccess ? (
+            <>
+              <h1>Are you sure you want to delete?</h1>
+              <button
+                className="savedRoutesTable__deleteRouteButton"
+                value={routeValueToBeDeleted}
+                onClick={deleteRoute}
+              >
+                Yes delete
+              </button>
+              <button onClick={hideDeletePopup}>No</button>
+            </>
+          ) : (
+            <>
+              {" "}
+              {deleteLoading ? (
+                <h1>Deleting</h1>
+              ) : (
+                <h1>Deleted!</h1>
+              )}
+            </>
+          )}
+        </div>
         )}
       </main>
     </>
