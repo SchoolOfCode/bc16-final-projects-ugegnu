@@ -25,17 +25,17 @@ export default function SavedRoutesPage() {
   //To avoid another API call we are using this function to call at the end to show the list.
 
   const deleteRoute = async (e) => {
+    const id = routeValueToBeDeleted.payload.id;
+    const routeName = routeValueToBeDeleted.payload.route_name;
     try {
       // the value of the delete button has been set to route.id
       // hence e.target.value will be route.id
       setDeleteLoading(true);
 
       // console.log(e.target.value);
-      const id = e.target.value.id;
-      const routeName = e.taget.value.route_name;
 
       const response = await fetch(
-        `https://fil-project-backend-lp20.onrender.com/delete/${id}`,
+        `https://final-project-backend-lp20.onrender.com/delete/${id}`,
         { method: "DELETE" }
       );
 
@@ -74,7 +74,7 @@ export default function SavedRoutesPage() {
       setRoutes(data.payload);
     } catch (error) {
       console.error("Failed to get the route:");
-      alert("Couldn't get the route, Carol");
+      alert("Couldn't get the route, all routes");
     } finally {
       setIsLoading(false);
     }
@@ -96,33 +96,38 @@ export default function SavedRoutesPage() {
       setSelectedRoute(await getRouteById(e.target.value));
       setRetrieved(true);
     }
+  }
 
-    async function getRouteById(id) {
-      try {
-        console.log(`getting route... ${id}`);
-        const response = await fetch(
-          `https://final-project-backend-lp20.onrender.com/route/${id}`
-        );
+  async function getRouteById(id) {
+    try {
+      console.log(`getting route... ${id}`);
+      const response = await fetch(
+        `https://final-project-backend-lp20.onrender.com/route/${id}`
+      );
 
-        if (!response.ok) {
-          throw new Error(`HTTP error. Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(data);
-        return data;
-      } catch (error) {
-        console.error("Failed to get the route:");
-        alert("Failed to get the route, Carol.");
+      if (!response.ok) {
+        throw new Error(`HTTP error. Status: ${response.status}`);
       }
+
+      const data = await response.json();
+      // console.log(data);
+      return data;
+    } catch (error) {
+      console.error("Failed to get the route:");
+      alert("Failed to get the route, get by id.");
     }
   }
 
-  const deletePopup = (e) => {
+  const deletePopup = async (e) => {
+    // console.log(e.target.value);
     setDeleteSuccess(false);
     setDeleteLoading(false);
     setDeletePopup(!isDeletePopup);
-    setRouteValueToBeDeleted(route);
+    let routeToBeDeleted;
+    if (e.target.value) {
+      routeToBeDeleted = await getRouteById(e.target.value);
+    }
+    setRouteValueToBeDeleted(routeToBeDeleted);
   };
 
   const hideDeletePopup = () => {
@@ -193,7 +198,7 @@ export default function SavedRoutesPage() {
                     <td>
                       {/* this button below is the target... delete route button... */}
 
-                      <button onClick={deletePopup} value={route}>
+                      <button onClick={deletePopup} value={route.id}>
                         Delete Button
                       </button>
                       {isDeletePopup && (
