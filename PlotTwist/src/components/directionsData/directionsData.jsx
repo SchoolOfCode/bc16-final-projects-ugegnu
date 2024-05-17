@@ -370,6 +370,7 @@ export default function DirectionsData({
                     setMarkerCoordinatesArray([]);
                     setResetMadeMapClicked(!resetMadeMapClicked);
                     directionsRenderer.setMap(null);
+                    setTestArray([]);
                     //setDirectionsResult(null);
                   }}
                 >

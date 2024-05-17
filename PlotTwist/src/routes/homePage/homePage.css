@@ -2,6 +2,7 @@
   height: 100dvh;
   background-color: var(--bgPastelGreen);
   position: relative;
+  overflow: hidden;
 }
 
 .layers {
