@@ -308,7 +308,9 @@ export default function DirectionsData({
                       src={marker}
                       alt=""
                     />
-                    <div className="arrivaltime">Depart: {startTime}</div>
+                    <div className="routeData__arrivaltime">
+                      Depart: {startTime}
+                    </div>
                   </div>
                 </div>
                 {testArray.map((element, index) => {
