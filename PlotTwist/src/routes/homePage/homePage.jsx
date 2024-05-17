@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <>
       <main className="mainHomePage">
-        <div className="layers">
+        <div className="mainHomePage__layers">
           <img
             src={coachLayer}
             alt="spinningWorld"
@@ -20,7 +20,7 @@ export default function HomePage() {
             className="mainHomePage__HomepageWorldLayer"
           />
         </div>
-        <div className="overLayers">
+        <div className="mainHomePage__overLayers">
           <img className="mainHomePage__logo" src={FullLogo}></img>
           <div className="mainHomePage__routes">
             <Link to={"create-route"}>

@@ -56,6 +56,12 @@
   box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
+.savedRoutes__retrieveRouteButton:hover {
+  background-color: var(--white);
+  color: var(--mainGreen);
+  border: var(--mainGreen) solid 2px;
+}
+
 .savedRoutes__delete {
   grid-column: 3 / 4;
   width: 10%;
@@ -72,6 +78,10 @@
   background-color: var(--mainGreen);
   border: none;
   border-radius: 50%;
+}
+
+.savedRoutes__deleteButton:hover {
+  background-color: rgb(249, 0, 0);
 }
 
 .savedRoutes__deleteIcon {
