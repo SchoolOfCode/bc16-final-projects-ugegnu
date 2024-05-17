@@ -9,6 +9,7 @@ import loadingsymbol from "../../assets/tube-spinner.svg";
 import logo from "../../assets/FullLogo.png";
 import { Link } from "react-router-dom";
 import savedRouteConfirmed from "../../assets/savedRouteConfirm.png";
+import savedRouteConfirmed2 from "../../assets/savedRouteConfirm2.png";
 
 export default function DirectionsData({
   markerCoordinatesArray,
@@ -242,7 +243,7 @@ export default function DirectionsData({
                 {isSuccess && (
                   <div>
                     <img
-                      src={savedRouteConfirmed}
+                      src={savedRouteConfirmed2}
                       className="routeData__routeHasSaved"
                     />
                     <Link to={"/create-route"}>
