@@ -1,18 +1,22 @@
 .mainHomePage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   height: 100dvh;
   background-color: var(--bgPastelGreen);
-  position: relative;
+  /* position: relative; */
   overflow: hidden;
 }
 
-.layers {
+.mainHomePage__layers {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 10%; /* Adjust the top position to move the layers down */
-  left: 0;
+  /* top: 10%;
+  left: 0; */
   width: 100%;
 }
 
@@ -54,14 +58,12 @@
   }
 }
 
-.overLayers {
+.mainHomePage__overLayers {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 0;
-  left: 5;
+
   width: 100%;
   height: 100%;
   z-index: 2;
@@ -86,64 +88,46 @@
   background-color: var(--white);
   color: var(--mainGreen);
   border: none;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-bottom: 20px;
   -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.75);
   font-size: 1.7rem;
   font-weight: 700;
-  height: 100px;
-  width: 380px;
+  height: 70px;
+  width: 300px;
   position: relative;
+}
+
+.mainHomePage__savedRoutesButtons:hover {
+  background-color: var(--mainGreen);
+  color: var(--white);
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 .mainHomePage__createRouteButtons {
   background-color: var(--mainGreen);
   color: var(--white);
   border: none;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-bottom: 20px;
   -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.75);
   font-size: 1.7rem;
   font-weight: 700;
-  height: 100px;
-  width: 380px;
+  height: 70px;
+  width: 300px;
   position: relative;
 }
 
-.mainHomePage__buttons:hover {
-  background-color: var(--mainGreen);
-  color: rgb(0, 0, 0);
+.mainHomePage__createRouteButtons:hover {
+  background-color: var(--white);
+  color: var(--mainGreen);
   cursor: pointer;
   margin-left: 10px;
 }
 
 /* Breakpoints */
-
-@media (width > 1024px) {
-  .mainHomePage__logo {
-    height: 250px;
-    width: 500px;
-  }
-
-  .mainHomePage__buttons {
-    font-size: 2.5rem;
-    height: 125px;
-    width: 475px;
-  }
-}
-
-@media (width > 1240px) {
-  .mainHomePage__routes {
-    flex-direction: row;
-    width: 100%;
-  }
-
-  .mainHomePage__buttons:hover {
-    margin-left: 0px;
-    margin-bottom: 10px;
-  }
-}

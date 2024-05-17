@@ -1,10 +1,10 @@
 import "./headerComponent.css";
 import logoUPLOT from "../../assets/logoUPLOT.png";
 import menuIcon from "../../assets/icons8-menu (1).svg";
-import homeIcon from "../../assets/home-icon.svg";
+import homeIconGreen from "../../assets/homeIconGreen.png";
 import help from "../../assets/help.png";
-import createRoute from "../../assets/create-route.png";
-import savedRoutes from "../../assets/saved-routes.png";
+import createRouteIconGreen from "../../assets/createRouteIconGreen.png";
+import savedIconGreen from "../../assets/savedIconGreen.png";
 import { Link } from "react-router-dom";
 
 export default function Header({ openMenu, handleOpenMenu }) {
@@ -37,7 +37,7 @@ export default function Header({ openMenu, handleOpenMenu }) {
             <Link className="header__link fixBorder" to={"/"}>
               <img
                 className="header__homeIcon"
-                src={homeIcon}
+                src={homeIconGreen}
                 alt="Home icon"
               ></img>
               <li className="header__linkItem">HOME</li>
@@ -45,7 +45,7 @@ export default function Header({ openMenu, handleOpenMenu }) {
             <Link className="header__link fixBorder" to={"../create-route"}>
               <img
                 className="header__markerIcon"
-                src={createRoute}
+                src={createRouteIconGreen}
                 alt="Marker icon"
               ></img>
               <li className="header__linkItem">CREATE ROUTE</li>
@@ -53,7 +53,7 @@ export default function Header({ openMenu, handleOpenMenu }) {
             <Link className="header__link" to={"../saved-routes"}>
               <img
                 className="header__savedIcon"
-                src={savedRoutes}
+                src={savedIconGreen}
                 alt="Saved icon"
               ></img>
               <li className="header__linkItem">SAVED ROUTES</li>
