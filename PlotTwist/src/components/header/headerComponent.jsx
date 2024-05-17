@@ -1,5 +1,5 @@
 import "./headerComponent.css";
-import logo from "../../assets/logoUPLOT.png";
+import logoUPLOT from "../../assets/logoUPLOT.png";
 import menuIcon from "../../assets/icons8-menu (1).svg";
 import homeIcon from "../../assets/home-icon.svg";
 import help from "../../assets/help.png";
@@ -11,7 +11,7 @@ export default function Header({ openMenu, handleOpenMenu }) {
   return (
     <header className="header">
       <Link to={"/"}>
-        <img className="header__logo" src={logo} alt="U-Plot logo"></img>
+        <img className="header__logo" src={logoUPLOT} alt="U-Plot logo"></img>
       </Link>
       {!openMenu && (
         <>
