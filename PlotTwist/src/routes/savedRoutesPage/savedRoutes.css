@@ -34,18 +34,47 @@
   align-items: center;
   width: 100%;
   border-bottom: 1px solid var(--mainGreen);
-
+  padding: 10px 0px;
 }
 
-
-.savedRoutesTable__routeName {
+.savedRoutes__routeName {
   color: var(--mainGreen);
+  font-size: 1.5rem;
+  font-weight: 600;
+  width: 300px;
 }
-.savedRoutesTable__retrieveRouteButton {
+.savedRoutes__retrieveRouteButton {
+  color: var(--mainGreen);
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: var(white);
+  border: none;
+  border-radius: 20px;
+  height: 60px;
+  width: 200px;
+  margin: 10px 0px;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.savedRoutes__delete {
+  width: 10%;
+}
+
+.savedRoutes__deleteButton {
+  width: 100%;
+  background: none;
+  border: none;
+}
+
+.savedRoutes__deleteIcon {
+  width: 50px;
 }
 
 .savedRoutesTable__deleteRouteButton {
   background-color: rgb(247, 136, 136);
+  z-index: 5;
 }
 
 .loading-gif {
@@ -66,9 +95,9 @@
 }
 
 .savedRoutesTable__deletePopUp {
-  width: 75%;
   min-height: 10%;
-  background: pink;
+  padding: 40px;
+  background: var(--white);
   color: black;
   z-index: 10;
   border-radius: 16px;
@@ -77,8 +106,42 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.savedRoutesTable__deletePopUpButtons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 20%;
+}
+.savedRoutesTable__deletePopUpButtons button {
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  height: 60px;
+  width: 200px;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.savedRoutesTable__deletePopUp__X {
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.savedRoutesTable__deletePopUp__div {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
 }
