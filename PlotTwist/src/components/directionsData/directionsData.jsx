@@ -45,7 +45,10 @@ export default function DirectionsData({
 
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const [startTime, setStartTime] = useState(new Date().toLocaleTimeString());
+  const [startTime, setStartTime] = useState("");
+  const [currentTime, setCurrentTime] = useState(
+    new Date().toLocaleTimeString()
+  );
 
   const [testArray, setTestArray] = useState([]);
 
@@ -127,7 +130,7 @@ export default function DirectionsData({
         directionsRenderer.setDirections(response);
         //setDirectionsResult(response);
         setDirectionsResult(directionsRenderer.getDirections());
-        populateTimingsTable(startTime); // 1 render behind here ... an extra ctrl + s in vscode loads it onto screen
+        // populateTimingsTable(startTime); // 1 render behind here ... an extra ctrl + s in vscode loads it onto screen
       });
   }, [
     directionsService,
@@ -144,6 +147,10 @@ export default function DirectionsData({
       minute: "2-digit",
     });
   }
+
+  // useEffect(() => {
+  //   populateTimingsTable(currentTime);
+  // }, [routeIsCreated]);
 
   function calcTime(time, interval) {
     // const selectedTime = timeInput.value;
@@ -186,6 +193,11 @@ export default function DirectionsData({
 
   function handleTimeChange(e) {
     populateTimingsTable(e.target.value);
+  }
+
+  function handleCurrentTime() {
+    setCurrentTime(new Date().toLocaleTimeString());
+    populateTimingsTable(currentTime);
   }
 
   function calcTotalJourneyTime(arr) {
@@ -267,6 +279,7 @@ export default function DirectionsData({
           <section className="routeData">
             <div className="routeData__information">
               <input id="timeInput" type="time" onChange={handleTimeChange} />
+              <button onClick={handleCurrentTime}>Current Time</button>
               {/* <ol className="routeData__list"> */}
               {/* {directionsResult.routes[0].legs.map((element, index) => {
                   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
