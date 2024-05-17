@@ -45,7 +45,7 @@ export default function DirectionsData({
 
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const [startTime, setStartTime] = useState("10:00 AM");
+  const [startTime, setStartTime] = useState(new Date().toLocaleTimeString());
 
   const [testArray, setTestArray] = useState([]);
 
@@ -68,19 +68,9 @@ export default function DirectionsData({
       data: markerCoordinatesArray,
     };
     await saveNewRoute(routeData);
-
-    // console.log(directionsService);
-    // console.log(directionsRenderer);
-    // console.log(directionsResult);
-    // console.log(resetMadeMapClicked);
-    // console.log(routeName);
   };
 
   async function saveNewRoute(route) {
-    // const body = {
-    //   name: "friday",
-    //   data: "Test Coordinates",
-    // };
     setIsLoading(true);
     console.log(`Adding route ${route.name}...`);
     const response = await fetch(
@@ -137,6 +127,7 @@ export default function DirectionsData({
         directionsRenderer.setDirections(response);
         //setDirectionsResult(response);
         setDirectionsResult(directionsRenderer.getDirections());
+        populateTimingsTable(startTime); // 1 render behind here ... an extra ctrl + s in vscode loads it onto screen
       });
   }, [
     directionsService,
@@ -165,11 +156,11 @@ export default function DirectionsData({
     return result;
   }
 
-  function handleTimeState(e) {
+  function populateTimingsTable(time) {
     // configure default waiting time here (s)
     const interval = 300;
-    let userStartTime = calcTime(e.target.value, interval);
-    setStartTime(calcTime(e.target.value, 0));
+    let userStartTime = calcTime(time, interval);
+    setStartTime(calcTime(time, 0));
     setTestArray([]);
     //aim in here to set start time and for loop to create new array that is rendered instead of directionsResult below
     let arrayToLoop = directionsResult.routes[0].legs;
@@ -191,6 +182,10 @@ export default function DirectionsData({
       userStartTime = calcTime(arrivalTime, interval); // 120 is 2 min default
     }
     // calcTotalJourneyTime(arrayToLoop);
+  }
+
+  function handleTimeChange(e) {
+    populateTimingsTable(e.target.value);
   }
 
   function calcTotalJourneyTime(arr) {
@@ -271,7 +266,7 @@ export default function DirectionsData({
           )}
           <section className="routeData">
             <div className="routeData__information">
-              <input id="timeInput" type="time" onChange={handleTimeState} />
+              <input id="timeInput" type="time" onChange={handleTimeChange} />
               {/* <ol className="routeData__list"> */}
               {/* {directionsResult.routes[0].legs.map((element, index) => {
                   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
