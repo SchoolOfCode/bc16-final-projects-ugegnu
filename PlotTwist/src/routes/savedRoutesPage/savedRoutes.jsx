@@ -5,7 +5,7 @@ import "./savedRoutes.css";
 import RetrievedRoutePage from "../retrievedRoutePage/retrievedRoutePage";
 import loadingsymbol from "../../assets/tube-spinner.svg";
 import logo from "../../assets/FullLogo.png";
-import deleteIcon from "../../assets/deleteIcon.png";
+import whiteDeleteIcon from "../../assets/whiteDeleteIcon.png";
 
 export default function SavedRoutesPage() {
   const [routes, setRoutes] = useState([]);
@@ -124,9 +124,7 @@ export default function SavedRoutesPage() {
         }
       >
         <div className="savedRoutes__banner">
-          <h1 className="savedRoutes__Bannerheader">
-            See below your saved routes.{" "}
-          </h1>
+          <h1 className="savedRoutes__Bannerheader">Saved routes. </h1>
         </div>
         {/* table with .map - show name and button */}
 
@@ -169,7 +167,7 @@ export default function SavedRoutesPage() {
                           onClick={() => deletePopup(route.id)}
                         >
                           <img
-                            src={deleteIcon}
+                            src={whiteDeleteIcon}
                             className="savedRoutes__deleteIcon"
                           />
                         </button>

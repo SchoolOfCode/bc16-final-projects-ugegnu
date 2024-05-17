@@ -1,53 +1,51 @@
 .savedRoutes {
   min-height: 100dvh;
-  background: rgb(182, 225, 201);
-  background: linear-gradient(
-    180deg,
-    var(--bgPastelGreen, 1) 0%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  background: var(--white);
 }
 
 .savedRoutes__banner {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
   height: 120px;
-  color: white;
-  background-color: var(--mainGreen);
-  -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.359);
-  -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.359);
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.359);
+  color: var(--mainGreen);
+  padding: 0;
+  margin-left: 3rem;
 }
 
 .savedRoutes__table {
-  width: 100dvw;
+  width: 80dvw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
 .savedRoutes__row {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  border-bottom: 1px solid #04b66c60;
+
   width: 100%;
-  border-bottom: 1px solid var(--mainGreen);
-  padding: 10px 0px;
 }
 
 .savedRoutes__routeName {
+  grid-column: 1 / 2;
+  align-self: center;
   color: var(--mainGreen);
   font-size: 1.5rem;
   font-weight: 600;
   width: 300px;
 }
 .savedRoutes__retrieveRouteButton {
-  color: var(--mainGreen);
+  grid-column: 2 / 3;
+  align-self: center;
+  color: var(--white);
   font-size: 1.5rem;
   font-weight: 600;
-  background-color: var(white);
+  background-color: var(--mainGreen);
   border: none;
   border-radius: 20px;
   height: 60px;
@@ -59,17 +57,26 @@
 }
 
 .savedRoutes__delete {
+  grid-column: 3 / 4;
   width: 10%;
+  align-self: center;
+  justify-self: center;
 }
 
 .savedRoutes__deleteButton {
-  width: 100%;
-  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: var(--mainGreen);
   border: none;
+  border-radius: 50%;
 }
 
 .savedRoutes__deleteIcon {
-  width: 50px;
+  width: 35px;
+  height: 35px;
 }
 
 .savedRoutesTable__deleteRouteButton {
@@ -144,4 +151,10 @@
   display: flex;
   width: 100%;
   justify-content: flex-end;
+}
+
+@media (width>1024px) {
+  .savedRoutes__delete {
+    justify-self: flex-start;
+  }
 }
