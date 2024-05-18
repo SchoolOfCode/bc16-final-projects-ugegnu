@@ -1,4 +1,4 @@
-import { Link, createRoutesFromChildren } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FullLogo from "../../assets/FullLogo.png";
 import "./homePage.css";
 import HomePageworldlayer from "../../assets/HomePage-world-layer.png";
@@ -21,7 +21,7 @@ export default function HomePage() {
           />
         </div>
         <div className="mainHomePage__overLayers">
-          <img className="mainHomePage__logo" src={FullLogo}></img>
+          <img className="mainHomePage__logo" src={FullLogo} />
           <div className="mainHomePage__routes">
             <Link to={"create-route"}>
               <button className="mainHomePage__createRouteButtons">

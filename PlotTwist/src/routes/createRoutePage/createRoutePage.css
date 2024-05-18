@@ -1,6 +1,7 @@
 /* Main styles */
 
 .mainCreatePage {
+  height: 100dvh;
   padding-top: 120px;
   display: flex;
   flex-direction: column;
@@ -8,8 +9,8 @@
   background: rgb(182, 225, 201);
   background: linear-gradient(
     180deg,
-    var(--bgPastelGreen, 1) 0%,
-    rgba(255, 255, 255, 1) 100%
+    rgba(255, 255, 255, 1) 0%,
+    var(--bgPastelGreen, 1) 100%
   );
 }
 
@@ -136,7 +137,7 @@
 
 /* Breakpoints */
 
- @media (width > 1200px) {
+@media (width > 1200px) {
   /*
   .mainCreatePage {
     display: grid;
@@ -178,4 +179,4 @@
   .mainCreatePage__buttons > button:hover {
     margin-left: 0px;
   }
-} 
+}

@@ -9,7 +9,7 @@ import loadingsymbol from "../../assets/tube-spinner.svg";
 import logo from "../../assets/FullLogo.png";
 import { Link } from "react-router-dom";
 import savedRouteConfirmed from "../../assets/savedRouteConfirm.png";
-
+import HomePagecoachlayer from "../../assets/HomePage-coach-layer.png";
 export default function DirectionsData({
   markerCoordinatesArray,
   setMarkerCoordinatesArray,
@@ -274,9 +274,8 @@ export default function DirectionsData({
             </div>
           )}
           <section className="routeData">
-            <div className="routeData__information">
-              {/* <ol className="routeData__list"> */}
-              {/* {directionsResult.routes[0].legs.map((element, index) => {
+            {/* <ol className="routeData__list"> */}
+            {/* {directionsResult.routes[0].legs.map((element, index) => {
                   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                   return (
                     <li className="routeData__listItem" key={index}>
@@ -291,7 +290,7 @@ export default function DirectionsData({
                     </li>
                   );
                 })} */}
-              {/* {testArray.map((element, index) => {
+            {/* {testArray.map((element, index) => {
                 return (
                   <li className="routeData__listItem" key={index}>
                     {`Marker ${element.markerOrigin} => Marker ${element.markerDestination} 
@@ -300,107 +299,107 @@ export default function DirectionsData({
                   </li>
                 );
               })} */}
-              {currentTime || startTime ? (
-                <div className="routeData__timingsContainer">
-                  <div className="routeData__row">
-                    <div className="routeData__markerLetter">
-                      <div className="routeData__dottedLineBottom"></div>A
-                    </div>
-                    <div className="routeData__timings">
-                      <img
-                        className="routeData__markerGreen"
-                        src={marker}
-                        alt=""
-                      />
-                      <div className="routeData__arrivaltime">
-                        Depart: {startTime}
-                      </div>
-                    </div>
+            {currentTime || startTime ? (
+              <div className="routeData__timingsContainer">
+                <div className="routeData__row">
+                  <div className="routeData__markerLetter">
+                    <div className="routeData__dottedLineBottom"></div>A
                   </div>
-                  {testArray.map((element, index) => {
-                    return (
-                      <div className="routeData__row" key={index}>
-                        <div className="routeData__markerLetter">
-                          {index + 1 === testArray.length ? (
-                            <>
-                              {element.markerDestination}
-                              <div className="routeData__dottedLineTop"></div>
-                            </>
-                          ) : (
-                            <>
-                              <div className="routeData__dottedLineBottom"></div>
-                              {element.markerDestination}
-                              <div className="routeData__dottedLineTop"></div>
-                            </>
-                          )}
-                        </div>
-                        <div className="routeData__timings">
-                          <img
-                            className={
-                              index + 1 === testArray.length
-                                ? "routeData__markerRed"
-                                : "routeData__markerBlue"
-                            }
-                            src={marker}
-                            alt=""
-                          />
-                          <div className="routeData__arrivaltime">
-                            {element.arrivalTime}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                  <div className="routeData__row routeData__totalJourneyTime">
-                    Total Time:{" "}
-                    {calcTotalJourneyTime(directionsResult.routes[0].legs)}{" "}
+                  <div className="routeData__timings">
+                    <img
+                      className="routeData__markerGreen"
+                      src={marker}
+                      alt=""
+                    />
+                    <div className="routeData__arrivalTime">{startTime}</div>
                   </div>
                 </div>
-              ) : (
-                <div className="routeData__timingsContainer">
-                  Choose a departure time....
+                {testArray.map((element, index) => {
+                  return (
+                    <div className="routeData__row" key={index}>
+                      <div className="routeData__markerLetter">
+                        {index + 1 === testArray.length ? (
+                          <>
+                            {element.markerDestination}
+                            <div className="routeData__dottedLineTop"></div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="routeData__dottedLineBottom"></div>
+                            {element.markerDestination}
+                            <div className="routeData__dottedLineTop"></div>
+                          </>
+                        )}
+                      </div>
+                      <div className="routeData__timings">
+                        <img
+                          className={
+                            index + 1 === testArray.length
+                              ? "routeData__markerRed"
+                              : "routeData__markerBlue"
+                          }
+                          src={marker}
+                          alt=""
+                        />
+                        <div className="routeData__arrivaltime">
+                          {element.arrivalTime}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+                <div className="routeData__row routeData__totalJourneyTime">
+                  Total Time:{" "}
+                  {calcTotalJourneyTime(directionsResult.routes[0].legs)}{" "}
                 </div>
-              )}
+              </div>
+            ) : (
+              <div className="routeData__timingsContainer">
+                <img className="routeData__coach" src={HomePagecoachlayer} />
+              </div>
+            )}
 
-              {/* </ol> */}
-              <div className="routeData__routeControl">
-                <div className="routaData__selectTime">
-                  <h3>Select Departure Time</h3>
-                  <input
-                    id="timeInput"
-                    type="time"
-                    onChange={handleTimeChange}
-                  />
-                  <button
-                    onClick={handleCurrentTime}
-                    value={new Date().toLocaleTimeString()}
-                  >
-                    Current Time
-                  </button>
-                </div>
+            {/* </ol> */}
+            <div className="routeData__routeControl">
+              <div className="routeData__selectTime">
+                <h3 className="routeData__departureHeading">
+                  Select Departure Time
+                </h3>
+                <input
+                  className="routeData__inputTimeBox"
+                  id="timeInput"
+                  type="time"
+                  onChange={handleTimeChange}
+                />
+                <button
+                  className="routeData__currentTimeButton"
+                  onClick={handleCurrentTime}
+                  value={new Date().toLocaleTimeString()}
+                >
+                  Current Time
+                </button>
+              </div>
 
-                <div className="routeData__buttons">
-                  <button
-                    onClick={handlePopUp}
-                    className="routeData__saveRouteButton"
-                  >
-                    Save Route
-                  </button>
+              <div className="routeData__button">
+                <button
+                  onClick={handlePopUp}
+                  className="routeData__saveRouteButton"
+                >
+                  Save Route
+                </button>
 
-
-                  <button
-                    className="routeData__resetRouteButton"
-                    onClick={() => {
-                      setRouteIsCreated(!routeIsCreated);
-                      setMarkerCoordinatesArray([]);
-                      setResetMadeMapClicked(!resetMadeMapClicked);
-                      directionsRenderer.setMap(null);
-                      //setDirectionsResult(null);
-                    }}
-                  >
-                    Reset
-                  </button>
-                </div>
+                <button
+                  className="routeData__resetRouteButton"
+                  onClick={() => {
+                    setRouteIsCreated(!routeIsCreated);
+                    setMarkerCoordinatesArray([]);
+                    setResetMadeMapClicked(!resetMadeMapClicked);
+                    directionsRenderer.setMap(null);
+                    //setDirectionsResult(null);
+                  }}
+                >
+                  Reset
+                </button>
               </div>
             </div>
           </section>
