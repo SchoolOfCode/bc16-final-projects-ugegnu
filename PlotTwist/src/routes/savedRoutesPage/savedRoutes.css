@@ -78,6 +78,9 @@
   background-color: var(--mainGreen);
   border: none;
   border-radius: 50%;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 .savedRoutes__deleteButton:hover {

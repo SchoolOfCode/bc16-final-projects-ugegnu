@@ -123,9 +123,6 @@ export default function SavedRoutesPage() {
             : { paddingTop: "120px" }
         }
       >
-        <div className="savedRoutes__banner">
-          <h1 className="savedRoutes__Bannerheader">Saved routes. </h1>
-        </div>
         {/* table with .map - show name and button */}
 
         {isLoading ? (
@@ -141,6 +138,10 @@ export default function SavedRoutesPage() {
             getAllRoutes={getAllRoutes}
           />
         ) : (
+          <>
+          <div className="savedRoutes__banner">
+          <h1 className="savedRoutes__Bannerheader">Saved routes. </h1>
+        </div>
           <table>
             <tbody className="savedRoutes__table">
               {routes.map((route, index) => {
@@ -180,6 +181,7 @@ export default function SavedRoutesPage() {
               })}
             </tbody>
           </table>
+          </>
         )}
         {isDeletePopup && (
           <div className="savedRoutesTable__deletePopUp">
