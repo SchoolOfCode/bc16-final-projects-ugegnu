@@ -45,7 +45,8 @@ export default function DirectionsData({
 
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const [startTime, setStartTime] = useState("10:00 AM");
+  const [startTime, setStartTime] = useState("");
+  const [currentTime, setCurrentTime] = useState("");
 
   const [testArray, setTestArray] = useState([]);
 
@@ -68,19 +69,9 @@ export default function DirectionsData({
       data: markerCoordinatesArray,
     };
     await saveNewRoute(routeData);
-
-    // console.log(directionsService);
-    // console.log(directionsRenderer);
-    // console.log(directionsResult);
-    // console.log(resetMadeMapClicked);
-    // console.log(routeName);
   };
 
   async function saveNewRoute(route) {
-    // const body = {
-    //   name: "friday",
-    //   data: "Test Coordinates",
-    // };
     setIsLoading(true);
     console.log(`Adding route ${route.name}...`);
     const response = await fetch(
@@ -137,6 +128,7 @@ export default function DirectionsData({
         directionsRenderer.setDirections(response);
         //setDirectionsResult(response);
         setDirectionsResult(directionsRenderer.getDirections());
+        // populateTimingsTable(currentTime); // 1 render behind here ... an extra ctrl + s in vscode loads it onto screen
       });
   }, [
     directionsService,
@@ -154,6 +146,10 @@ export default function DirectionsData({
     });
   }
 
+  // useEffect(() => {
+  //   populateTimingsTable(currentTime);
+  // });
+
   function calcTime(time, interval) {
     // const selectedTime = timeInput.value;
     const today = new Date();
@@ -165,11 +161,11 @@ export default function DirectionsData({
     return result;
   }
 
-  function handleTimeState(e) {
+  function populateTimingsTable(time) {
     // configure default waiting time here (s)
     const interval = 300;
-    let userStartTime = calcTime(e.target.value, interval);
-    setStartTime(calcTime(e.target.value, 0));
+    let userStartTime = calcTime(time, interval);
+    setStartTime(calcTime(time, 0));
     setTestArray([]);
     //aim in here to set start time and for loop to create new array that is rendered instead of directionsResult below
     let arrayToLoop = directionsResult.routes[0].legs;
@@ -191,6 +187,14 @@ export default function DirectionsData({
       userStartTime = calcTime(arrivalTime, interval); // 120 is 2 min default
     }
     // calcTotalJourneyTime(arrayToLoop);
+  }
+
+  function handleTimeChange(e) {
+    populateTimingsTable(e.target.value);
+  }
+
+  function handleCurrentTime(e) {
+    populateTimingsTable(e.target.value);
   }
 
   function calcTotalJourneyTime(arr) {
@@ -271,7 +275,6 @@ export default function DirectionsData({
           )}
           <section className="routeData">
             <div className="routeData__information">
-              <input id="timeInput" type="time" onChange={handleTimeState} />
               {/* <ol className="routeData__list"> */}
               {/* {directionsResult.routes[0].legs.map((element, index) => {
                   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -297,85 +300,107 @@ export default function DirectionsData({
                   </li>
                 );
               })} */}
-              <div className="routeData__timingsContainer">
-                <div className="routeData__row">
-                  <div className="routeData__markerLetter">
-                    <div className="routeData__dottedLineBottom"></div>A
-                  </div>
-                  <div className="routeData__timings">
-                    <img
-                      className="routeData__markerGreen"
-                      src={marker}
-                      alt=""
-                    />
-                    <div className="routeData__arrivaltime">
-                      Depart: {startTime}
+              {currentTime || startTime ? (
+                <div className="routeData__timingsContainer">
+                  <div className="routeData__row">
+                    <div className="routeData__markerLetter">
+                      <div className="routeData__dottedLineBottom"></div>A
+                    </div>
+                    <div className="routeData__timings">
+                      <img
+                        className="routeData__markerGreen"
+                        src={marker}
+                        alt=""
+                      />
+                      <div className="routeData__arrivaltime">
+                        Depart: {startTime}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {testArray.map((element, index) => {
-                  return (
-                    <div className="routeData__row" key={index}>
-                      <div className="routeData__markerLetter">
-                        {index + 1 === testArray.length ? (
-                          <>
-                            {element.markerDestination}
-                            <div className="routeData__dottedLineTop"></div>
-                          </>
-                        ) : (
-                          <>
-                            <div className="routeData__dottedLineBottom"></div>
-                            {element.markerDestination}
-                            <div className="routeData__dottedLineTop"></div>
-                          </>
-                        )}
-                      </div>
-                      <div className="routeData__timings">
-                        <img
-                          className={
-                            index + 1 === testArray.length
-                              ? "routeData__markerRed"
-                              : "routeData__markerBlue"
-                          }
-                          src={marker}
-                          alt=""
-                        />
-                        <div className="routeData__arrivaltime">
-                          {element.arrivalTime}
+                  {testArray.map((element, index) => {
+                    return (
+                      <div className="routeData__row" key={index}>
+                        <div className="routeData__markerLetter">
+                          {index + 1 === testArray.length ? (
+                            <>
+                              {element.markerDestination}
+                              <div className="routeData__dottedLineTop"></div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="routeData__dottedLineBottom"></div>
+                              {element.markerDestination}
+                              <div className="routeData__dottedLineTop"></div>
+                            </>
+                          )}
+                        </div>
+                        <div className="routeData__timings">
+                          <img
+                            className={
+                              index + 1 === testArray.length
+                                ? "routeData__markerRed"
+                                : "routeData__markerBlue"
+                            }
+                            src={marker}
+                            alt=""
+                          />
+                          <div className="routeData__arrivaltime">
+                            {element.arrivalTime}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
-                <div className="routeData__row routeData__totalJourneyTime">
-                  Total Time:{" "}
-                  {calcTotalJourneyTime(directionsResult.routes[0].legs)}{" "}
+                    );
+                  })}
+                  <div className="routeData__row routeData__totalJourneyTime">
+                    Total Time:{" "}
+                    {calcTotalJourneyTime(directionsResult.routes[0].legs)}{" "}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="routeData__timingsContainer">
+                  Choose a departure time....
+                </div>
+              )}
 
               {/* </ol> */}
+              <div className="routeData__routeControl">
+                <div className="routaData__selectTime">
+                  <h3>Select Departure Time</h3>
+                  <input
+                    id="timeInput"
+                    type="time"
+                    onChange={handleTimeChange}
+                  />
+                  <button
+                    onClick={handleCurrentTime}
+                    value={new Date().toLocaleTimeString()}
+                  >
+                    Current Time
+                  </button>
+                </div>
 
-              <div className="routeData__buttons">
-                <button
-                  onClick={handlePopUp}
-                  className="routeData__saveRouteButton"
-                >
-                  Save Route
-                </button>
+                <div className="routeData__buttons">
+                  <button
+                    onClick={handlePopUp}
+                    className="routeData__saveRouteButton"
+                  >
+                    Save Route
+                  </button>
 
-                <button
-                  className="routeData__resetRouteButton"
-                  onClick={() => {
-                    setRouteIsCreated(!routeIsCreated);
-                    setMarkerCoordinatesArray([]);
-                    setResetMadeMapClicked(!resetMadeMapClicked);
-                    directionsRenderer.setMap(null);
-                    setTestArray([]);
-                    //setDirectionsResult(null);
-                  }}
-                >
-                  Reset
-                </button>
+
+                  <button
+                    className="routeData__resetRouteButton"
+                    onClick={() => {
+                      setRouteIsCreated(!routeIsCreated);
+                      setMarkerCoordinatesArray([]);
+                      setResetMadeMapClicked(!resetMadeMapClicked);
+                      directionsRenderer.setMap(null);
+                      //setDirectionsResult(null);
+                    }}
+                  >
+                    Reset
+                  </button>
+                </div>
               </div>
             </div>
           </section>
