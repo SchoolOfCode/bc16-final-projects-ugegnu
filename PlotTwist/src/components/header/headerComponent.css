@@ -17,8 +17,8 @@
 
 .header__logo {
   cursor: pointer;
-  width: 150px;
-  height: 100px;
+  width: 230px;
+  height: px;
   padding-top: 15px;
   margin-left: 20px;
 }
@@ -64,11 +64,11 @@
 
 .header__link {
   font-size: 1.5rem;
-  color: #000000;
+  color: var(--mainGreen);
   background-color: #ffffff;
   text-decoration: none;
   list-style: none;
-  border: #000000 solid 4px;
+  border: var(--mainGreen) solid 4px;
   height: 33.3%;
   width: 100%;
   display: flex;
@@ -76,11 +76,10 @@
   -webkit-box-shadow: 0px 2px 5px 0px rgb(0, 0, 0);
   -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0);
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0);
-  border-radius: 20px;
 }
 
 .header__link:hover {
-  background-color: #e9e9e9;
+  background-color: #e5f5ec;
   padding-left: 10px;
 }
 
@@ -91,13 +90,13 @@
 }
 .header__markerIcon {
   height: 60px;
-  padding-left: 25px;
-  padding-right: 15px;
+  padding-left: 32px;
+  padding-right: 27px;
 }
 .header__savedIcon {
   height: 60px;
-  padding-left: 16px;
-  padding-right: 2px;
+  padding-left: 25px;
+  padding-right: 20px;
 }
 
 .header__linkItem {
@@ -115,9 +114,7 @@
   right: 0;
   width: 120px;
   height: 120px;
-  background-color: black;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  background-color: var(--mainGreen);
   color: white;
   font-size: 6rem;
   text-align: center;
@@ -127,7 +124,7 @@
 }
 
 .header__closeButton:hover {
-  color: #000000;
+  color: var(--mainGreen);
   background: none;
 }
 
@@ -145,11 +142,6 @@
 /* Breakpoints */
 
 @media (width > 1024px) {
-  .header__logo {
-    width: 250px;
-    height: 150px;
-  }
-
   .header__openButton {
     width: 60px;
     height: 60px;
