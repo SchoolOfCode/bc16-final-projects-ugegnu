@@ -1,7 +1,6 @@
 /* Main styles */
 
 .mainCreatePage {
-  height: 100dvh;
   padding-top: 120px;
   display: flex;
   flex-direction: column;

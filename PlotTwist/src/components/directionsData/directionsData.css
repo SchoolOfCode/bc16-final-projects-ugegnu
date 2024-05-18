@@ -14,7 +14,7 @@
   margin-bottom: 1rem;
 }
 
-/* Form input styles */
+/* LEFT HAND SIDE OF CARD */
 
 .routeData__row {
   display: flex;
@@ -180,7 +180,42 @@
   width: 100%;
 }
 
-/*should end here */
+.routeData__resetRouteButton:hover {
+  background-color: #ffffff;
+  color: var(--mainGreen);
+  cursor: pointer;
+}
+
+/* Pop Up Styling */
+
+.routeData__popup {
+  width: 75%;
+  min-height: 10%;
+  background: white;
+  color: black;
+  z-index: 10;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.routeDate__popupContainer {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
 
 .routeData__form {
   display: flex;
@@ -227,100 +262,6 @@
   padding-top: 2rem;
 }
 
-/* Route information and reset button styles */
-
-.routeData__list {
-  display: flex;
-  flex: 3;
-  flex-direction: column;
-  justify-content: space-evenly;
-  list-style-type: none;
-  font-size: 1.5rem;
-  /* width: 75%; */
-  -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
-  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  background-color: #ffffff;
-  margin: 0px 0px 60px 0px;
-  padding: 10px 0px 10px 0px;
-}
-
-.routeData__listItem {
-  padding: 10px;
-  border-radius: 10px;
-  margin: 10px 20px;
-  background-color: rgb(228, 228, 228);
-}
-
-.routeData__resetRouteButton:hover {
-  background-color: #ffffff;
-  color: var(--mainGreen);
-  cursor: pointer;
-}
-
-.routeData__buttonContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.routeData__editRouteButton {
-  background-color: #000000;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 10px;
-  -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
-  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
-  font-size: 1rem;
-  font-weight: 700;
-  height: 50px;
-  cursor: pointer;
-}
-
-.routeData__deleteRouteButton {
-  background-color: #000000;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 10px;
-  -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
-  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
-  font-size: 1rem;
-  font-weight: 700;
-  height: 50px;
-  cursor: pointer;
-}
-
-.routeData__popup {
-  width: 75%;
-  min-height: 10%;
-  background: white;
-  color: black;
-  z-index: 10;
-  border-radius: 16px;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.routeDate__popupContainer {
-  background-color: rgba(0, 0, 0, 0.7);
-  width: 100dvw;
-  height: 100dvh;
-  z-index: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-}
-
 .routeData__logo {
   max-width: 50%;
   height: auto;
@@ -332,6 +273,8 @@
 .routeData__timings img {
   width: 2rem;
 }
+
+/* Breakpoints */
 
 @media (width > 1440px) {
   .routeData {
