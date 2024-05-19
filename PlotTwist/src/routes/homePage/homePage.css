@@ -103,6 +103,9 @@
   color: var(--white);
   cursor: pointer;
   margin-left: 10px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .mainHomePage__createRouteButtons {
@@ -126,6 +129,9 @@
   color: var(--mainGreen);
   cursor: pointer;
   margin-left: 10px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 /* Breakpoints */

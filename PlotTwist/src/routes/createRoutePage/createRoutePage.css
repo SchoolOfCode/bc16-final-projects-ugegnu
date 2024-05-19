@@ -34,7 +34,6 @@
 .mainCreatePage__instructionsButton {
   width: 60px;
   height: 60px;
-  padding: 5px;
   font-size: 2rem;
   font-weight: 900;
   background-color: var(--white);
@@ -54,7 +53,7 @@
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  margin-bottom: 2px;
+  padding-bottom: 2px;
 }
 
 .mainCreatePage__instructionsList {
@@ -125,6 +124,9 @@
   color: var(--mainGreen);
   cursor: pointer;
   margin-left: 10px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .mainCreatePage__resetButton:hover {
@@ -132,6 +134,9 @@
   color: var(--white);
   cursor: pointer;
   margin-left: 10px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 /* Breakpoints */

@@ -319,60 +319,72 @@ export default function DirectionsData({
           </section>
           {/* this && will make sure that when isPopUPOPen is true, it will render the div and all the things in it... we can change whether or not is popup is true/false by clicking on the save route or the X button as these both have the function handlePopUp (this is waaay above and basically will change the isPopUp to be true/false (the opposite of what it currently is)...*/}
           {isPopUpOpen && (
-            <div className="routeDate__popupContainer">
-              <div className="routeData__popup">
-                <button
-                  className="routeData__popup__closingButton"
-                  onClick={handlePopUp}
-                >
-                  X
-                </button>
-                <form className="routeData__form" onSubmit={handleSubmit}>
-                  <label
-                    className="routeData__label"
-                    htmlFor="routeName"
-                  ></label>
-                  <input
-                    className="routeData__nameInput"
-                    type="text"
-                    id="routeName"
-                    name="routeName"
-                    onChange={handleInputChange}
-                    value={routeName}
-                    placeholder="Enter route name..."
-                    required
-                  />
-                  <button className="routeData__saveRouteButton">Save</button>
-                </form>
-                {isSuccess && (
-                  <div>
-                    <img
-                      src={savedRouteConfirmed}
-                      className="routeData__routeHasSaved"
+            <section className="savePopUp">
+              {!isLoading && !isSuccess ? (
+                <div className="savePopUp__container">
+                  <form className="savePopUp__form">
+                    <label className="savePopUp__label" htmlFor="routeName">
+                      Route Name
+                    </label>
+                    <input
+                      className="savePopUp__input"
+                      type="text"
+                      id="routeName"
+                      name="routeName"
+                      onChange={handleInputChange}
+                      value={routeName}
+                      placeholder="Type here..."
+                      required
                     />
-                    <Link to={"/create-route"}>
-                      <button className="routeData__navButtons">
-                        Plot New Route
-                      </button>
-                    </Link>
-                    <Link to={"/saved-routes"}>
-                      <button className="routeData__navButtons">
-                        My Saved Routes
-                      </button>
-                    </Link>
+                  </form>
+                  <div className="savePopUp__buttonsContainer">
+                    <button
+                      className="savePopUp__closeButton"
+                      onClick={handlePopUp}
+                    >
+                      &times;
+                    </button>
+                    <button
+                      className="savePopUp__saveButton"
+                      onClick={handleSubmit}
+                    >
+                      Save
+                    </button>
                   </div>
-                )}
-                {isLoading && (
-                  <div className="routeDate__loadingDiv">
-                    <img src={logo} className="routeData__logo" />
-                    <img
-                      src={loadingsymbol}
-                      className="routeData__loadingSymbol"
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
+                </div>
+              ) : (
+                <>
+                  {isLoading && (
+                    <div className="savePopUp__loadingContainer">
+                      <img src={logo} className="savePopUp__logo" />
+                      <img
+                        src={loadingsymbol}
+                        className="savePopUp__loadingSymbol"
+                      />
+                    </div>
+                  )}
+                  {isSuccess && (
+                    <div className="savePopUp__successContainer">
+                      <button
+                        className="savePopUp__closeButton cheekySecondClassNameForCloseButton"
+                        onClick={handlePopUp}
+                      >
+                        &times;
+                      </button>
+                      <img
+                        src={savedRouteConfirmed}
+                        className="savePopUp__savedIcon"
+                      />
+                      <Link to={"/saved-routes"}>
+                        <button className="savePopUp__saveRoutesButton">
+                          My Saved Routes
+                        </button>
+                      </Link>
+                    </div>
+                  )}
+                </>
+              )}
+            </section>
           )}
         </>
       ) : null}

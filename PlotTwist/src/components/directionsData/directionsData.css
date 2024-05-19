@@ -188,9 +188,10 @@
 }
 
 .routeData__currentTimeButton:hover {
-  background-color: var(--white);
-  color: var(--mainGreen);
   cursor: pointer;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .routeData__buttons {
@@ -214,6 +215,13 @@
   width: 100%;
 }
 
+.routeData__saveRouteButton:hover {
+  cursor: pointer;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
 .routeData__resetRouteButton {
   background-color: var(--white);
   color: var(--mainGreen);
@@ -232,91 +240,175 @@
   background-color: var(--mainGreen);
   color: var(--white);
   cursor: pointer;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 /* Pop Up Styling */
 
-.routeData__popup {
-  width: 75%;
-  min-height: 10%;
-  background: white;
-  color: black;
-  z-index: 10;
-  border-radius: 16px;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+.savePopUp {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 15px;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* overflow: auto; */
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.savePopUp__container {
+  background-color: var(--white);
+  width: 60%;
+  height: 100px;
+  border-radius: 10px;
+  display: flex;
+  gap: 15px;
+  padding: 0px 15px 15px 15px;
+}
+
+/* Left side of pop up */
+
+.savePopUp__form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  height: 100%;
 }
 
-.routeDate__popupContainer {
-  background-color: rgba(0, 0, 0, 0.7);
-  width: 100dvw;
-  height: 100dvh;
-  z-index: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
+.savePopUp__label {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--mainGreen);
+  margin-bottom: 10px;
 }
 
-.routeData__form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.savePopUp__input {
   width: 100%;
-  padding: 15px;
-}
-
-.routeData__label {
-  display: none;
-}
-
-.routeData__nameInput {
-  width: 75%;
-  height: 50px;
-  font-size: 1.5rem;
+  height: 30px;
   border-radius: 10px;
+  border: 2px solid black;
+  padding-left: 10px;
+  font-size: 1rem;
+}
+.savePopUp__input:focus {
+  border: #04b66c solid 2px;
+  outline: none;
+}
+/* Right side of pop up */
+
+.savePopUp__buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  height: 100%;
+}
+
+.savePopUp__saveButton {
+  background-color: var(--mainGreen);
+  color: var(--white);
   border: none;
-  padding: 0px 0px 0px 20px;
+  border-radius: 10px;
   -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  font-weight: 700;
+  height: 30px;
+  width: 100%;
 }
 
-.routeData__nameInput:focus {
-  border: #04b66c solid 4px;
-  outline: none;
+.savePopUp__saveButton:hover {
+  cursor: pointer;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
-.routeData__saveRouteButton:hover {
-  background-color: #ffffff;
+.savePopUp__closeButton {
   color: var(--mainGreen);
+  font-size: 2rem;
+  font-weight: 700;
+  align-self: flex-end;
+  border: none;
+  background: none;
+  padding: 0px;
+}
+
+.savePopUp__closeButton:hover {
   cursor: pointer;
 }
 
-.routeData__routeHasSaved {
+/* Loading pop up styles */
+
+.savePopUp__loadingContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  place-self: center;
-  width: 10vw;
-  height: auto;
-  padding-top: 2rem;
+  background-color: var(--white);
+  border-radius: 10px;
 }
 
-.routeData__logo {
+.savePopUp__logo {
   max-width: 50%;
   height: auto;
 }
-.routeData__loadingSymbol {
+
+.savePopUp__loadingSymbol {
   max-width: 20%;
 }
+
+/* Success pop up styles */
+
+.savePopUp__successContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 10px;
+  width: 400px;
+  height: 240px;
+  padding: 0px 15px 15px 15px;
+}
+
+.savePopUp__savedIcon {
+  width: 100px;
+}
+
+.cheekySecondClassNameForCloseButton {
+  font-size: 3rem;
+}
+
+.savePopUp__saveRoutesButton {
+  background-color: var(--mainGreen);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  font-weight: 700;
+  height: 30px;
+  width: 300px;
+}
+
+.savePopUp__saveRoutesButton:hover {
+  cursor: pointer;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* ?????? */
 
 .routeData__timings img {
   width: 2rem;

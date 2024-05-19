@@ -71,7 +71,7 @@ export default function CreateRoutePage() {
         <section className="mainCreatePage__banner">
           {routeIsReset ? (
             <h1 className="mainCreatePage__heading">
-              Welcome to U-PLOT!
+              Welcome to U-PLOT
             </h1>
           ) : (
             <h1 className="mainCreatePage__heading">

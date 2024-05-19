@@ -1,6 +1,9 @@
 import DynamicMap from "../../components/dynamicMap/dynamicMap";
 import { useState, useEffect } from "react";
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
+import backArrow from "../../assets/backArrow.png";
+import whiteDeleteIcon from "../../assets/whiteDeleteIcon.png";
+import "./retrievedRoutePage.css";
 
 export default function RetrievedRoutePage({
   handleRetrieve,
@@ -50,9 +53,18 @@ export default function RetrievedRoutePage({
   };
 
   return (
-    <div>
-      <h1>{selectedRoute.payload.route_name}</h1>
-
+    <main className="retrievedRoute">
+      <div className="retrievedRoute__titleAndButtons">
+        <button className="retrievedRoute__backButton" onClick={handleRetrieve}><img className="retrievedRoute__backArrowImage" src={backArrow} alt="Back Arrow"/></button>
+        <h1 className="retrievedRoute__routeTitle">{selectedRoute.payload.route_name}</h1>
+        <button
+          onClick={handleDelete}
+          className="retrievedRoute__deleteButton"
+        ><img
+        src={whiteDeleteIcon}
+        className="savedRoutes__deleteIcon"
+      /></button>
+      </div>
       <DynamicMap
         routeIsCreated={routeIsCreated}
         markerCoordinatesArray={markerCoordinatesArray}
@@ -60,27 +72,6 @@ export default function RetrievedRoutePage({
         setMarkerCoordinatesArray={setMarkerCoordinatesArray}
         loadedRoute={loadedRoute}
       />
-
-      <div className="routeData__buttonContainer">
-        <button onClick={handleMapClick} className="routeData__editRouteButton">
-          Edit 🚧 WIP 🚧
-        </button>
-        <br></br>
-        <button onClick={handleDelete} className="routeData__deleteRouteButton">
-          Delete 🚧 WIP 🚧
-        </button>
-      </div>
-
-      <div>
-        <button onClick={handleRetrieve}>Go back</button>
-      </div>
-
-      {/* <h1>route name</h1>
-      <h2>{selectedRoute.payload.route_name}</h2>
-      <h2>Marker1 lat{selectedRoute.payload.route_data[0].lat}</h2>
-      <h2>Marker1 lng{selectedRoute.payload.route_data[0].lng}</h2>
-     
-      */}
-    </div>
+    </main>
   );
 }
