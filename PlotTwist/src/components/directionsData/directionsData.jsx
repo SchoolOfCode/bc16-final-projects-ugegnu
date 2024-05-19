@@ -282,19 +282,21 @@ export default function DirectionsData({
               <h3 className="routeData__departureHeading">
                 Select Departure Time
               </h3>
-              <input
-                className="routeData__inputTimeBox"
-                id="timeInput"
-                type="time"
-                onChange={handleTimeChange}
-              />
-              <button
-                className="routeData__currentTimeButton"
-                onClick={handleCurrentTime}
-                value={new Date().toLocaleTimeString()}
-              >
-                Current Time
-              </button>
+              <div className="routeData__timeWrapper">
+                <input
+                  className="routeData__inputTimeBox"
+                  id="timeInput"
+                  type="time"
+                  onChange={handleTimeChange}
+                />
+                <button
+                  className="routeData__currentTimeButton"
+                  onClick={handleCurrentTime}
+                  value={new Date().toLocaleTimeString()}
+                >
+                  Current Time
+                </button>
+              </div>
               <button
                 onClick={handlePopUp}
                 className="routeData__saveRouteButton"

@@ -140,10 +140,19 @@
 }
 
 .routeData__departureHeading {
+  color: var(--mainGreen);
   top: 0px;
   margin-top: 0px;
   margin-bottom: 0;
   padding-bottom: 0.8rem;
+  font-size: x-large;
+}
+
+.routeData__timeWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .routeData__inputTimeBox {
@@ -151,20 +160,37 @@
   width: 50%;
   height: 50px;
   border-radius: 10px;
+  border: 2px solid black;
   text-align: start;
   padding-left: 0.8rem;
-  align-self: flex-start;
+  align-self: flex-end;
   font-size: xx-large;
-  color: var(--mainGreen);
+  color: black;
+}
+
+.routeData__inputTimeBox:focus {
+  border: #04b66c solid 2px;
+  outline: none;
 }
 
 .routeData__currentTimeButton {
-  width: 100%;
+  border: none;
+  width: 50%;
   height: 50px;
-  width: 100%;
   border-radius: 10px;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--mainGreen);
   background-color: var(--pastelGreen);
+  -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.routeData__currentTimeButton:hover {
+  background-color: var(--white);
+  color: var(--mainGreen);
+  cursor: pointer;
 }
 
 .routeData__buttons {
