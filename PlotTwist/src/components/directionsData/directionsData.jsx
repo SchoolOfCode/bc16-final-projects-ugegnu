@@ -278,47 +278,41 @@ export default function DirectionsData({
             )}
 
             {/* </ol> */}
-            <div className="routeData__routeControl">
-              <div className="routeData__selectTime">
-                <h3 className="routeData__departureHeading">
-                  Select Departure Time
-                </h3>
-                <input
-                  className="routeData__inputTimeBox"
-                  id="timeInput"
-                  type="time"
-                  onChange={handleTimeChange}
-                />
-                <button
-                  className="routeData__currentTimeButton"
-                  onClick={handleCurrentTime}
-                  value={new Date().toLocaleTimeString()}
-                >
-                  Current Time
-                </button>
-              </div>
-
-              <div className="routeData__button">
-                <button
-                  onClick={handlePopUp}
-                  className="routeData__saveRouteButton"
-                >
-                  Save Route
-                </button>
-
-                <button
-                  className="routeData__resetRouteButton"
-                  onClick={() => {
-                    setRouteIsCreated(!routeIsCreated);
-                    setMarkerCoordinatesArray([]);
-                    setResetMadeMapClicked(!resetMadeMapClicked);
-                    directionsRenderer.setMap(null);
-                    //setDirectionsResult(null);
-                  }}
-                >
-                  Reset
-                </button>
-              </div>
+            <div className="routeData__rightSide">
+              <h3 className="routeData__departureHeading">
+                Select Departure Time
+              </h3>
+              <input
+                className="routeData__inputTimeBox"
+                id="timeInput"
+                type="time"
+                onChange={handleTimeChange}
+              />
+              <button
+                className="routeData__currentTimeButton"
+                onClick={handleCurrentTime}
+                value={new Date().toLocaleTimeString()}
+              >
+                Current Time
+              </button>
+              <button
+                onClick={handlePopUp}
+                className="routeData__saveRouteButton"
+              >
+                Save Route
+              </button>
+              <button
+                className="routeData__resetRouteButton"
+                onClick={() => {
+                  setRouteIsCreated(!routeIsCreated);
+                  setMarkerCoordinatesArray([]);
+                  setResetMadeMapClicked(!resetMadeMapClicked);
+                  directionsRenderer.setMap(null);
+                  //setDirectionsResult(null);
+                }}
+              >
+                Reset
+              </button>
             </div>
           </section>
           {/* this && will make sure that when isPopUPOPen is true, it will render the div and all the things in it... we can change whether or not is popup is true/false by clicking on the save route or the X button as these both have the function handlePopUp (this is waaay above and basically will change the isPopUp to be true/false (the opposite of what it currently is)...*/}
