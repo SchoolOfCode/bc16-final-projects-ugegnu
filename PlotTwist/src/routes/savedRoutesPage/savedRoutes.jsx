@@ -123,9 +123,6 @@ export default function SavedRoutesPage() {
             : { paddingTop: "120px" }
         }
       >
-        <div className="savedRoutes__banner">
-          <h1 className="savedRoutes__Bannerheader">Saved routes. </h1>
-        </div>
         {/* table with .map - show name and button */}
 
         {isLoading ? (
@@ -141,6 +138,10 @@ export default function SavedRoutesPage() {
             getAllRoutes={getAllRoutes}
           />
         ) : (
+          <>
+          <div className="savedRoutes__banner">
+          <h1 className="savedRoutes__Bannerheader">Saved Routes</h1>
+        </div>
           <table>
             <tbody className="savedRoutes__table">
               {routes.map((route, index) => {
@@ -158,6 +159,7 @@ export default function SavedRoutesPage() {
                       >
                         Retrieve Route
                       </button>
+                      
                     </td>
                     <td className="savedRoutes__delete">
                       {/* this button below is the target... delete route button... */}
@@ -180,36 +182,38 @@ export default function SavedRoutesPage() {
               })}
             </tbody>
           </table>
+          </>
         )}
+        </main>
         {isDeletePopup && (
-          <div className="savedRoutesTable__deletePopUp">
-            <div className="savedRoutesTable__deletePopUp__div">
+          <section className="deletePopUp">
+            <div className="deletePopUp__container">
               <button
                 onClick={deletePopup}
-                className="savedRoutesTable__deletePopUp__X"
+                className="deletePopUp__closeButton"
               >
-                X
+                &times;
               </button>
-            </div>
+            
             {!deleteSuccess ? (
               <>
-                <h1>Are you sure you want to delete?</h1>
-                <div className="savedRoutesTable__deletePopUpButtons">
+                <h1 className="deletePopUp__title">Are you sure you want to delete?</h1>
+                <div className="deletePopUp__yesOrNoButtonsContainer">
                   <button
-                    className="savedRoutesTable__deleteRouteButton"
+                    className="deletePopUp__yesButton"
                     onClick={() => deleteRoute(routeValueToBeDeleted)}
                   >
                     Yes delete
                   </button>
-                  <button onClick={hideDeletePopup}>No</button>
+                  <button className="deletePopUp__noButton" onClick={hideDeletePopup}>No</button>
                 </div>
               </>
             ) : (
               <> {deleteLoading ? <h1>Deleting</h1> : <h1>Deleted!</h1>}</>
             )}
-          </div>
+            </div>
+          </section>
         )}
-      </main>
     </>
   );
 }

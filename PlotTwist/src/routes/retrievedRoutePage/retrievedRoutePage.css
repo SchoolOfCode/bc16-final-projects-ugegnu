@@ -1,0 +1,72 @@
+.retrievedRoute {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(182, 225, 201);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    var(--bgPastelGreen, 1) 100%
+  );
+}
+
+/* Title and buttons */
+
+.retrievedRoute__titleAndButtons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  /* padding: 0 20px;
+    margin-bottom: 20px; */
+    margin-top: 20px;
+}
+
+.retrievedRoute__backButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: var(--mainGreen);
+  border: none;
+  border-radius: 50%;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.retrievedRoute__backButton:hover {
+  /* background-color: var(--white);
+  color: var(--mainGreen);
+  border: var(--mainGreen) solid 2px; */
+  padding-left: 2px;
+  cursor: pointer;
+}
+
+.retrievedRoute__backArrowImage {
+  width: 35px;
+}
+
+.retrievedRoute__routeTitle {
+    color: var(--mainGreen);
+}
+
+.retrievedRoute__deleteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: var(--mainGreen);
+  border: none;
+  border-radius: 50%;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.retrievedRoute__deleteButton:hover {
+  background-color: rgb(249, 0, 0);
+  cursor: pointer;
+}

@@ -9,17 +9,17 @@
   height: 120px;
   position: fixed;
   z-index: 100;
-  border-bottom: #ffffff solid 1px;
-  -webkit-box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.71);
+  /* border-bottom: #ffffff solid 1px; */
+  /* -webkit-box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.71);
   -moz-box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.71);
-  box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.71);
+  box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.71); */
 }
 
 .header__logo {
   cursor: pointer;
   width: 230px;
-  height: px;
-  padding-top: 15px;
+  /* height: px;
+  padding-top: 15px; */
   margin-left: 20px;
 }
 
@@ -142,15 +142,15 @@
 /* Breakpoints */
 
 @media (width > 1024px) {
-  .header__openButton {
+  /* .header__openButton {
     width: 60px;
     height: 60px;
-  }
+  } */
 
-  .header__burger {
+  /* .header__burger {
     width: 70px;
     height: 70px;
-  }
+  } */
 
   .header__navigationMenu {
     width: 30%;
