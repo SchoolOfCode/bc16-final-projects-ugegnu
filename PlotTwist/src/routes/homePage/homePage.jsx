@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import FullLogo from "../../assets/FullLogo.png";
+import UPLOTfullLogo from "../../assets/UPLOTfulLogo.png";
 import "./homePage.css";
 import HomePageworldlayer from "../../assets/HomePage-world-layer.png";
 import coachLayer from "../../assets/coachLayer.png";

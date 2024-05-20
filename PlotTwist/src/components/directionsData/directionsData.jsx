@@ -303,7 +303,7 @@ export default function DirectionsData({
               >
                 Save Route
               </button>
-              <button
+              {/* <button
                 className="routeData__resetRouteButton"
                 onClick={() => {
                   setRouteIsCreated(!routeIsCreated);
@@ -314,7 +314,7 @@ export default function DirectionsData({
                 }}
               >
                 Reset
-              </button>
+              </button> */}
             </div>
           </section>
           {/* this && will make sure that when isPopUPOPen is true, it will render the div and all the things in it... we can change whether or not is popup is true/false by clicking on the save route or the X button as these both have the function handlePopUp (this is waaay above and basically will change the isPopUp to be true/false (the opposite of what it currently is)...*/}
@@ -335,6 +335,7 @@ export default function DirectionsData({
                       value={routeName}
                       placeholder="Type here..."
                       required
+                      maxLength={24}
                     />
                   </form>
                   <div className="savePopUp__buttonsContainer">

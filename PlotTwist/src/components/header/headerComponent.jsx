@@ -2,7 +2,6 @@ import "./headerComponent.css";
 import logoUPLOT from "../../assets/logoUPLOT.png";
 import menuIcon from "../../assets/icons8-menu (1).svg";
 import homeIconGreen from "../../assets/homeIconGreen.png";
-import help from "../../assets/help.png";
 import createRouteIconGreen from "../../assets/createRouteIconGreen.png";
 import savedIconGreen from "../../assets/savedIconGreen.png";
 import { Link } from "react-router-dom";

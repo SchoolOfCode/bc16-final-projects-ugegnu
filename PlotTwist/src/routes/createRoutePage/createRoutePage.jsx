@@ -2,7 +2,6 @@ import DynamicMap from "../../components/dynamicMap/dynamicMap";
 import "./createRoutePage.css";
 import { useState, useEffect } from "react";
 import Header from "../../components/header/headerComponent.jsx";
-import arrow from "../../assets/arrow.png";
 
 export default function CreateRoutePage() {
   const [routeIsCreated, setRouteIsCreated] = useState(false);
@@ -25,7 +24,7 @@ export default function CreateRoutePage() {
 
   const handleRouteCreation = () => {
     if (markerCoordinatesArray.length >= 2) {
-    setRouteIsCreated(true);
+      setRouteIsCreated(true);
     }
   };
 
@@ -70,29 +69,27 @@ export default function CreateRoutePage() {
       >
         <section className="mainCreatePage__banner">
           {routeIsReset ? (
-            <h1 className="mainCreatePage__heading">
-              Welcome to U-PLOT
-            </h1>
+            <h1 className="mainCreatePage__heading">Welcome to U-PLOT</h1>
           ) : (
             <h1 className="mainCreatePage__heading">
               The map has been cleared
             </h1>
           )}
-            {!showInstructions ? (
-              <button
-                className="mainCreatePage__instructionsButton"
-                onClick={handleInstructionsClick}
-              >
-                ?
-              </button>
-            ) : (
-              <button
-                className="mainCreatePage__instructionsButton"
-                onClick={handleInstructionsClick}
-              >
-                &times;
-              </button>
-            )}
+          {!showInstructions ? (
+            <button
+              className="mainCreatePage__instructionsButton"
+              onClick={handleInstructionsClick}
+            >
+              ?
+            </button>
+          ) : (
+            <button
+              className="mainCreatePage__instructionsButton"
+              onClick={handleInstructionsClick}
+            >
+              &times;
+            </button>
+          )}
         </section>
         {showInstructions && (
           <ol className="mainCreatePage__instructionsList">
