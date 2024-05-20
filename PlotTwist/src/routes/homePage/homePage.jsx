@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import UPLOTfullLogo from "../../assets/UPLOTfulLogo.png";
+import UPLOTfullLogo from "../../assets/UPLOTfullLogo.png";
 import "./homePage.css";
 import HomePageworldlayer from "../../assets/HomePage-world-layer.png";
 import coachLayer from "../../assets/coachLayer.png";
@@ -21,7 +21,7 @@ export default function HomePage() {
           />
         </div>
         <div className="mainHomePage__overLayers">
-          <img className="mainHomePage__logo" src={FullLogo} />
+          <img className="mainHomePage__logo" src={UPLOTfullLogo} />
           <div className="mainHomePage__routes">
             <Link to={"create-route"}>
               <button className="mainHomePage__createRouteButtons">
