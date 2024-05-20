@@ -2,7 +2,6 @@ import DynamicMap from "../../components/dynamicMap/dynamicMap";
 import "./createRoutePage.css";
 import { useState, useEffect } from "react";
 import Header from "../../components/header/headerComponent.jsx";
-import arrow from "../../assets/arrow.png";
 
 export default function CreateRoutePage() {
   const [routeIsCreated, setRouteIsCreated] = useState(false);
@@ -31,6 +30,8 @@ export default function CreateRoutePage() {
 
   const handleMapClick = (event) => {
     if (routeIsCreated) {
+      return;
+    } else if (markerCoordinatesArray.length >= 22) {
       return;
     } else {
       setMarkerCoordinatesArray((prev) => {
