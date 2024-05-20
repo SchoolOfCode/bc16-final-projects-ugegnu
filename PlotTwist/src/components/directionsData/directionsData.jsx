@@ -195,6 +195,9 @@ export default function DirectionsData({
 
   function handleCurrentTime(e) {
     populateTimingsTable(e.target.value);
+    // console.log(e.target.value);
+    // setCurrentTime();
+    setCurrentTime("23:05");
   }
 
   function calcTotalJourneyTime(arr) {
@@ -287,6 +290,7 @@ export default function DirectionsData({
                   className="routeData__inputTimeBox"
                   id="timeInput"
                   type="time"
+                  value={currentTime}
                   onChange={handleTimeChange}
                 />
                 <button
@@ -321,8 +325,13 @@ export default function DirectionsData({
           {isPopUpOpen && (
             <section onClick={handlePopUp} className="savePopUp">
               {!isLoading && !isSuccess ? (
-                <div onClick={(e)=>{e.stopPropagation()}}className="savePopUp__container">
-                  <form onSubmit={handleSubmit}className="savePopUp__form">
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className="savePopUp__container"
+                >
+                  <form onSubmit={handleSubmit} className="savePopUp__form">
                     <label className="savePopUp__label" htmlFor="routeName">
                       Route Name
                     </label>
