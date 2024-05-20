@@ -319,10 +319,10 @@ export default function DirectionsData({
           </section>
           {/* this && will make sure that when isPopUPOPen is true, it will render the div and all the things in it... we can change whether or not is popup is true/false by clicking on the save route or the X button as these both have the function handlePopUp (this is waaay above and basically will change the isPopUp to be true/false (the opposite of what it currently is)...*/}
           {isPopUpOpen && (
-            <section className="savePopUp">
+            <section onClick={handlePopUp} className="savePopUp">
               {!isLoading && !isSuccess ? (
-                <div className="savePopUp__container">
-                  <form className="savePopUp__form">
+                <div onClick={(e)=>{e.stopPropagation()}}className="savePopUp__container">
+                  <form onSubmit={handleSubmit}className="savePopUp__form">
                     <label className="savePopUp__label" htmlFor="routeName">
                       Route Name
                     </label>

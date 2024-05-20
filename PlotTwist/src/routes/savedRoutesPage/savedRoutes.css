@@ -1,6 +1,9 @@
 .savedRoutes {
   min-height: 100dvh;
   background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .savedRoutes__banner {
