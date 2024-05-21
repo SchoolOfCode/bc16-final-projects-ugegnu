@@ -5,6 +5,7 @@ import backArrow from "../../assets/backArrow.png";
 import whiteDeleteIcon from "../../assets/whiteDeleteIcon.png";
 import "./retrievedRoutePage.css";
 import { Link, useLocation } from "react-router-dom";
+import Header from "../../components/header/headerComponent";
 
 export default function RetrievedRoutePage({
   handleRetrieve,
@@ -72,71 +73,77 @@ export default function RetrievedRoutePage({
   };
 
   return (
-    <main className="retrievedRoute">
-      <div className="retrievedRoute__titleAndButtons">
-        <Link to={"/saved-routes"}>
-          <button className="retrievedRoute__backButton">
-            <img
-              className="retrievedRoute__backArrowImage"
-              src={backArrow}
-              alt="Back Arrow"
-            />
-          </button>
-        </Link>
+    <>
+      <Header /> // covers some elements
+      <main className="retrievedRoute">
+        <div className="retrievedRoute__titleAndButtons">
+          <Link to={"/saved-routes"}>
+            <button className="retrievedRoute__backButton">
+              <img
+                className="retrievedRoute__backArrowImage"
+                src={backArrow}
+                alt="Back Arrow"
+              />
+            </button>
+          </Link>
 
-        <h1 className="retrievedRoute__routeTitle">
-          {location.state.route_name}
-        </h1>
+          <h1 className="retrievedRoute__routeTitle">
+            {location.state.route_name}
+          </h1>
 
-        {isDeletePopup && (
-          <section className="deletePopUp">
-            <div className="deletePopUp__container">
-              <button
-                onClick={deletePopup}
-                className="deletePopUp__closeButton"
-              >
-                &times;
-              </button>
+          {isDeletePopup && (
+            <section className="deletePopUp">
+              <div className="deletePopUp__container">
+                <button
+                  onClick={deletePopup}
+                  className="deletePopUp__closeButton"
+                >
+                  &times;
+                </button>
 
-              <>
-                <h1 className="deletePopUp__title">
-                  Are you sure you want to delete?
-                </h1>
+                <>
+                  <h1 className="deletePopUp__title">
+                    Are you sure you want to delete?
+                  </h1>
 
-                <div className="deletePopUp__yesOrNoButtonsContainer">
-                  <Link to={"/saved-routes"}>
+                  <div className="deletePopUp__yesOrNoButtonsContainer">
+                    <Link to={"/saved-routes"}>
+                      <button
+                        className="deletePopUp__yesButton"
+                        onClick={handleDelete}
+                      >
+                        Yes delete
+                      </button>
+                    </Link>
+
                     <button
-                      className="deletePopUp__yesButton"
-                      onClick={handleDelete}
+                      className="deletePopUp__noButton"
+                      onClick={deletePopup}
                     >
-                      Yes delete
+                      No
                     </button>
-                  </Link>
+                  </div>
+                </>
+              </div>
+            </section>
+          )}
 
-                  <button
-                    className="deletePopUp__noButton"
-                    onClick={deletePopup}
-                  >
-                    No
-                  </button>
-                </div>
-              </>
-            </div>
-          </section>
-        )}
+          <button
+            onClick={deletePopup}
+            className="retrievedRoute__deleteButton"
+          >
+            <img src={whiteDeleteIcon} className="savedRoutes__deleteIcon" />
+          </button>
+        </div>
 
-        <button onClick={deletePopup} className="retrievedRoute__deleteButton">
-          <img src={whiteDeleteIcon} className="savedRoutes__deleteIcon" />
-        </button>
-      </div>
-
-      <DynamicMap
-        routeIsCreated={routeIsCreated}
-        markerCoordinatesArray={markerCoordinatesArray}
-        setRouteIsCreated={setRouteIsCreated}
-        setMarkerCoordinatesArray={setMarkerCoordinatesArray}
-        loadedRoute={loadedRoute}
-      />
-    </main>
+        <DynamicMap
+          routeIsCreated={routeIsCreated}
+          markerCoordinatesArray={markerCoordinatesArray}
+          setRouteIsCreated={setRouteIsCreated}
+          setMarkerCoordinatesArray={setMarkerCoordinatesArray}
+          loadedRoute={loadedRoute}
+        />
+      </main>
+    </>
   );
 }
