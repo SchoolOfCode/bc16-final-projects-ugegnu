@@ -2,7 +2,6 @@ import DynamicMap from "../../components/dynamicMap/dynamicMap";
 import "./createRoutePage.css";
 import { useState, useEffect } from "react";
 import Header from "../../components/header/headerComponent.jsx";
-import arrow from "../../assets/arrow.png";
 
 export default function CreateRoutePage() {
   const [routeIsCreated, setRouteIsCreated] = useState(false);
@@ -19,6 +18,11 @@ export default function CreateRoutePage() {
   };
 
   const handleReset = () => {
+    if (markerCoordinatesArray.length < 2) {
+      alert("The map is already clear");
+      setRouteIsReset(true);
+      return;
+    }
     setRouteIsReset(false);
     setMarkerCoordinatesArray([]);
   };
@@ -26,11 +30,15 @@ export default function CreateRoutePage() {
   const handleRouteCreation = () => {
     if (markerCoordinatesArray.length >= 2) {
     setRouteIsCreated(true);
+    } else {
+      alert("Please select at least two locations to create a route");
     }
   };
 
   const handleMapClick = (event) => {
     if (routeIsCreated) {
+      return;
+    } else if (markerCoordinatesArray.length >= 22) {
       return;
     } else {
       setMarkerCoordinatesArray((prev) => {

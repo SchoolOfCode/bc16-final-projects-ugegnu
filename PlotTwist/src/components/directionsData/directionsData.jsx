@@ -189,12 +189,28 @@ export default function DirectionsData({
     // calcTotalJourneyTime(arrayToLoop);
   }
 
-  function handleTimeChange(e) {
-    populateTimingsTable(e.target.value);
+  function emptyTimingsTable() {
+    setTestArray([]);
+    setCurrentTime("");
+    setStartTime("");
   }
 
-  function handleCurrentTime(e) {
-    populateTimingsTable(e.target.value);
+  function handleTimeChange(e) {
+    if (e.target.value === "currentTimeButton") {
+      const hours =
+        new Date().getHours() < 10
+          ? "0" + new Date().getHours()
+          : new Date().getHours();
+      const minutes =
+        new Date().getMinutes() < 10
+          ? "0" + new Date().getMinutes()
+          : new Date().getMinutes();
+      setCurrentTime(`${hours}:${minutes}`);
+      populateTimingsTable(`${hours}:${minutes}`);
+    } else {
+      setCurrentTime(e.target.value);
+      populateTimingsTable(e.target.value);
+    }
   }
 
   function calcTotalJourneyTime(arr) {
@@ -287,12 +303,13 @@ export default function DirectionsData({
                   className="routeData__inputTimeBox"
                   id="timeInput"
                   type="time"
+                  value={currentTime}
                   onChange={handleTimeChange}
                 />
                 <button
                   className="routeData__currentTimeButton"
-                  onClick={handleCurrentTime}
-                  value={new Date().toLocaleTimeString()}
+                  onClick={handleTimeChange}
+                  value={"currentTimeButton"}
                 >
                   Current Time
                 </button>
@@ -310,6 +327,7 @@ export default function DirectionsData({
                   setMarkerCoordinatesArray([]);
                   setResetMadeMapClicked(!resetMadeMapClicked);
                   directionsRenderer.setMap(null);
+                  emptyTimingsTable();
                   //setDirectionsResult(null);
                 }}
               >
@@ -319,10 +337,15 @@ export default function DirectionsData({
           </section>
           {/* this && will make sure that when isPopUPOPen is true, it will render the div and all the things in it... we can change whether or not is popup is true/false by clicking on the save route or the X button as these both have the function handlePopUp (this is waaay above and basically will change the isPopUp to be true/false (the opposite of what it currently is)...*/}
           {isPopUpOpen && (
-            <section className="savePopUp">
+            <section onClick={handlePopUp} className="savePopUp">
               {!isLoading && !isSuccess ? (
-                <div className="savePopUp__container">
-                  <form className="savePopUp__form">
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className="savePopUp__container"
+                >
+                  <form onSubmit={handleSubmit} className="savePopUp__form">
                     <label className="savePopUp__label" htmlFor="routeName">
                       Route Name
                     </label>
