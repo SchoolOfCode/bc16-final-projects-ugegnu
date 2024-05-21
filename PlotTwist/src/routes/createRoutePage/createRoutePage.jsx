@@ -12,7 +12,9 @@ export default function CreateRoutePage() {
   // State for handling the header's styling
   const [openMenu, setOpenMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
+  //geolocation state
+  const [geoLocation, setGeolocation] = useState({});
+  //{ lat: 52.4823, lng: -1.89 }
   const handleInstructionsClick = () => {
     setShowInstructions(!showInstructions);
   };
@@ -29,7 +31,7 @@ export default function CreateRoutePage() {
 
   const handleRouteCreation = () => {
     if (markerCoordinatesArray.length >= 2) {
-    setRouteIsCreated(true);
+      setRouteIsCreated(true);
     } else {
       alert("Please select at least two locations to create a route");
     }
@@ -54,8 +56,17 @@ export default function CreateRoutePage() {
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
   };
+
   // Function to handle the resizing of the window in order to change the header's styling
+  //in this function we have added the geolocation
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success);
+    function success(pos) {
+      const crd = pos.coords;
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      setGeolocation({ lat: crd.latitude, lng: crd.longitude });
+    }
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
@@ -64,6 +75,10 @@ export default function CreateRoutePage() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    console.log(geoLocation);
+  }, [geoLocation]);
 
   return (
     <>
@@ -125,12 +140,14 @@ export default function CreateRoutePage() {
             </li>
           </ol>
         )}
+        {/* //this map needs to rerender whenever the geoLocation changes... */}
         <DynamicMap
           routeIsCreated={routeIsCreated}
           handleMapClick={handleMapClick}
           markerCoordinatesArray={markerCoordinatesArray}
           setRouteIsCreated={setRouteIsCreated}
           setMarkerCoordinatesArray={setMarkerCoordinatesArray}
+          geoLocation={geoLocation}
         />
         {!routeIsCreated ? (
           <div className="mainCreatePage__buttons">
