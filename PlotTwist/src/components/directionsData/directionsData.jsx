@@ -189,13 +189,24 @@ export default function DirectionsData({
     // calcTotalJourneyTime(arrayToLoop);
   }
 
+  function emptyTimingsTable() {
+    setTestArray([]);
+    setCurrentTime("");
+    setStartTime("");
+  }
+
   function handleTimeChange(e) {
     if (e.target.value === "currentTimeButton") {
-      const hours = new Date().getHours() < 10 ? "0" + new Date().getHours() : new Date().getHours();
-    const minutes = new Date().getMinutes() < 10 ? "0" + new Date().getMinutes() : new Date().getMinutes();
-    setCurrentTime(`${hours}:${minutes}`);
-    populateTimingsTable(`${hours}:${minutes}`);
-    
+      const hours =
+        new Date().getHours() < 10
+          ? "0" + new Date().getHours()
+          : new Date().getHours();
+      const minutes =
+        new Date().getMinutes() < 10
+          ? "0" + new Date().getMinutes()
+          : new Date().getMinutes();
+      setCurrentTime(`${hours}:${minutes}`);
+      populateTimingsTable(`${hours}:${minutes}`);
     } else {
       setCurrentTime(e.target.value);
       populateTimingsTable(e.target.value);
@@ -316,6 +327,7 @@ export default function DirectionsData({
                   setMarkerCoordinatesArray([]);
                   setResetMadeMapClicked(!resetMadeMapClicked);
                   directionsRenderer.setMap(null);
+                  emptyTimingsTable();
                   //setDirectionsResult(null);
                 }}
               >
