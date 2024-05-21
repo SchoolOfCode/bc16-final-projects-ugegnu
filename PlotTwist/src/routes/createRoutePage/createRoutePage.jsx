@@ -78,29 +78,27 @@ export default function CreateRoutePage() {
       >
         <section className="mainCreatePage__banner">
           {routeIsReset ? (
-            <h1 className="mainCreatePage__heading">
-              Welcome to U-PLOT
-            </h1>
+            <h1 className="mainCreatePage__heading">Welcome to U-PLOT</h1>
           ) : (
             <h1 className="mainCreatePage__heading">
               The map has been cleared
             </h1>
           )}
-            {!showInstructions ? (
-              <button
-                className="mainCreatePage__instructionsButton"
-                onClick={handleInstructionsClick}
-              >
-                ?
-              </button>
-            ) : (
-              <button
-                className="mainCreatePage__instructionsButton"
-                onClick={handleInstructionsClick}
-              >
-                &times;
-              </button>
-            )}
+          {!showInstructions ? (
+            <button
+              className="mainCreatePage__instructionsButton"
+              onClick={handleInstructionsClick}
+            >
+              ?
+            </button>
+          ) : (
+            <button
+              className="mainCreatePage__instructionsButton"
+              onClick={handleInstructionsClick}
+            >
+              &times;
+            </button>
+          )}
         </section>
         {showInstructions && (
           <ol className="mainCreatePage__instructionsList">
