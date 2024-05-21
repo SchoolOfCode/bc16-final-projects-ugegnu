@@ -335,7 +335,7 @@ export default function DirectionsData({
                       value={routeName}
                       placeholder="Type here..."
                       required
-                      maxLength={24}
+                      maxLength={21}
                     />
                   </form>
                   <div className="savePopUp__buttonsContainer">
