@@ -135,3 +135,31 @@
 }
 
 /* Breakpoints */
+
+@media (width < 500px) {
+  .mainHomePage__logo {
+    height: 120px;
+    width: 300px;
+  }
+
+  .mainHomePage__createRouteButtons {
+    height: 50px;
+    width: 200px;
+    font-size: 1.3rem;
+  }
+
+  .mainHomePage__savedRoutesButtons {
+    height: 50px;
+    width: 200px;
+    font-size: 1.3rem;
+  }
+
+  .mainHomePage__HomePageCoachlayer {
+    width: 75px;
+    height: 55px;
+  }
+
+  .mainHomePage__HomepageWorldLayer {
+    width: 160%;
+  }
+}
