@@ -22,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: "retrieved-route",
-    element: <RetrievedRoutePage test={"test"}/>,
+    element: <RetrievedRoutePage />,
   },
 ]);
 
