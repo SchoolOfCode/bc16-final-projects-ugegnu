@@ -74,7 +74,8 @@ export default function RetrievedRoutePage({
 
   return (
     <>
-      <Header /> // covers some elements
+      <Header /> 
+      {/* header covers some elements */}
       <main className="retrievedRoute">
         <div className="retrievedRoute__titleAndButtons">
           <Link to={"/saved-routes"}>
