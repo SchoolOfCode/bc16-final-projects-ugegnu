@@ -35,24 +35,6 @@
   position: relative;
 }
 
-.routeData__dottedLineBottom {
-  position: absolute;
-  border-left: 1px dashed black;
-  width: 10px;
-  height: 1.25rem;
-  left: 50%;
-  top: 100%;
-}
-
-.routeData__dottedLineTop {
-  position: absolute;
-  border-left: 1px dashed black;
-  width: 10px;
-  height: 1.5rem;
-  left: 50%;
-  top: -75%;
-}
-
 .routeData__timings {
   display: flex;
   background-color: var(--white);

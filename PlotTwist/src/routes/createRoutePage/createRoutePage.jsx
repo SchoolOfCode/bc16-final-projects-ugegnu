@@ -29,7 +29,7 @@ export default function CreateRoutePage() {
 
   const handleRouteCreation = () => {
     if (markerCoordinatesArray.length >= 2) {
-    setRouteIsCreated(true);
+      setRouteIsCreated(true);
     } else {
       alert("Please select at least two locations to create a route");
     }
@@ -71,9 +71,9 @@ export default function CreateRoutePage() {
       <main
         className="mainCreatePage"
         style={
-          openMenu && Number(screenWidth) < 1024
-            ? { paddingTop: "365px" }
-            : { paddingTop: "120px" }
+          openMenu && Number(screenWidth) < 500
+            ? { paddingTop: "155px" }
+            : { paddingTop: "150px" }
         }
       >
         <section className="mainCreatePage__banner">
