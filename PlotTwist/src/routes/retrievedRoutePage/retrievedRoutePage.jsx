@@ -125,12 +125,8 @@ export default function RetrievedRoutePage({
           </section>
         )}
 
-        <button className="retrievedRoute__deleteButton">
-          <img
-            src={whiteDeleteIcon}
-            className="savedRoutes__deleteIcon"
-            onClick={deletePopup}
-          />
+        <button onClick={deletePopup} className="retrievedRoute__deleteButton">
+          <img src={whiteDeleteIcon} className="savedRoutes__deleteIcon" />
         </button>
       </div>
 
