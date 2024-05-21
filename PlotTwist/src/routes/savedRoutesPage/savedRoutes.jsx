@@ -57,6 +57,7 @@ export default function SavedRoutesPage() {
     setIsLoading(false);
   };
 
+  // could add artifical timer for UX
   useEffect(() => {
     // this ensures that getAllRoutes is called only once when the component is first rendered.
     getAllRoutes();
@@ -111,7 +112,7 @@ export default function SavedRoutesPage() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(routeValueToBeDeleted + " routeVal");
+  // console.log(routeValueToBeDeleted + " routeVal");
   return (
     <>
       <Header openMenu={openMenu} handleOpenMenu={handleOpenMenu} />
@@ -139,65 +140,64 @@ export default function SavedRoutesPage() {
           />
         ) : (
           <>
-          <div className="savedRoutes__banner">
-          <h1 className="savedRoutes__Bannerheader">Saved Routes</h1>
-        </div>
-          <table>
-            <tbody className="savedRoutes__table">
-              {routes.map((route, index) => {
-                return (
-                  <tr className="savedRoutes__row" key={index}>
-                    <td className="savedRoutes__routeName">
-                      {route.route_name}
-                    </td>
-                    <td className="savedRoutes__retrieve">
-                      <Link to={"retrieved-route"}></Link>
-                      <button
-                        onClick={handleRetrieve}
-                        className="savedRoutes__retrieveRouteButton"
-                        value={route.id}
-                      >
-                        Retrieve Route
-                      </button>
-                      
-                    </td>
-                    <td className="savedRoutes__delete">
-                      {/* this button below is the target... delete route button... */}
-                      {!isDeletePopup && (
-                        <button
-                          className="savedRoutes__deleteButton"
-                          onClick={() => deletePopup(route.id)}
-                        >
-                          <img
-                            src={whiteDeleteIcon}
-                            className="savedRoutes__deleteIcon"
-                          />
-                        </button>
-                        //aim to get the value of the above button and so only make a div where the value matches that
-                        //if(value===value) {
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+            <div className="savedRoutes__banner">
+              <h1 className="savedRoutes__Bannerheader">Saved Routes</h1>
+            </div>
+            <table>
+              <tbody className="savedRoutes__table">
+                {routes.map((route, index) => {
+                  return (
+                    <tr className="savedRoutes__row" key={index}>
+                      <td className="savedRoutes__routeName">
+                        {route.route_name}
+                      </td>
+                      <td className="savedRoutes__retrieve">
+                        <Link to={"/retrieved-route"} state={route}>
+                          <button
+                            // onClick={handleRetrieve}
+                            className="savedRoutes__retrieveRouteButton"
+                            value={route.id}
+                          >
+                            Retrieve Route
+                          </button>
+                        </Link>
+                      </td>
+                      <td className="savedRoutes__delete">
+                        {/* this button below is the target... delete route button... */}
+                        {!isDeletePopup && (
+                          <button
+                            className="savedRoutes__deleteButton"
+                            onClick={() => deletePopup(route.id)}
+                          >
+                            <img
+                              src={whiteDeleteIcon}
+                              className="savedRoutes__deleteIcon"
+                            />
+                          </button>
+                          //aim to get the value of the above button and so only make a div where the value matches that
+                          //if(value===value) {
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </>
         )}
-        </main>
-        {isDeletePopup && (
-          <section className="deletePopUp">
-            <div className="deletePopUp__container">
-              <button
-                onClick={deletePopup}
-                className="deletePopUp__closeButton"
-              >
-                &times;
-              </button>
-            
+      </main>
+      {isDeletePopup && (
+        <section className="deletePopUp">
+          <div className="deletePopUp__container">
+            <button onClick={deletePopup} className="deletePopUp__closeButton">
+              &times;
+            </button>
+
             {!deleteSuccess ? (
               <>
-                <h1 className="deletePopUp__title">Are you sure you want to delete?</h1>
+                <h1 className="deletePopUp__title">
+                  Are you sure you want to delete?
+                </h1>
                 <div className="deletePopUp__yesOrNoButtonsContainer">
                   <button
                     className="deletePopUp__yesButton"
@@ -205,15 +205,20 @@ export default function SavedRoutesPage() {
                   >
                     Yes delete
                   </button>
-                  <button className="deletePopUp__noButton" onClick={hideDeletePopup}>No</button>
+                  <button
+                    className="deletePopUp__noButton"
+                    onClick={hideDeletePopup}
+                  >
+                    No
+                  </button>
                 </div>
               </>
             ) : (
               <> {deleteLoading ? <h1>Deleting</h1> : <h1>Deleted!</h1>}</>
             )}
-            </div>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
     </>
   );
 }
