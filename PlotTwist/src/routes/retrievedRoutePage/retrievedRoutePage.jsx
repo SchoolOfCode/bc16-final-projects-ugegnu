@@ -31,6 +31,8 @@ export default function RetrievedRoutePage({
     location.state.route_data
   );
 
+  const [isDeletePopup, setDeletePopup] = useState(false);
+
   const routesLibrary = useMapsLibrary("routes");
 
   const [loadedRoute, setLoadedRoute] = useState(true);
@@ -63,6 +65,12 @@ export default function RetrievedRoutePage({
     });
   };
 
+  const deletePopup = () => {
+    // setDeleteSuccess(false);
+    // setDeleteLoading(false);
+    setDeletePopup(!isDeletePopup);
+  };
+
   return (
     <main className="retrievedRoute">
       <div className="retrievedRoute__titleAndButtons">
@@ -79,15 +87,53 @@ export default function RetrievedRoutePage({
         <h1 className="retrievedRoute__routeTitle">
           {location.state.route_name}
         </h1>
-        <Link to={"/saved-routes"}>
-          <button
-            onClick={handleDelete}
-            className="retrievedRoute__deleteButton"
-          >
-            <img src={whiteDeleteIcon} className="savedRoutes__deleteIcon" />
-          </button>
-        </Link>
+
+        {isDeletePopup && (
+          <section className="deletePopUp">
+            <div className="deletePopUp__container">
+              <button
+                onClick={deletePopup}
+                className="deletePopUp__closeButton"
+              >
+                &times;
+              </button>
+
+              <>
+                <h1 className="deletePopUp__title">
+                  Are you sure you want to delete?
+                </h1>
+
+                <div className="deletePopUp__yesOrNoButtonsContainer">
+                  <Link to={"/saved-routes"}>
+                    <button
+                      className="deletePopUp__yesButton"
+                      onClick={handleDelete}
+                    >
+                      Yes delete
+                    </button>
+                  </Link>
+
+                  <button
+                    className="deletePopUp__noButton"
+                    onClick={deletePopup}
+                  >
+                    No
+                  </button>
+                </div>
+              </>
+            </div>
+          </section>
+        )}
+
+        <button className="retrievedRoute__deleteButton">
+          <img
+            src={whiteDeleteIcon}
+            className="savedRoutes__deleteIcon"
+            onClick={deletePopup}
+          />
+        </button>
       </div>
+
       <DynamicMap
         routeIsCreated={routeIsCreated}
         markerCoordinatesArray={markerCoordinatesArray}
