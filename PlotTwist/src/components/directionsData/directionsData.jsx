@@ -234,37 +234,28 @@ export default function DirectionsData({
         <>
           <section className="routeData">
             {currentTime || startTime ? (
-              <div className="routeData__timingsContainer">
-                <div className="routeData__row">
-                  <div className="routeData__markerLetter">
-                    <div className="routeData__dottedLineBottom"></div>A
-                  </div>
+              <ol className="routeData__timingsContainer">
+                <li className="routeData__row">
+                  <p className="routeData__markerLetter">A</p>
                   <div className="routeData__timings">
                     <img
                       className="routeData__markerGreen"
                       src={marker}
-                      alt=""
+                      alt="map marker icon"
                     />
-                    <div className="routeData__arrivalTime">{startTime}</div>
+                    <p className="routeData__arrivalTime">{startTime}</p>
                   </div>
-                </div>
+                </li>
                 {testArray.map((element, index) => {
                   return (
-                    <div className="routeData__row" key={index}>
-                      <div className="routeData__markerLetter">
+                    <li className="routeData__row" key={index}>
+                      <p className="routeData__markerLetter">
                         {index + 1 === testArray.length ? (
-                          <>
-                            {element.markerDestination}
-                            <div className="routeData__dottedLineTop"></div>
-                          </>
+                          <>{element.markerDestination}</>
                         ) : (
-                          <>
-                            <div className="routeData__dottedLineBottom"></div>
-                            {element.markerDestination}
-                            <div className="routeData__dottedLineTop"></div>
-                          </>
+                          <>{element.markerDestination}</>
                         )}
-                      </div>
+                      </p>
                       <div className="routeData__timings">
                         <img
                           className={
@@ -273,27 +264,26 @@ export default function DirectionsData({
                               : "routeData__markerBlue"
                           }
                           src={marker}
-                          alt=""
+                          alt="map marker icon"
                         />
-                        <div className="routeData__arrivaltime">
+                        <p className="routeData__arrivaltime">
                           {element.arrivalTime}
-                        </div>
+                        </p>
                       </div>
-                    </div>
+                    </li>
                   );
                 })}
                 <div className="routeData__row routeData__totalJourneyTime">
                   Total Time:{" "}
                   {calcTotalJourneyTime(directionsResult.routes[0].legs)}{" "}
                 </div>
-              </div>
+              </ol>
             ) : (
               <div className="routeData__timingsContainer">
                 <img className="routeData__coach" src={HomePagecoachlayer} />
               </div>
             )}
 
-            {/* </ol> */}
             <div className="routeData__rightSide">
               <h3 className="routeData__departureHeading">
                 Select Departure Time
