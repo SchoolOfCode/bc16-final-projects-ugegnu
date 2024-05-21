@@ -66,13 +66,16 @@ export default function RetrievedRoutePage({
   return (
     <main className="retrievedRoute">
       <div className="retrievedRoute__titleAndButtons">
-        <button className="retrievedRoute__backButton" onClick={handleRetrieve}>
-          <img
-            className="retrievedRoute__backArrowImage"
-            src={backArrow}
-            alt="Back Arrow"
-          />
-        </button>
+        <Link to={"/saved-routes"}>
+          <button className="retrievedRoute__backButton">
+            <img
+              className="retrievedRoute__backArrowImage"
+              src={backArrow}
+              alt="Back Arrow"
+            />
+          </button>
+        </Link>
+
         <h1 className="retrievedRoute__routeTitle">
           {location.state.route_name}
         </h1>
