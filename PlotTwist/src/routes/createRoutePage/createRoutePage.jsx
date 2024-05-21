@@ -18,18 +18,27 @@ export default function CreateRoutePage() {
   };
 
   const handleReset = () => {
+    if (markerCoordinatesArray.length < 2) {
+      alert("The map is already clear");
+      setRouteIsReset(true);
+      return;
+    }
     setRouteIsReset(false);
     setMarkerCoordinatesArray([]);
   };
 
   const handleRouteCreation = () => {
     if (markerCoordinatesArray.length >= 2) {
-      setRouteIsCreated(true);
+    setRouteIsCreated(true);
+    } else {
+      alert("Please select at least two locations to create a route");
     }
   };
 
   const handleMapClick = (event) => {
     if (routeIsCreated) {
+      return;
+    } else if (markerCoordinatesArray.length >= 22) {
       return;
     } else {
       setMarkerCoordinatesArray((prev) => {

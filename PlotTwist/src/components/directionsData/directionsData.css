@@ -175,7 +175,7 @@
   text-align: start;
   padding-left: 0.8rem;
   align-self: flex-end;
-  font-size: xx-large;
+  font-size: 1.4rem;
   color: black;
 }
 
@@ -237,6 +237,8 @@
   background-color: var(--white);
   color: var(--mainGreen);
   border: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   -webkit-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 5px 6px 5px 0px rgba(0, 0, 0, 0.3);
@@ -365,6 +367,7 @@
   align-items: center;
   background-color: var(--white);
   border-radius: 10px;
+  padding-bottom: 15px;
 }
 
 .savePopUp__logo {
