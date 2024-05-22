@@ -141,18 +141,18 @@
 
 /* Breakpoints */
 
-@media (width > 1024px) {
-  /* .header__openButton {
+/* @media (width > 1024px) { */
+/* .header__openButton {
     width: 60px;
     height: 60px;
   } */
 
-  /* .header__burger {
+/* /* .header__burger {
     width: 70px;
     height: 70px;
   } */
 
-  .header__navigationMenu {
+/* .header__navigationMenu {
     width: 30%;
   }
 
@@ -167,7 +167,7 @@
   .header__closeButton {
     width: 100px;
   }
-}
+}  */
 
 @media (width > 1200px) {
   .header__closeButton {
@@ -222,5 +222,31 @@
     -webkit-transform: translateY(-1000px);
     transform: translateY(-1000px);
     opacity: 0;
+  }
+}
+
+@media (width < 500px) {
+  .header__logo {
+    width: 180px;
+  }
+
+  .header__openButton {
+    background: 0;
+    border: none;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    margin-right: 40px;
+  }
+
+  .header__burger {
+    cursor: pointer;
+    width: 45px;
+    height: 4px;
+  }
+
+  .header__navigationMenu {
+    height: 250px;
+    font-weight: 400;
   }
 }
