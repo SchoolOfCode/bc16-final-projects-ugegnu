@@ -3,7 +3,7 @@ import "./createRoutePage.css";
 import { useState, useEffect } from "react";
 import Header from "../../components/header/headerComponent.jsx";
 import loadingsymbol from "../../assets/tube-spinner.svg";
-import logo from "../../assets/FullLogo.png";
+import allowLocation from "../../assets/shareLocationPointerGraphic.png";
 
 export default function CreateRoutePage() {
   const [routeIsCreated, setRouteIsCreated] = useState(false);
@@ -149,8 +149,11 @@ export default function CreateRoutePage() {
         {/* //this map needs to rerender whenever the geoLocation changes... */}
         {!geoLocation && (
           <div className="mainCreatePage__loading">
-            <h2>Allow or block your location</h2>
-            <img className="uplot-logo" src={logo}></img>
+            {/* <h2>Allow or block your location</h2> */}
+            <img
+              className="mainCreatePage__loading_allowLocation"
+              src={allowLocation}
+            ></img>
             <img className="loading-gif" src={loadingsymbol}></img>
           </div>
         )}
