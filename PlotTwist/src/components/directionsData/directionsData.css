@@ -6,7 +6,7 @@
   align-items: flex-start; */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 90%;
+  width: 95%;
   padding: 1rem;
   gap: 1rem;
   margin-top: 20px;
@@ -175,7 +175,7 @@
   text-align: start;
   padding-left: 0.8rem;
   align-self: flex-end;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: black;
 }
 
@@ -449,5 +449,28 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+@media (width > 850px) {
+  .routeData {
+    width: 800px;
+  }
+}
+
+@media (width < 700px) {
+  .routeData {
+    grid-template-columns: none;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+@media (width < 400px) {
+  .routeData__totalJourneyTime {
+    font-size: 0.8rem;
+  }
+
+  .routeData__inputTimeBox {
+    font-size: 1rem;
   }
 }

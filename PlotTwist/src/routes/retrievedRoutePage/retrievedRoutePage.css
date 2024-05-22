@@ -8,6 +8,7 @@
     rgba(255, 255, 255, 1) 0%,
     var(--bgPastelGreen, 1) 100%
   );
+  min-height: 100dvh;
 }
 
 /* Title and buttons */
