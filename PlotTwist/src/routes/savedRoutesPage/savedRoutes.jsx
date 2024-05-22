@@ -115,22 +115,19 @@ export default function SavedRoutesPage() {
   // console.log(routeValueToBeDeleted + " routeVal");
 
   const resizePadding = () => {
-    if (openMenu && (Number(screenWidth) < 1024 && Number(screenWidth) > 500)) {
+    if (openMenu && Number(screenWidth) < 1024 && Number(screenWidth) > 500) {
       return { paddingTop: "365px" };
-    } else if(openMenu && Number(screenWidth) < 500) {
-      return { paddingTop: "250px"};
+    } else if (openMenu && Number(screenWidth) < 500) {
+      return { paddingTop: "250px" };
     } else {
       return { paddingTop: "120px" };
     }
-  }
+  };
 
   return (
     <>
       <Header openMenu={openMenu} handleOpenMenu={handleOpenMenu} />
-      <main
-        className="savedRoutes"
-        style={resizePadding()}
-      >
+      <main className="savedRoutes" style={resizePadding()}>
         {/* table with .map - show name and button */}
 
         {isLoading ? (
@@ -171,19 +168,16 @@ export default function SavedRoutesPage() {
                       </td>
                       <td className="savedRoutes__delete">
                         {/* this button below is the target... delete route button... */}
-                        {!isDeletePopup && (
-                          <button
-                            className="savedRoutes__deleteButton"
-                            onClick={() => deletePopup(route.id)}
-                          >
-                            <img
-                              src={whiteDeleteIcon}
-                              className="savedRoutes__deleteIcon"
-                            />
-                          </button>
-                          //aim to get the value of the above button and so only make a div where the value matches that
-                          //if(value===value) {
-                        )}
+
+                        <button
+                          className="savedRoutes__deleteButton"
+                          onClick={() => deletePopup(route.id)}
+                        >
+                          <img
+                            src={whiteDeleteIcon}
+                            className="savedRoutes__deleteIcon"
+                          />
+                        </button>
                       </td>
                     </tr>
                   );
