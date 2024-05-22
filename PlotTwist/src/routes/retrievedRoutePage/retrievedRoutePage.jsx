@@ -74,7 +74,7 @@ export default function RetrievedRoutePage({
 
   return (
     <>
-      <Header /> 
+      <Header />
       {/* header covers some elements */}
       <main className="retrievedRoute">
         <div className="retrievedRoute__titleAndButtons">
@@ -133,7 +133,7 @@ export default function RetrievedRoutePage({
             onClick={deletePopup}
             className="retrievedRoute__deleteButton"
           >
-            <img src={whiteDeleteIcon} className="savedRoutes__deleteIcon" />
+            <img src={whiteDeleteIcon} className="retrievedRoute__deleteIcon" />
           </button>
         </div>
 

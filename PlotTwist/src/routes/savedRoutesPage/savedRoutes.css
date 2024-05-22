@@ -26,11 +26,11 @@
 
 .savedRoutes__row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 4fr 1fr 1fr;
   grid-template-rows: 1fr;
   border-bottom: 1px solid #04b66c60;
-
   width: 100%;
+  max-width: 1100px;
 }
 
 .savedRoutes__routeName {
@@ -228,8 +228,74 @@
 
 /* Breakpoints */
 
-@media (width>1024px) {
+/* @media (width>1024px) {
   .savedRoutes__delete {
     justify-self: flex-start;
+  }
+} */
+
+/* Mobile View */
+@media (width < 768px) {
+  .savedRoutes__table {
+    width: 100%;
+    margin: 0;
+  }
+
+  .savedRoutes__routeName {
+    width: 100%;
+    overflow-x: scroll;
+    font-size: 1rem;
+  }
+
+  .savedRoutes__retrieve {
+    text-align: center;
+  }
+
+  .savedRoutes__retrieveRouteButton {
+    width: 100%;
+    max-width: 150px;
+    height: 2.5rem;
+    font-size: 0.75rem;
+  }
+
+  .savedRoutes__delete {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .savedRoutes__tableContainer {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .savedRoutes__deleteIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .savedRoutes__deleteButton {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .savedRoutes__row {
+    grid-template-columns: 1.25fr 1fr 0.3fr;
+    gap: 0.5rem;
+  }
+
+  .deletePopUp {
+    padding: 1rem;
+  }
+
+  .deletePopUp__container {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .deletePopUp__title,
+  .deletePopUp__yesOrNoButtonsContainer button {
+    font-size: 1.25rem;
+    text-align: center;
   }
 }
