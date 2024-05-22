@@ -77,7 +77,7 @@
 }
 
 /* Mobile view */
-@media (width < 768px) {
+/* @media (width < 768px) {
   .routeData {
     grid-template-columns: 1fr;
   }
@@ -96,4 +96,4 @@
   .routeData {
     max-width: 1100px;
   }
-}
+} */
