@@ -91,3 +91,9 @@
     font-size: 1.1rem;
   }
 }
+
+@media (width > 1200px) {
+  .routeData {
+    max-width: 1100px;
+  }
+}
