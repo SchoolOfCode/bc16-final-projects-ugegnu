@@ -231,22 +231,40 @@
   }
 
   .header__openButton {
-    background: 0;
-    border: none;
     width: 45px;
     height: 45px;
-    padding: 0;
-    margin-right: 40px;
   }
 
   .header__burger {
-    cursor: pointer;
     width: 45px;
-    height: 4px;
+    height: 40px;
   }
 
   .header__navigationMenu {
     height: 250px;
     font-weight: 400;
+  }
+
+  .header__homeIcon {
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 7px;
+  }
+  .header__markerIcon {
+    height: 40px;
+    padding-left: 19px;
+    padding-right: 15px;
+  }
+  .header__savedIcon {
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 5px;
+  }
+
+  .header__closeButton {
+    width: 85px;
+    height: 33.3%;
+    font-size: 4rem;
+    padding: 0px 0px 10px 0px;
   }
 }

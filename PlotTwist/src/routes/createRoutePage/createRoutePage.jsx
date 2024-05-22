@@ -74,6 +74,12 @@ export default function CreateRoutePage() {
           openMenu && Number(screenWidth) < 1024
             ? { paddingTop: "365px" }
             : { paddingTop: "120px" }
+
+            || 
+
+            openMenu && Number(screenWidth) < 500
+            ? { paddingTop: "365px" }
+            : { paddingTop: "120px" }
         }
       >
         <section className="mainCreatePage__banner">
