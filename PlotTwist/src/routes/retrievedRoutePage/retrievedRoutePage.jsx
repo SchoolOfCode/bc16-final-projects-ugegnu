@@ -38,6 +38,10 @@ export default function RetrievedRoutePage({
 
   const [loadedRoute, setLoadedRoute] = useState(true);
 
+  // State for handling the header's styling
+  const [openMenu, setOpenMenu] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
   // when selectedRoute.payload changes useState to true
   // if selectedRoute is true, then routeIsCreated = true
 
@@ -72,11 +76,37 @@ export default function RetrievedRoutePage({
     setDeletePopup(!isDeletePopup);
   };
 
+  
+  // Function to handle the opening and closing of the menu - passed to header as props
+  const handleOpenMenu = () => {
+    setOpenMenu(!openMenu);
+  };
+  // Function to handle the resizing of the window in order to change the header's styling
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const resizePadding = () => {
+    if (openMenu && (Number(screenWidth) < 1024 && Number(screenWidth) > 500)) {
+      return { paddingTop: "365px" };
+    } else if(openMenu && Number(screenWidth) < 500) {
+      return { paddingTop: "250px"};
+    } else {
+      return { paddingTop: "120px" };
+    }
+  }
+
   return (
     <>
-      <Header />
+      <Header openMenu={openMenu} handleOpenMenu={handleOpenMenu}/>
       {/* header covers some elements */}
-      <main className="retrievedRoute">
+      <main className="retrievedRoute" style={resizePadding()}>
         <div className="retrievedRoute__titleAndButtons">
           <Link to={"/saved-routes"}>
             <button className="retrievedRoute__backButton">

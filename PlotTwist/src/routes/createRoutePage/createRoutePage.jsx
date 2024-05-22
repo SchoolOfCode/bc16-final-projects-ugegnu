@@ -82,20 +82,22 @@ export default function CreateRoutePage() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   console.log(geoLocation);
-  // }, [geoLocation]);
+  const resizePadding = () => {
+    if (openMenu && (Number(screenWidth) < 1024 && Number(screenWidth) > 500)) {
+      return { paddingTop: "365px" };
+    } else if(openMenu && Number(screenWidth) < 500) {
+      return { paddingTop: "250px"};
+    } else {
+      return { paddingTop: "120px" };
+    }
+  }
 
   return (
     <>
       <Header openMenu={openMenu} handleOpenMenu={handleOpenMenu} />
       <main
         className="mainCreatePage"
-        style={
-          openMenu && Number(screenWidth) < 1024
-            ? { paddingTop: "365px" }
-            : { paddingTop: "120px" }
-        }
+        style={resizePadding()}
       >
         <section className="mainCreatePage__banner">
           {routeIsReset ? (
