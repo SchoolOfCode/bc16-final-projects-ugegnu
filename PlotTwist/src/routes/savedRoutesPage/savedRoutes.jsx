@@ -150,7 +150,7 @@ export default function SavedRoutesPage() {
             <div className="savedRoutes__banner">
               <h1 className="savedRoutes__Bannerheader">Saved Routes</h1>
             </div>
-            <table>
+            <table className="savedRoutes__tableContainer">
               <tbody className="savedRoutes__table">
                 {routes.map((route, index) => {
                   return (

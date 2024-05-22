@@ -20,7 +20,7 @@
   width: 100%;
   /* padding: 0 20px;
     margin-bottom: 20px; */
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .retrievedRoute__backButton {
@@ -50,7 +50,7 @@
 }
 
 .retrievedRoute__routeTitle {
-    color: var(--mainGreen);
+  color: var(--mainGreen);
 }
 
 .retrievedRoute__deleteButton {
@@ -71,3 +71,30 @@
   background-color: rgb(249, 0, 0);
   cursor: pointer;
 }
+
+.retrievedRoute__deleteIcon {
+  width: 30px;
+  height: auto;
+}
+
+/* Mobile view */
+/* @media (width < 768px) {
+  .routeData {
+    grid-template-columns: 1fr;
+  }
+
+  .routeData__rightSide {
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  .routeData__inputTimeBox {
+    font-size: 1.1rem;
+  }
+}
+
+@media (width > 1200px) {
+  .routeData {
+    max-width: 1100px;
+  }
+} */

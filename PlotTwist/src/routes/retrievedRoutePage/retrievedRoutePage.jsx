@@ -104,7 +104,7 @@ export default function RetrievedRoutePage({
 
   return (
     <>
-      <Header openMenu={openMenu} handleOpenMenu={handleOpenMenu}/> 
+      <Header openMenu={openMenu} handleOpenMenu={handleOpenMenu}/>
       {/* header covers some elements */}
       <main className="retrievedRoute" style={resizePadding()}>
         <div className="retrievedRoute__titleAndButtons">
@@ -163,7 +163,7 @@ export default function RetrievedRoutePage({
             onClick={deletePopup}
             className="retrievedRoute__deleteButton"
           >
-            <img src={whiteDeleteIcon} className="savedRoutes__deleteIcon" />
+            <img src={whiteDeleteIcon} className="retrievedRoute__deleteIcon" />
           </button>
         </div>
 

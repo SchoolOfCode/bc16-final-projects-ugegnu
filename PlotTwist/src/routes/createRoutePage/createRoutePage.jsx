@@ -2,6 +2,8 @@ import DynamicMap from "../../components/dynamicMap/dynamicMap";
 import "./createRoutePage.css";
 import { useState, useEffect } from "react";
 import Header from "../../components/header/headerComponent.jsx";
+import loadingsymbol from "../../assets/tube-spinner.svg";
+import allowLocation from "../../assets/shareLocationPointerGraphic.png";
 
 export default function CreateRoutePage() {
   const [routeIsCreated, setRouteIsCreated] = useState(false);
@@ -12,7 +14,8 @@ export default function CreateRoutePage() {
   // State for handling the header's styling
   const [openMenu, setOpenMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
+  //geolocation state
+  const [geoLocation, setGeolocation] = useState();
   const handleInstructionsClick = () => {
     setShowInstructions(!showInstructions);
   };
@@ -29,7 +32,7 @@ export default function CreateRoutePage() {
 
   const handleRouteCreation = () => {
     if (markerCoordinatesArray.length >= 2) {
-    setRouteIsCreated(true);
+      setRouteIsCreated(true);
     } else {
       alert("Please select at least two locations to create a route");
     }
@@ -54,8 +57,22 @@ export default function CreateRoutePage() {
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
   };
+
   // Function to handle the resizing of the window in order to change the header's styling
+  //in this function we have added the geolocation - error if people decline and success if someone says yes
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success, error);
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+      setGeolocation({ lat: 52.4823, lng: -1.89 });
+    }
+    function success(pos) {
+      const crd = pos.coords;
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      setGeolocation({ lat: crd.latitude, lng: crd.longitude });
+    }
+
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
@@ -131,13 +148,29 @@ export default function CreateRoutePage() {
             </li>
           </ol>
         )}
-        <DynamicMap
-          routeIsCreated={routeIsCreated}
-          handleMapClick={handleMapClick}
-          markerCoordinatesArray={markerCoordinatesArray}
-          setRouteIsCreated={setRouteIsCreated}
-          setMarkerCoordinatesArray={setMarkerCoordinatesArray}
-        />
+        {/* //this map needs to rerender whenever the geoLocation changes... */}
+        {!geoLocation && (
+          <div className="mainCreatePage__loading">
+            {/* <h2>Allow or block your location</h2> */}
+            <img
+              className="mainCreatePage__loading_allowLocation"
+              src={allowLocation}
+            ></img>
+            <img className="loading-gif" src={loadingsymbol}></img>
+          </div>
+        )}
+        {/* this renders the map when geolocation is provided */}
+        {geoLocation && (
+          <DynamicMap
+            routeIsCreated={routeIsCreated}
+            handleMapClick={handleMapClick}
+            markerCoordinatesArray={markerCoordinatesArray}
+            setRouteIsCreated={setRouteIsCreated}
+            setMarkerCoordinatesArray={setMarkerCoordinatesArray}
+            geoLocation={geoLocation}
+          />
+        )}
+
         {!routeIsCreated ? (
           <div className="mainCreatePage__buttons">
             <button

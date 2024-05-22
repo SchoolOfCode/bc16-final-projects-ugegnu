@@ -140,6 +140,29 @@
   box-shadow: none;
 }
 
+.mainCreatePage__loading {
+  width: 90dvw;
+  margin: 20px auto 0px auto;
+  min-height: 510px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  gap: 20px;
+}
+
+.mainCreatePage__loading_allowLocation {
+  max-width: 60vw;
+  height: auto;
+}
+
+.loading-gif {
+  max-width: 10vw;
+  height: auto;
+}
+
 /* Breakpoints */
 
 @media (width > 1200px) {
@@ -156,6 +179,15 @@
 
   .mainCreatePage__buttons > button:hover {
     margin-left: 0px;
+  }
+  .mainCreatePage__loading_allowLocation {
+    max-width: 20vw;
+    height: auto;
+  }
+
+  .loading-gif {
+    max-width: 5vw;
+    height: auto;
   }
 }
 
