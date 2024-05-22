@@ -19,9 +19,7 @@ export default function DynamicMap({
   // once it's created there, export to dynamic maps
 
   //could we have a useEffect here the re-renders the map when the geolocation changes?
-  useEffect(() => {
-    DynamicMap();
-  }, [geoLocation]);
+
   return (
     <>
       <APIProvider apiKey={import.meta.env.VITE_PUBLIC_GOOGLE_MAPS_API_KEY}>
