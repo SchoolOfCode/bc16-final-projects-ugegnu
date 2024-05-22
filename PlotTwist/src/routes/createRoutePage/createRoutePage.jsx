@@ -2,6 +2,8 @@ import DynamicMap from "../../components/dynamicMap/dynamicMap";
 import "./createRoutePage.css";
 import { useState, useEffect } from "react";
 import Header from "../../components/header/headerComponent.jsx";
+import loadingsymbol from "../../assets/tube-spinner.svg";
+import logo from "../../assets/FullLogo.png";
 
 export default function CreateRoutePage() {
   const [routeIsCreated, setRouteIsCreated] = useState(false);
@@ -14,8 +16,6 @@ export default function CreateRoutePage() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   //geolocation state
   const [geoLocation, setGeolocation] = useState();
-  //{ lat: 52.4823, lng: -1.89 }
-  const [userGaveLocation, setUserGaveLocation] = useState(true);
   const handleInstructionsClick = () => {
     setShowInstructions(!showInstructions);
   };
@@ -59,7 +59,7 @@ export default function CreateRoutePage() {
   };
 
   // Function to handle the resizing of the window in order to change the header's styling
-  //in this function we have added the geolocation
+  //in this function we have added the geolocation - error if people decline and success if someone says yes
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success, error);
     function error(err) {
@@ -147,6 +147,14 @@ export default function CreateRoutePage() {
           </ol>
         )}
         {/* //this map needs to rerender whenever the geoLocation changes... */}
+        {!geoLocation && (
+          <div className="mainCreatePage__loading">
+            <h2>Allow or block your location</h2>
+            <img className="uplot-logo" src={logo}></img>
+            <img className="loading-gif" src={loadingsymbol}></img>
+          </div>
+        )}
+        {/* this renders the map when geolocation is provided */}
         {geoLocation && (
           <DynamicMap
             routeIsCreated={routeIsCreated}

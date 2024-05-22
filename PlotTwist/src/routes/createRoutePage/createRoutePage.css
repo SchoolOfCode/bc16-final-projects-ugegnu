@@ -185,3 +185,25 @@
     margin-left: 0px;
   }
 }
+
+.mainCreatePage__loading {
+  width: 90dvw;
+  margin: 20px auto 0px auto;
+  min-height: 510px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.uplot-logo {
+  max-width: 25vw;
+  height: auto;
+}
+
+.loading-gif {
+  max-width: 20vw;
+  height: auto;
+}
