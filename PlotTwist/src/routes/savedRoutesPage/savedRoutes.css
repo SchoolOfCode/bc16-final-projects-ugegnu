@@ -243,6 +243,8 @@
 
   .savedRoutes__routeName {
     width: 100%;
+    overflow-x: scroll;
+    font-size: 1rem;
   }
 
   .savedRoutes__retrieveRouteButton {
@@ -270,5 +272,23 @@
   .savedRoutes__deleteButton {
     height: 2.5rem;
     width: 2.5rem;
+  }
+
+  .savedRoutes__row {
+    grid-template-columns: 1fr 0.75fr 0.3fr;
+  }
+
+  .deletePopUp {
+    padding: 1rem;
+  }
+
+  .deletePopUp__container {
+    width: 100%;
+  }
+
+  .deletePopUp__title,
+  .deletePopUp__yesOrNoButtonsContainer button {
+    font-size: 1.25rem;
+    text-align: center;
   }
 }
