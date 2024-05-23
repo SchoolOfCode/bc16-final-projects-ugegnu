@@ -188,7 +188,7 @@ export default function SavedRoutesPage() {
         )}
       </main>
       {isDeletePopup && (
-        <section className="deletePopUp">
+        <section onClick={deletePopup} className="deletePopUp">
           <div className="deletePopUp__container">
             <button onClick={deletePopup} className="deletePopUp__closeButton">
               &times;
