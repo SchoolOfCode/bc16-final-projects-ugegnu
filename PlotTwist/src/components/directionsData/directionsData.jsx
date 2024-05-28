@@ -196,21 +196,23 @@ export default function DirectionsData({
   }
 
   function handleTimeChange(e) {
-    if (e.target.value === "currentTimeButton") {
-      const hours =
-        new Date().getHours() < 10
-          ? "0" + new Date().getHours()
-          : new Date().getHours();
-      const minutes =
-        new Date().getMinutes() < 10
-          ? "0" + new Date().getMinutes()
-          : new Date().getMinutes();
-      setCurrentTime(`${hours}:${minutes}`);
-      populateTimingsTable(`${hours}:${minutes}`);
-    } else {
-      setCurrentTime(e.target.value);
-      populateTimingsTable(e.target.value);
-    }
+    // if (e.target.value === "currentTimeButton") {
+    //   const hours =
+    //     new Date().getHours() < 10
+    //       ? "0" + new Date().getHours()
+    //       : new Date().getHours();
+    //   const minutes =
+    //     new Date().getMinutes() < 10
+    //       ? "0" + new Date().getMinutes()
+    //       : new Date().getMinutes();
+    //   setCurrentTime(`${hours}:${minutes}`);
+    //   populateTimingsTable(`${hours}:${minutes}`);
+    // } else {
+    //   setCurrentTime(e.target.value);
+    //   populateTimingsTable(e.target.value);
+    // }
+    // console.log(e.target.value);
+    populateTimingsTable(e.target.value);
   }
 
   function calcTotalJourneyTime(arr) {
@@ -303,13 +305,14 @@ export default function DirectionsData({
                   className="routeData__inputTimeBox"
                   id="timeInput"
                   type="time"
-                  value={currentTime}
+                  // value={currentTime}
                   onChange={handleTimeChange}
                 />
                 <button
                   className="routeData__currentTimeButton"
                   onClick={handleTimeChange}
-                  value={"currentTimeButton"}
+                  // value={"currentTimeButton"}
+                  value={new Date().toLocaleTimeString()}
                 >
                   Current Time
                 </button>
